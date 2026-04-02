@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator Pro - Full Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        /* Global Dashboard Styles */
+        body { background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+        .app-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background-color: #1f2937; color: white; padding: 20px 0; flex-shrink: 0; }
+        .main-content { flex: 1; background-color: #525659; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; align-items: center;}
+        
+        .nav-item { padding: 15px 20px; cursor: pointer; border-left: 4px solid transparent; transition: 0.2s; }
+        .nav-item:hover { background-color: #374151; }
+        .nav-item.active { background-color: #374151; border-left-color: #3b82f6; font-weight: bold; }
+
+        /* Scoped Font Styles */
+        .font-sans-bw { font-family: Arial, Helvetica, sans-serif; color: #111111; }
+        .font-mono-horison { font-family: 'Courier New', Courier, monospace; color: #000000; }
+        .font-sans-fairfield { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222222; }
+        .font-mono-taksi { font-family: 'Courier New', Courier, monospace; color: #000000; }
+        .font-sans-grab { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+        /* Container Struk A4 */
+        .receipt-container {
+            background-color: white; width: 210mm; min-height: 297mm;
+            padding: 15mm 20mm; box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); margin: 0 auto 30px auto;
+            position: relative; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+        }
+
+        /* Container Struk Thermal (Taksi) */
+        .thermal-container {
+            background-color: white; width: 260px; min-height: 400px;
+            padding: 15px; box-sizing: border-box;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); margin: 0 auto 30px auto;
+            position: relative;
+        }
+
+        /* Container Struk Mobile (Grab) */
+        .grab-container {
+            background-color: #ffffff; width: 380px; margin: 0 auto 30px auto;
+            border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden; position: relative;
+        }
+
+        /* Efek Edit Interaktif */
+        .editable { outline: none; border-bottom: 1px dashed transparent; transition: all 0.2s ease; display: inline-block; min-width: 15px; }
+        .editable:hover, .editable:focus { background-color: #fef08a; border-bottom: 1px dashed #ca8a04; cursor: text; }
+
+        /* Tabel & Garis Khusus */
+        .bw-table th { border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 8px 5px; font-size: 11px; text-transform: uppercase; font-weight: bold; }
+        .bw-table td { padding: 8px 5px; font-size: 12px; }
+        .horison-table th { padding: 10px 0; font-weight: 900; color: #000000; }
+        .horison-table td { padding: 10px 0; font-weight: 700; }
+        .fairfield-table th { padding: 10px 5px; font-weight: bold; color: #000000; border-top: 2px solid #000; border-bottom: 2px solid #000; text-transform: uppercase; font-size: 12px; }
+        .fairfield-table td { padding: 10px 5px; font-weight: normal; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
+        .dashed-line { border-top: 1px dashed #000; margin: 8px 0; width: 100%; }
+        .route-line { position: absolute; left: 11px; top: 24px; bottom: 24px; width: 2px; background-color: #e5e7eb; z-index: 0; }
+
+        /* Utilitas Print */
+        @media print {
+            .no-print, .sidebar { display: none !important; }
+            body, .app-container, .main-content { background-color: white; margin: 0; padding: 0; display: block; }
+            .receipt-container, .thermal-container { box-shadow: none; margin: 0; width: 100%; min-height: auto; }
+            .grab-container { box-shadow: none; margin: 0 auto; border: 1px solid #e5e7eb; }
+            .editable { background-color: transparent !important; border: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="sidebar no-print">
+        <div class="text-xl font-bold text-center mb-8 tracking-widest text-blue-400">INVOICE PRO</div>
+        <div class="nav-item active" onclick="switchTab('tab-bw', this)">🏨 Best Western</div>
+        <div class="nav-item" onclick="switchTab('tab-horison', this)">🏨 Horison</div>
+        <div class="nav-item" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
+        <div class="nav-item" onclick="switchTab('tab-taksi', this)">🚕 Taksi Thermal</div>
+        <div class="nav-item" onclick="switchTab('tab-grab', this)">📱 Grab Online</div>
+    </div>
+
+    <div class="main-content">
+        
+        <div class="w-full max-w-4xl flex justify-center gap-4 mb-6 no-print bg-white p-4 rounded-lg shadow-md">
+            <button onclick="exportActive('jpeg')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded shadow transition text-sm">
+                🖼️ Download JPEG
+            </button>
+            <button onclick="exportActive('pdf')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow transition text-sm">
+                📄 Download PDF
+            </button>
+            <button onclick="window.print()" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded shadow transition text-sm">
+                🖨️ Print Area
+            </button>
+        </div>
+
+        <div id="tab-bw" class="template-section w-full flex justify-center">
+            <div id="content-bw" class="receipt-container font-sans-bw antialiased">
+                <div class="flex justify-between items-start mb-6 pb-4 border-b border-gray-400">
+                    <div class="w-1/2">
+                        <div id="wrapper-bw" class="no-print mb-2" style="display: none;">
+                            <label class="cursor-pointer block border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 text-gray-400 font-bold py-4 px-4 text-center rounded transition text-xs">
+                                🖼️ Klik Upload Logo
+                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-bw', 'wrapper-bw')">
+                            </label>
+                        </div>
+                        <img id="preview-bw" src="premier.png" alt="Best Western Logo" class="h-28 w-auto object-contain object-left cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                    </div>
+                    
+                    <div class="w-1/2 text-right text-[11px] leading-snug">
+                        <p class="font-bold text-sm uppercase tracking-wider mb-1 text-[#003b6f]">Best Western Premier La Grande</p>
+                        <p>Jl. Merdeka No. 25-29, Babakan Ciamis</p>
+                        <p>Sumur Bandung, Kota Bandung 40111</p>
+                        <p>Jawa Barat - Indonesia</p>
+                        <p class="mt-1">Phone: +62 22 42690555</p>
+                        <p>Email: reservations@bwpremierlagrande.com</p>
+                        <p>Website: www.bestwestern.com</p>
+                    </div>
+                </div>
+
+                <div class="text-center mb-8"><h1 class="text-2xl font-bold tracking-widest uppercase">Guest Folio</h1></div>
+
+                <div class="flex justify-between mb-8 text-[11px] md:text-xs">
+                    <div class="w-1/2 pr-4">
+                        <p class="font-bold text-[13px] uppercase editable mb-1" contenteditable="true">MR. WAHYU SETIAWAN</p>
+                        <p class="uppercase editable text-gray-700 w-full" contenteditable="true">JAPAN</p>
+                        <p class="mt-4"><span class="font-bold uppercase text-[10px] text-gray-500 block">Company / Agent:</span> <span class="editable uppercase font-semibold" contenteditable="true">PERSONAL</span></p>
+                    </div>
+                    <div class="w-1/2 pl-4">
+                        <table class="w-full text-left">
+                            <tbody>
+                                <tr><td class="py-1 w-32 font-bold uppercase text-[10px] text-gray-500">Room No.</td><td class="py-1 font-bold text-sm">: <span class="editable" contenteditable="true">1108</span></td></tr>
+                                <tr><td class="py-1 font-bold uppercase text-[10px] text-gray-500">Arrival</td><td class="py-1">: <span class="editable" contenteditable="true">08/04/2026</span></td></tr>
+                                <tr><td class="py-1 font-bold uppercase text-[10px] text-gray-500">Departure</td><td class="py-1">: <span class="editable" contenteditable="true">09/04/2026</span></td></tr>
+                                <tr><td class="py-1 font-bold uppercase text-[10px] text-gray-500">Guests</td><td class="py-1">: <span class="editable" contenteditable="true">1/0</span></td></tr>
+                                <tr><td class="py-1 font-bold uppercase text-[10px] text-gray-500">Folio / Inv No.</td><td class="py-1">: <span class="editable font-semibold" contenteditable="true">ID-1035747</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <table class="w-full text-left bw-table">
+                        <thead><tr><th class="w-1/6">Date</th><th class="w-3/6">Description</th><th class="w-1/6 text-right">Charges (Rp)</th><th class="w-1/6 text-right">Credits (Rp)</th></tr></thead>
+                        <tbody>
+                            <tr><td class="align-top"><span class="editable" contenteditable="true">08/04/26</span></td><td class="align-top"><span class="editable" contenteditable="true">Room Accommodation</span></td><td class="align-top text-right"><span class="editable" contenteditable="true">1,200,000.00</span></td><td class="align-top text-right"><span class="editable" contenteditable="true"></span></td></tr>
+                            <tr><td class="align-top"><span class="editable" contenteditable="true">09/04/26</span></td><td class="align-top font-bold"><span class="editable" contenteditable="true">Payment - Cash</span></td><td class="align-top text-right"><span class="editable" contenteditable="true"></span></td><td class="align-top text-right font-bold"><span class="editable" contenteditable="true">- 1,250,000.00</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex justify-end mb-16">
+                    <div class="w-1/2 md:w-2/5 mt-4">
+                        <table class="w-full text-right">
+                            <tr><td class="py-1 pr-4 uppercase text-[11px] font-bold">Total Charges</td><td class="py-1 text-[12px]"><span class="editable" contenteditable="true">1,250,000.00</span></td></tr>
+                            <tr><td class="py-1 pr-4 uppercase text-[11px] font-bold">Total Credits</td><td class="py-1 text-[12px]"><span class="editable" contenteditable="true">- 1,250,000.00</span></td></tr>
+                            <tr class="border-t-2 border-black border-b-4 border-double border-b-black"><td class="py-2 pr-4 uppercase font-bold text-[13px]">Balance Due</td><td class="py-2 font-bold text-[13px]"><span class="editable" contenteditable="true">0.00</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <p class="text-[10px] leading-relaxed text-justify uppercase text-gray-700 font-semibold mb-6">I agree that my liability for this bill is not waived and agree to be held personally liable in the event that the indicated person, company or association fails to pay for any part or the full amount of these charges.</p>
+                    <div class="flex justify-between items-end">
+                        <div class="w-1/2 pr-4 text-[11px]"><p class="font-bold mb-1">Guest Signature</p><div class="border-b border-black h-12 w-4/5 mb-1"></div></div>
+                        <div class="w-1/2 text-right text-[10px] text-gray-600"><p>Cashier ID: <span class="editable font-bold" contenteditable="true">SYS/0115</span></p><p>Print Date: <span class="editable" contenteditable="true">09/04/2026 08:35:12</span></p><p class="mt-2 font-bold">Page 1 of 1</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-horison" class="template-section w-full flex justify-center hidden">
+            <div id="content-horison" class="receipt-container font-mono-horison text-xs md:text-sm antialiased">
+                <div class="text-center mb-6 relative">
+                    <div id="wrapper-horison" class="no-print mb-2" style="display: none;">
+                        <label class="cursor-pointer block border-2 border-dashed border-gray-300 hover:border-gray-500 hover:bg-gray-50 text-gray-400 font-bold py-4 rounded transition text-xs">
+                            🖼️ Klik di sini untuk Upload Logo Hotel
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-horison', 'wrapper-horison')">
+                        </label>
+                    </div>
+                    <img id="preview-horison" src="horison.png" alt="Logo Hotel" class="mx-auto h-16 object-contain mb-1 cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                    
+                    <div class="text-xs leading-relaxed space-y-1 mt-6 font-bold">
+                        <p>Jl. KH. Noer Alie, Bekasi 17148 Jawa Barat - Indonesia</p>
+                        <p>P: (62-21) 300 28 500 | (62-21) 884 8888</p>
+                        <p>Website: www.horisonultimabekasi.com</p>
+                    </div>
+                    <div class="mt-8 mb-4"></div>
+                </div>
+
+                <div class="flex justify-between mb-8 mt-4 font-bold">
+                    <div class="w-1/2 pr-4">
+                        <p class="uppercase editable" contenteditable="true">MR. WAHYU SETIAWAN</p>
+                        <p class="uppercase editable" contenteditable="true">JAPAN</p>
+                    </div>
+                    <div class="w-1/2 pl-4">
+                        <table class="w-full text-left">
+                            <tbody>
+                                <tr><td class="py-1 w-32">ARRIVAL</td><td class="py-1">: <span class="editable" contenteditable="true">07/04/26</span></td></tr>
+                                <tr><td class="py-1">DEPARTURE</td><td class="py-1">: <span class="editable" contenteditable="true">08/04/26</span></td></tr>
+                                <tr><td class="py-1">BILL NO</td><td class="py-1">: <span class="editable" contenteditable="true">403726/4</span></td></tr>
+                                <tr><td class="py-1">ROOM NO</td><td class="py-1">: <span class="editable" contenteditable="true">1205</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <table class="w-full text-left horison-table">
+                        <thead><tr><th class="w-1/4">DATE</th><th class="w-2/4">DESCRIPTION</th><th class="w-1/4 text-right">AMOUNT</th></tr></thead>
+                        <tbody>
+                            <tr><td class="align-top"><span class="editable" contenteditable="true">07/04/26</span></td><td class="align-top"><span class="editable" contenteditable="true">Room Charge</span></td><td class="align-top text-right"><span class="editable" contenteditable="true">1,228,190.00</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex justify-between mb-12 mt-2 font-bold">
+                    <div class="w-1/4"><p>$$</p></div><div class="w-2/4 text-right pr-12"><p>Balance</p></div><div class="w-1/4 text-right"><p class="editable" contenteditable="true">1,228,190.00</p></div>
+                </div>
+
+                <div class="flex flex-col items-center mb-10 text-center font-bold"><p>Thank you</p><p>For staying</p><p>with us</p><p class="mt-4">Please Come again</p></div>
+
+                <div class="flex justify-between items-end font-bold mt-16">
+                    <div class="text-[11px]"><p>Printed by: <span class="editable" contenteditable="true">0115</span></p><p>Date: <span class="editable" contenteditable="true">08/04/2026 06:55</span></p></div>
+                    <div class="w-48 text-center"><div class="border-b border-black h-16 w-full mb-1"></div><p>SIGNATURE:</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-fairfield" class="template-section w-full flex justify-center hidden">
+            <div id="content-fairfield" class="receipt-container font-sans-fairfield text-xs md:text-sm antialiased">
+                <div class="flex justify-between items-start mb-6 relative pb-4 border-b-2 border-gray-800">
+                    <div class="w-1/3">
+                        <div id="wrapper-fairfield" class="no-print mb-2 mt-2" style="display: none;">
+                            <label class="cursor-pointer block border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 text-gray-400 font-bold py-3 px-2 text-center rounded transition text-[10px]">
+                                🖼️ Upload Logo
+                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-fairfield', 'wrapper-fairfield')">
+                            </label>
+                        </div>
+                        <img id="preview-fairfield" src="fairfield.png" alt="Logo Hotel" class="h-16 object-contain cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                    </div>
+                    <div class="w-2/3 text-right text-[11px] md:text-xs leading-relaxed space-y-1 text-gray-700 mt-2">
+                        <p class="font-bold text-sm text-black uppercase tracking-wider mb-2">Fairfield by Marriott Bekasi</p>
+                        <p>Jl. Jend. Sudirman No. 1, Bekasi Barat, Bekasi 17143 Jawa Barat - Indonesia</p>
+                        <p>Website: www.marriott.com | E-Mail: reservation.bekasi@fairfield.com</p>
+                    </div>
+                </div>
+
+                <div class="text-center mb-6"><h1 class="text-xl font-bold tracking-widest uppercase">Guest Folio</h1></div>
+
+                <div class="flex justify-between mb-8">
+                    <div class="w-1/2 pr-4">
+                        <p class="text-gray-500 text-[10px] uppercase font-bold mb-1">Guest Details</p>
+                        <p class="font-bold text-sm uppercase editable" contenteditable="true">MR. WAHYU, SETIAWAN</p>
+                        <p class="uppercase editable mt-1 text-gray-700" contenteditable="true">JAPAN</p>
+                    </div>
+                    <div class="w-1/2 pl-4">
+                        <table class="w-full text-left">
+                            <tbody>
+                                <tr><td class="py-1 w-32 font-bold text-gray-600 text-xs">ROOM NO</td><td class="py-1">: <span class="editable font-bold text-black" contenteditable="true">1205</span></td></tr>
+                                <tr><td class="py-1 font-bold text-gray-600 text-xs">ARRIVAL</td><td class="py-1">: <span class="editable" contenteditable="true">09/04/26</span></td></tr>
+                                <tr><td class="py-1 font-bold text-gray-600 text-xs">DEPARTURE</td><td class="py-1">: <span class="editable" contenteditable="true">14/04/26</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <table class="w-full text-left fairfield-table">
+                        <thead><tr><th class="w-1/4">DATE</th><th class="w-2/4">DESCRIPTION</th><th class="w-1/4 text-right">CHARGES</th></tr></thead>
+                        <tbody>
+                            <tr><td class="align-top"><span class="editable" contenteditable="true">09/04/26</span></td><td class="align-top"><span class="editable" contenteditable="true">Room Charge</span></td><td class="align-top text-right"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                            <tr><td class="align-top"><span class="editable" contenteditable="true">10/04/26</span></td><td class="align-top"><span class="editable" contenteditable="true">Room Charge</span></td><td class="align-top text-right"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex justify-end mb-10 mt-4">
+                    <div class="w-1/2 md:w-1/3">
+                        <table class="w-full text-right"><tr class="border-t-2 border-black font-bold text-sm"><td class="py-2 pr-4 uppercase">Balance Due</td><td class="py-2 text-black"><span class="editable" contenteditable="true">5,950,000.00</span></td></tr></table>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-end mt-16">
+                    <div class="text-[10px] text-gray-500 font-semibold"><p>Cashier: <span class="editable" contenteditable="true">0115</span></p><p>Printed: <span class="editable" contenteditable="true">14/04/2026 03:30</span></p></div>
+                    <div class="w-48 text-center"><div class="border-b border-black h-12 w-full mb-2"></div><p class="font-bold text-xs text-gray-700">Guest Signature</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-taksi" class="template-section w-full flex justify-center hidden">
+            <div id="content-taksi" class="thermal-container font-mono-taksi text-xs antialiased">
+                <div id="wrapper-taksi" class="no-print mb-2 text-center" style="display: none;">
+                    <label class="cursor-pointer block border border-dashed border-gray-400 hover:bg-gray-100 text-gray-500 py-2 px-1 text-[9px] rounded font-bold">
+                        Upload Logo
+                        <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-taksi', 'wrapper-taksi')">
+                    </label>
+                </div>
+                <div class="text-center">
+                    <img id="preview-taksi" src="bluebird.png" alt="Logo Taksi" class="mx-auto h-12 object-contain mb-2 cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+
+                <div class="text-center leading-tight mb-2">
+                    <p class="font-bold text-[14px] uppercase editable" contenteditable="true">PT. TAKSI BIRU TBK</p>
+                    <p class="text-[11px] font-bold mt-1 uppercase">NO PINTU: <span class="editable" contenteditable="true">B 1234 XX</span></p>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <div class="leading-tight space-y-1 my-2 text-[11px] uppercase">
+                    <div class="flex"><span class="w-20">PENGEMUDI</span><span>: <span class="editable font-bold" contenteditable="true">WAHYU SETIAWAN</span></span></div>
+                    <div class="flex mt-2"><span class="w-20">MULAI</span><span>: <span class="editable" contenteditable="true">09/04/26 14:20</span></span></div>
+                    <div class="flex"><span class="w-20">SELESAI</span><span>: <span class="editable" contenteditable="true">09/04/26 15:05</span></span></div>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <div class="leading-tight space-y-1 my-2 text-[11px] uppercase">
+                    <div class="flex justify-between items-end"><span>JARAK (KM)</span><span class="editable" contenteditable="true">15.40</span></div>
+                    <div class="flex justify-between items-end"><span>ARGO DASAR</span><span class="editable" contenteditable="true">75,500</span></div>
+                    <div class="flex justify-between items-end"><span>BIAYA TOL</span><span class="editable" contenteditable="true">10,500</span></div>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <div class="flex justify-between items-end font-bold text-[13px] my-2 uppercase">
+                    <span>TOTAL (RP)</span><span class="editable" contenteditable="true">98,000</span>
+                </div>
+
+                <div class="dashed-line"></div>
+                <div class="text-center leading-tight mt-3 text-[10px] uppercase">
+                    <p class="font-bold">TERIMA KASIH</p><p>ATAS KEPERCAYAAN ANDA</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-grab" class="template-section w-full flex justify-center hidden">
+            <div id="content-grab" class="grab-container font-sans-grab">
+                <div class="bg-green-600 px-6 py-5 text-white">
+                    <div class="flex justify-between items-center mb-4">
+                        <h1 class="text-lg font-bold">Bukti Perjalanan</h1>
+                        <div id="wrapper-grab" class="no-print relative" style="display: none;">
+                            <label class="cursor-pointer bg-white/20 hover:bg-white/30 text-white text-[10px] px-2 py-1 rounded">
+                                + Logo App
+                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-grab', 'wrapper-grab')">
+                            </label>
+                        </div>
+                        <img id="preview-grab" src="grab.png" alt="App Logo" class="h-8 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block;" title="Klik untuk mengganti" onclick="this.previousElementSibling.querySelector('input').click()">
+                    </div>
+                    <p class="text-sm opacity-90"><span class="editable" contenteditable="true">09 Apr 2026, 14:20</span></p>
+                    <p class="text-[10px] opacity-75 mt-1 uppercase">ID: <span class="editable" contenteditable="true">RB-A1B2C3D4E5</span></p>
+                </div>
+
+                <div class="px-6 py-6 border-b border-gray-100 text-center">
+                    <p class="text-gray-500 text-xs font-semibold mb-1 uppercase">Total Pembayaran</p>
+                    <div class="text-3xl font-extrabold text-gray-800">Rp<span class="editable ml-1" contenteditable="true">55.000</span></div>
+                    <div class="mt-2 text-xs font-semibold text-gray-500 bg-gray-100 inline-block px-3 py-1 rounded-full">
+                        Metode: <span class="editable text-gray-700" contenteditable="true">GOPAY / OVO / TUNAI</span>
+                    </div>
+                </div>
+
+                <div class="px-6 py-6 border-b border-gray-100 relative">
+                    <div class="route-line"></div>
+                    <div class="flex items-start mb-6 relative z-10">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center border-2 border-white shadow-sm mt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div></div>
+                        <div class="ml-4 flex-1">
+                            <p class="text-xs font-bold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">14:20</span></p>
+                            <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Stasiun Bekasi</p>
+                            <p class="text-xs text-gray-500 mt-1 leading-tight editable" contenteditable="true">Jl. H. Juanda, Kota Bekasi</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start relative z-10">
+                        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center border-2 border-white shadow-sm mt-0.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div></div>
+                        <div class="ml-4 flex-1">
+                            <p class="text-xs font-bold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">15:05</span></p>
+                            <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Fairfield by Marriott Bekasi</p>
+                            <p class="text-xs text-gray-500 mt-1 leading-tight editable" contenteditable="true">Jl. Jend. Sudirman No.1, Bekasi Barat</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 overflow-hidden"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                        <div class="ml-3">
+                            <p class="text-sm font-bold text-gray-800 editable" contenteditable="true">Wahyu Setiawan</p>
+                            <p class="text-xs text-gray-500">Bintang 5.0</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-gray-800 bg-gray-100 px-2 py-0.5 rounded border border-gray-200 editable" contenteditable="true">B 1234 XX</p>
+                        <p class="text-xs text-gray-500 mt-1 editable" contenteditable="true">Toyota Avanza</p>
+                    </div>
+                </div>
+
+                <div class="px-6 py-5">
+                    <p class="text-sm font-bold text-gray-800 mb-3">Rincian Biaya</p>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex justify-between"><span class="editable" contenteditable="true">Tarif Perjalanan</span><span class="font-medium text-gray-800">Rp<span class="editable ml-1" contenteditable="true">50.000</span></span></div>
+                        <div class="flex justify-between"><span class="editable" contenteditable="true">Biaya Jasa Aplikasi</span><span class="font-medium text-gray-800">Rp<span class="editable ml-1" contenteditable="true">5.000</span></span></div>
+                    </div>
+                    <div class="border-t border-gray-200 mt-3 pt-3 flex justify-between font-bold text-gray-800">
+                        <span>Total Dibayar</span><span>Rp<span class="editable ml-1" contenteditable="true">55.000</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let activeTabId = 'content-bw'; 
+    let activeWrapperId = 'wrapper-bw';
+
+    // Logika Ganti Tab
+    function switchTab(tabId, element) {
+        document.querySelectorAll('.template-section').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.remove('hidden');
+        element.classList.add('active');
+        
+        activeTabId = tabId.replace('tab-', 'content-');
+        activeWrapperId = tabId.replace('tab-', 'wrapper-');
+    }
+
+    // Logika Preview Logo yang di-upload manual
+    function previewLogo(event, previewId, wrapperId) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imgPreview = document.getElementById(previewId);
+                imgPreview.src = e.target.result;
+                imgPreview.style.display = 'block';
+                document.getElementById(wrapperId).style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Logika Export (PDF/JPEG)
+    function exportActive(format) {
+        const element = document.getElementById(activeTabId);
+        const wrapper = document.getElementById(activeWrapperId);
+        
+        // 1. Hilangkan border edit kuning sementara
+        const editables = element.querySelectorAll('.editable');
+        editables.forEach(el => {
+            el.style.backgroundColor = 'transparent';
+            el.style.borderBottom = '1px dashed transparent';
+        });
+
+        const filename = 'Dokumen_' + activeTabId.replace('content-', '').toUpperCase() + '_Wahyu';
+
+        // 2. Proses Export
+        if (format === 'jpeg') {
+            // Jika Grab, kasih padding putih ekstra agar cantik seperti screenshot HP
+            const isGrab = activeTabId === 'content-grab';
+            
+            html2canvas(element, { 
+                scale: 3, 
+                useCORS: true, 
+                backgroundColor: isGrab ? "#525659" : "#ffffff"
+            }).then(canvas => {
+                if(isGrab) {
+                    html2canvas(element, { scale: 3, useCORS: true, backgroundColor: "transparent" }).then(finalCanvas => {
+                        const canvasWithWhiteBg = document.createElement('canvas');
+                        const ctx = canvasWithWhiteBg.getContext('2d');
+                        const padding = 60; 
+                        canvasWithWhiteBg.width = finalCanvas.width + (padding * 2);
+                        canvasWithWhiteBg.height = finalCanvas.height + (padding * 2);
+                        
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, canvasWithWhiteBg.width, canvasWithWhiteBg.height);
+                        ctx.drawImage(finalCanvas, padding, padding);
+
+                        triggerDownload(canvasWithWhiteBg.toDataURL('image/jpeg', 0.95), filename);
+                        restoreAfterExport(editables);
+                    });
+                } else {
+                    triggerDownload(canvas.toDataURL('image/jpeg', 1.0), filename);
+                    restoreAfterExport(editables);
+                }
+            });
+        } else if (format === 'pdf') {
+            const isTaksi = activeTabId === 'content-taksi';
+            const opt = {
+                margin: activeTabId === 'content-grab' ? 10 : 0,
+                filename: filename + '.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: { scale: 3, useCORS: true },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: isTaksi ? [80, 200] : 'a4',
+                    orientation: 'portrait' 
+                }
+            };
+            html2pdf().set(opt).from(element).save().then(() => restoreAfterExport(editables));
+        }
+    }
+
+    function triggerDownload(imgData, filename) {
+        const link = document.createElement('a');
+        link.download = filename + '.jpg';
+        link.href = imgData;
+        link.click();
+    }
+
+    function restoreAfterExport(editables) {
+        editables.forEach(el => el.style.borderBottom = '');
+    }
+</script>
+</body>
+</html>
