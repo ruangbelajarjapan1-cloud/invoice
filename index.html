@@ -62,10 +62,10 @@
         }
 
         .thermal-container {
-            background-color: white; width: 260px; min-height: 400px;
-            padding: 15px; box-sizing: border-box;
+            background-color: white; width: 260px; min-height: 200px; /* Diperkecil agar taksi bisa memendek */
+            padding: 15px 15px 25px 15px; box-sizing: border-box;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); margin: 0 auto 30px auto;
-            position: relative;
+            position: relative; height: max-content;
         }
 
         .grab-container {
@@ -75,10 +75,10 @@
         }
 
         .pos-container {
-            background-color: white; width: 320px; min-height: 500px;
-            padding: 15px 20px; box-sizing: border-box;
+            background-color: white; width: 320px; min-height: 250px; /* Diperkecil agar dinamis */
+            padding: 20px 20px 30px 20px; box-sizing: border-box;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); margin: 0 auto 30px auto;
-            position: relative; -webkit-font-smoothing: none;
+            position: relative; -webkit-font-smoothing: none; height: max-content;
         }
 
         /* Efek Edit Interaktif */
@@ -983,7 +983,9 @@
                 const imgPreview = document.getElementById(previewId);
                 imgPreview.src = e.target.result;
                 imgPreview.style.display = 'block';
-                document.getElementById(wrapperId).style.display = 'none';
+                if(document.getElementById(wrapperId)) {
+                    document.getElementById(wrapperId).style.display = 'none';
+                }
             }
             reader.readAsDataURL(file);
         }
@@ -1034,6 +1036,25 @@
             ];
             const isReceiptFormat = posFormats.some(id => activeTabId.includes(id));
             
+            let pdfFormat = 'a4';
+
+            // DYNAMIC HEIGHT CALCULATION FOR POS PRINTERS (AUTO-CUT)
+            if (isReceiptFormat) {
+                // 1 pixel = ~0.264583 mm
+                const pxToMM = 0.264583;
+                const elementWidthMM = element.offsetWidth * pxToMM;
+                const elementHeightMM = element.offsetHeight * pxToMM;
+                
+                // Set target width based on receipt type (Taksi is narrower)
+                const targetWidthMM = activeTabId.includes('taksi') ? 70 : 80; 
+                
+                // Calculate dynamic height keeping aspect ratio, plus a small bottom margin (5mm)
+                const ratio = targetWidthMM / elementWidthMM;
+                const dynamicHeightMM = (elementHeightMM * ratio) + 5; 
+
+                pdfFormat = [targetWidthMM, dynamicHeightMM];
+            }
+            
             const opt = {
                 margin: activeTabId === 'content-grab' ? 10 : 0,
                 filename: filename + '.pdf',
@@ -1041,7 +1062,7 @@
                 html2canvas: { scale: 3, useCORS: true },
                 jsPDF: { 
                     unit: 'mm', 
-                    format: isReceiptFormat ? [80, 220] : 'a4',
+                    format: pdfFormat,
                     orientation: 'portrait' 
                 }
             };
