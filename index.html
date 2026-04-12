@@ -25,6 +25,7 @@
         .font-sans-fairfield { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222222; }
         .font-mono-taksi { font-family: 'Courier New', Courier, monospace; color: #000000; }
         .font-sans-grab { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .font-mono-pos { font-family: 'Courier New', Courier, monospace; color: #000000; font-size: 12px; }
 
         /* Container Struk A4 */
         .receipt-container {
@@ -49,6 +50,14 @@
             overflow: hidden; position: relative;
         }
 
+        /* Container Struk POS / Restoran */
+        .pos-container {
+            background-color: white; width: 320px; min-height: 500px;
+            padding: 15px; box-sizing: border-box;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); margin: 0 auto 30px auto;
+            position: relative; -webkit-font-smoothing: none;
+        }
+
         /* Efek Edit Interaktif */
         .editable { outline: none; border-bottom: 1px dashed transparent; transition: all 0.2s ease; display: inline-block; min-width: 15px; }
         .editable:hover, .editable:focus { background-color: #fef08a; border-bottom: 1px dashed #ca8a04; cursor: text; }
@@ -60,6 +69,11 @@
         .horison-table td { padding: 10px 0; font-weight: 700; }
         .fairfield-table th { padding: 10px 5px; font-weight: bold; color: #000000; border-top: 2px solid #000; border-bottom: 2px solid #000; text-transform: uppercase; font-size: 12px; }
         .fairfield-table td { padding: 10px 5px; font-weight: normal; border-bottom: 1px solid #e5e7eb; font-size: 12px; }
+        
+        .pos-table { width: 100%; border-collapse: collapse; }
+        .pos-table th { border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 5px 0; text-align: left; font-weight: normal; }
+        .pos-table td { padding: 4px 0; vertical-align: top; }
+        
         .dashed-line { border-top: 1px dashed #000; margin: 8px 0; width: 100%; }
         .route-line { position: absolute; left: 11px; top: 24px; bottom: 24px; width: 2px; background-color: #e5e7eb; z-index: 0; }
 
@@ -67,7 +81,7 @@
         @media print {
             .no-print, .sidebar { display: none !important; }
             body, .app-container, .main-content { background-color: white; margin: 0; padding: 0; display: block; }
-            .receipt-container, .thermal-container { box-shadow: none; margin: 0; width: 100%; min-height: auto; }
+            .receipt-container, .thermal-container, .pos-container { box-shadow: none; margin: 0; width: 100%; min-height: auto; }
             .grab-container { box-shadow: none; margin: 0 auto; border: 1px solid #e5e7eb; }
             .editable { background-color: transparent !important; border: none !important; }
         }
@@ -83,6 +97,8 @@
         <div class="nav-item" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
         <div class="nav-item" onclick="switchTab('tab-taksi', this)">🚕 Taksi Thermal</div>
         <div class="nav-item" onclick="switchTab('tab-grab', this)">📱 Grab Online</div>
+        <div class="nav-item" onclick="switchTab('tab-plataran', this)">🍽️ Plataran Menteng</div>
+        <div class="nav-item" onclick="switchTab('tab-sederhana', this)">🍛 RM Sederhana</div>
     </div>
 
     <div class="main-content">
@@ -411,6 +427,218 @@
             </div>
         </div>
 
+        <div id="tab-plataran" class="template-section w-full flex justify-center hidden">
+            <div id="content-plataran" class="pos-container font-mono-pos antialiased">
+                <div id="wrapper-plataran" class="no-print mb-2 text-center" style="display: none;">
+                    <label class="cursor-pointer block border border-dashed border-gray-400 hover:bg-gray-100 text-gray-500 py-2 px-1 text-[9px] rounded font-bold">
+                        Upload Logo Plataran
+                        <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-plataran', 'wrapper-plataran')">
+                    </label>
+                </div>
+                <div class="text-center">
+                    <img id="preview-plataran" src="plataran.png" alt="Logo Plataran" class="mx-auto h-16 object-contain mb-2 cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+
+                <div class="text-center leading-snug mb-3">
+                    <p class="font-bold text-[15px] uppercase editable" contenteditable="true">PLATARAN MENTENG</p>
+                    <p class="text-[11px] editable" contenteditable="true">Jl. H.O.S. Cokroaminoto No. 42</p>
+                    <p class="text-[11px] editable" contenteditable="true">Menteng, Jakarta Pusat 10310</p>
+                    <p class="text-[11px] editable" contenteditable="true">Telp: (021) 29628003</p>
+                    <p class="text-[11px] mt-1 uppercase font-bold">NPWP: <span class="editable" contenteditable="true">02.134.567.8-091.000</span></p>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <div class="flex justify-between text-[11px] uppercase my-2">
+                    <div>
+                        <p>Date : <span class="editable" contenteditable="true">10/04/2026</span></p>
+                        <p>Time : <span class="editable" contenteditable="true">19:45:22</span></p>
+                    </div>
+                    <div class="text-right">
+                        <p>Table: <span class="editable font-bold" contenteditable="true">VIP 2</span></p>
+                        <p>Guest: <span class="editable" contenteditable="true">2</span></p>
+                    </div>
+                </div>
+                <div class="text-[11px] uppercase mb-2">
+                    <p>Server: <span class="editable" contenteditable="true">Anton S.</span></p>
+                    <p>Bill# : <span class="editable" contenteditable="true">PM-20260410-089</span></p>
+                </div>
+
+                <table class="pos-table text-[11px]">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">QTY</th>
+                            <th style="width: 50%;">ITEM</th>
+                            <th style="width: 35%;" class="text-right">AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Dendeng Batokok</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">165,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Ayam Dharmawangsa</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">145,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">2</span></td>
+                            <td><span class="editable" contenteditable="true">Nasi Putih</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">40,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">2</span></td>
+                            <td><span class="editable" contenteditable="true">Es Dawet Nangka</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">90,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Mineral Water 330ml</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">35,000</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="dashed-line"></div>
+
+                <div class="space-y-1 text-[11px] my-2">
+                    <div class="flex justify-between"><span>SUBTOTAL</span><span class="editable" contenteditable="true">475,000</span></div>
+                    <div class="flex justify-between"><span>SERVICE CHG (10%)</span><span class="editable" contenteditable="true">47,500</span></div>
+                    <div class="flex justify-between"><span>PB1 (10%)</span><span class="editable" contenteditable="true">52,250</span></div>
+                </div>
+
+                <div class="dashed-line border-t-2 border-dashed"></div>
+
+                <div class="flex justify-between items-center font-bold text-[14px] my-2">
+                    <span>TOTAL</span><span>Rp <span class="editable" contenteditable="true">574,750</span></span>
+                </div>
+
+                <div class="dashed-line border-t-2 border-dashed"></div>
+
+                <div class="space-y-1 text-[11px] my-2">
+                    <div class="flex justify-between uppercase"><span>Mastercard **** 4455</span><span class="editable" contenteditable="true">574,750</span></div>
+                    <div class="flex justify-between uppercase"><span>Change</span><span class="editable" contenteditable="true">0</span></div>
+                </div>
+
+                <div class="text-center leading-tight mt-6 text-[10px] uppercase">
+                    <p>THANK YOU FOR DINING WITH US</p>
+                    <p class="mt-1">Follow us on IG @plataran.menteng</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-sederhana" class="template-section w-full flex justify-center hidden">
+            <div id="content-sederhana" class="pos-container font-mono-pos antialiased">
+                <div id="wrapper-sederhana" class="no-print mb-2 text-center" style="display: none;">
+                    <label class="cursor-pointer block border border-dashed border-gray-400 hover:bg-gray-100 text-gray-500 py-2 px-1 text-[9px] rounded font-bold">
+                        Upload Logo Sederhana
+                        <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-sederhana', 'wrapper-sederhana')">
+                    </label>
+                </div>
+                <div class="text-center">
+                    <img id="preview-sederhana" src="sederhana.png" alt="Logo RM Sederhana" class="mx-auto h-16 object-contain mb-2 cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+
+                <div class="text-center leading-snug mb-3">
+                    <p class="font-bold text-[16px] uppercase editable" contenteditable="true">RESTORAN SEDERHANA</p>
+                    <p class="text-[12px] font-bold editable" contenteditable="true">SA - BLOK M</p>
+                    <p class="text-[11px] editable" contenteditable="true">Jl. Melawai IX No. 2, Kebayoran Baru</p>
+                    <p class="text-[11px] editable" contenteditable="true">Jakarta Selatan 12160</p>
+                    <p class="text-[11px] mt-1">Telp: (021) 7244464</p>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <div class="flex justify-between text-[11px] uppercase my-2">
+                    <div>
+                        <p>Kasir: <span class="editable" contenteditable="true">Siti Khadijah</span></p>
+                        <p>Meja : <span class="editable font-bold" contenteditable="true">14</span></p>
+                    </div>
+                    <div class="text-right">
+                        <p><span class="editable" contenteditable="true">11/04/2026</span></p>
+                        <p><span class="editable" contenteditable="true">13:10:05</span></p>
+                    </div>
+                </div>
+
+                <div class="dashed-line"></div>
+
+                <table class="pos-table text-[11px]">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Q</th>
+                            <th style="width: 55%;">MENU</th>
+                            <th style="width: 35%;" class="text-right">HARGA (RP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">2</span></td>
+                            <td><span class="editable" contenteditable="true">Nasi Rames</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">40,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Ayam Pop</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">25,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Rendang Daging</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">28,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Telor Dadar</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">15,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Sayur Nangka</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">12,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">2</span></td>
+                            <td><span class="editable" contenteditable="true">Es Teh Manis</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">16,000</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="editable" contenteditable="true">1</span></td>
+                            <td><span class="editable" contenteditable="true">Kerupuk Kulit</span></td>
+                            <td class="text-right"><span class="editable" contenteditable="true">10,000</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="dashed-line"></div>
+
+                <div class="space-y-1 text-[11px] my-2">
+                    <div class="flex justify-between font-bold"><span>SUBTOTAL</span><span class="editable" contenteditable="true">146,000</span></div>
+                    <div class="flex justify-between"><span>PB1 (10%)</span><span class="editable" contenteditable="true">14,600</span></div>
+                </div>
+
+                <div class="dashed-line border-t-2 border-dashed"></div>
+
+                <div class="flex justify-between items-center font-bold text-[15px] my-2">
+                    <span>TOTAL</span><span>Rp <span class="editable" contenteditable="true">160,600</span></span>
+                </div>
+
+                <div class="dashed-line border-t-2 border-dashed"></div>
+
+                <div class="space-y-1 text-[11px] my-2">
+                    <div class="flex justify-between uppercase"><span>CASH</span><span class="editable" contenteditable="true">200,000</span></div>
+                    <div class="flex justify-between uppercase font-bold"><span>KEMBALI</span><span class="editable" contenteditable="true">39,400</span></div>
+                </div>
+
+                <div class="text-center leading-tight mt-6 text-[10px]">
+                    <p>Terima Kasih</p>
+                    <p>Atas Kunjungan Anda</p>
+                    <p class="mt-2 text-[9px]">*Barang yang sudah dibeli tidak dapat ditukar/dikembalikan*</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -490,7 +718,8 @@
                 }
             });
         } else if (format === 'pdf') {
-            const isTaksi = activeTabId === 'content-taksi';
+            // Deteksi container POS/Thermal untuk format memanjang (Taksi, Plataran, Sederhana)
+            const isReceiptFormat = activeTabId.includes('taksi') || activeTabId.includes('plataran') || activeTabId.includes('sederhana');
             const opt = {
                 margin: activeTabId === 'content-grab' ? 10 : 0,
                 filename: filename + '.pdf',
@@ -498,7 +727,7 @@
                 html2canvas: { scale: 3, useCORS: true },
                 jsPDF: { 
                     unit: 'mm', 
-                    format: isTaksi ? [80, 200] : 'a4',
+                    format: isReceiptFormat ? [80, 200] : 'a4',
                     orientation: 'portrait' 
                 }
             };
