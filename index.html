@@ -68,6 +68,7 @@
         .font-grab { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 
         /* Transport Thermal */
+        .font-airport { font-family: 'Space Mono', monospace; font-size: 11px; }
         .font-taksi { font-family: 'DotGothic16', monospace; font-size: 14px; }
         .font-silverbird { font-family: 'Courier Prime', monospace; font-size: 12px; font-weight: 700; }
         .font-taksibdg { font-family: 'VT323', monospace; font-size: 16px; letter-spacing: 1px; }
@@ -92,7 +93,7 @@
         
         /* Thermal Containers (Dinamis Minimum Length) */
         .thermal-container { width: 260px; min-height: 400px; padding: 15px 15px 60px 15px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; height: max-content; }
-        .thermal-wide { width: 300px; } /* Untuk Silverbird */
+        .thermal-wide { width: 300px; } /* Untuk Silverbird & Airport Taxi */
         .pos-container { width: 320px; min-height: 500px; padding: 20px 20px 70px 20px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; height: max-content; -webkit-font-smoothing: none; display: flex; flex-direction: column;}
 
         /* Spacer untuk mendorong footer ke bawah */
@@ -135,6 +136,7 @@
         
         <div class="nav-category">Transportasi (App/Thermal/A4)</div>
         <div class="nav-item" onclick="switchTab('tab-whoosh', this)">🚄 Whoosh E-Ticket (A4)</div>
+        <div class="nav-item" onclick="switchTab('tab-airport', this)">✈️ Taksi Bandara Soetta</div>
         <div class="nav-item" onclick="switchTab('tab-silverbird', this)">💎 Silverbird (Thermal)</div>
         <div class="nav-item" onclick="switchTab('tab-taksi', this)">🚕 Taksi Blue JKT (Matrix)</div>
         <div class="nav-item" onclick="switchTab('tab-taksibdg', this)">🚕 Taksi Bandung (Matrix)</div>
@@ -400,6 +402,42 @@
                 </div>
                 <div class="flex justify-end mb-10 mt-4 footer-spacer">
                     <div class="w-1/2 md:w-1/3"><table class="w-full text-right"><tr class="font-bold text-sm" style="border-top:2px solid #000;"><td class="py-2 pr-4 uppercase">Balance Due</td><td class="py-2 text-black"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr></table></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-airport" class="template-section w-full flex justify-center hidden">
+            <div id="content-airport" class="thermal-container thermal-wide paper-thermal-std font-airport ink-black">
+                <div id="wrapper-airport" class="no-print mb-2 text-center" style="display: none;"><label class="cursor-pointer block border border-dashed border-gray-400 py-2 px-1 text-[9px] rounded font-bold"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-airport', 'wrapper-airport')"></label></div>
+                <div class="text-center"><img id="preview-airport" src="airport.png" alt="Logo Taxi" class="mx-auto h-12 object-contain mb-3 cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()"></div>
+                <div class="text-center leading-tight mb-2">
+                    <p class="font-bold text-[18px] uppercase editable" contenteditable="true">AIRPORT TAXI</p>
+                    <p class="text-[12px] font-bold uppercase editable" contenteditable="true">SOEKARNO-HATTA INT'L AIRPORT</p>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="leading-tight space-y-1 my-2 uppercase text-[11px]">
+                    <div class="flex justify-between"><span>DATE:</span><span class="editable" contenteditable="true">13/04/2026</span></div>
+                    <div class="flex justify-between"><span>TIME:</span><span class="editable" contenteditable="true">09:45 - 10:50</span></div>
+                    <div class="flex justify-between"><span>CAB NO:</span><span class="editable font-bold" contenteditable="true">SH-402</span></div>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="leading-tight space-y-1 my-2 uppercase text-[11px]">
+                    <div class="flex justify-between"><span>PICKUP:</span><span class="editable" contenteditable="true">TERMINAL 3 DOM</span></div>
+                    <div class="flex justify-between"><span>DROPOFF:</span><span class="editable" contenteditable="true">HOTEL HORISON BKS</span></div>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="leading-tight space-y-1 my-2 uppercase text-[11px]">
+                    <div class="flex justify-between items-end"><span>METER FARE</span><span class="editable" contenteditable="true">210,000</span></div>
+                    <div class="flex justify-between items-end"><span>AIRPORT SURCHARGE</span><span class="editable" contenteditable="true">15,000</span></div>
+                    <div class="flex justify-between items-end"><span>TOLL CHARGE</span><span class="editable" contenteditable="true">45,500</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between items-end font-bold text-[16px] my-2 uppercase">
+                    <span>TOTAL (RP)</span><span class="editable" contenteditable="true">270,500</span>
+                </div>
+                <div class="text-center leading-tight mt-6 uppercase footer-spacer text-[10px]">
+                    <p class="font-bold">HAVE A NICE DAY</p>
+                    <p class="mt-1">INFO & COMPLAINT: 1500XXX</p>
                 </div>
             </div>
         </div>
@@ -999,7 +1037,7 @@
 </div>
 
 <script>
-    let activeTabId = 'content-whoosh'; 
+    let activeTabId = 'content-airport'; 
 
     function switchTab(tabId, element) {
         document.querySelectorAll('.template-section').forEach(el => el.classList.add('hidden'));
@@ -1030,6 +1068,7 @@
     function exportActive(format) {
         const element = document.getElementById(activeTabId);
         
+        // Hide edit markers
         const editables = element.querySelectorAll('.editable');
         editables.forEach(el => {
             el.style.backgroundColor = 'transparent';
@@ -1070,7 +1109,7 @@
             const posFormats = [
                 'taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 
                 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks',
-                'silverbird', 'taksibdg'
+                'silverbird', 'taksibdg', 'airport'
             ];
             const isReceiptFormat = posFormats.some(id => activeTabId.includes(id));
             
@@ -1083,7 +1122,7 @@
                 
                 let targetWidthMM = 80;
                 if (activeTabId.includes('taksi') || activeTabId.includes('taksibdg')) targetWidthMM = 70; 
-                if (activeTabId.includes('silverbird')) targetWidthMM = 85; 
+                if (activeTabId.includes('silverbird') || activeTabId.includes('airport')) targetWidthMM = 85; 
 
                 const ratio = targetWidthMM / elementWidthMM;
                 const dynamicHeightMM = (elementHeightMM * ratio);
@@ -1121,9 +1160,9 @@
         editables.forEach(el => el.style.borderBottom = '');
     }
     
-    // Set Whoosh as default
+    // Set Airport Taxi as default
     document.addEventListener("DOMContentLoaded", () => {
-        const defaultNav = document.querySelector(".nav-item[onclick*='tab-whoosh']");
+        const defaultNav = document.querySelector(".nav-item[onclick*='tab-airport']");
         if(defaultNav) defaultNav.click();
     });
 </script>
