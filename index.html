@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,7 @@
     
     <style>
         /* Global App UI */
-        body { background-color: #e5e7eb; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #e5e7eb; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
         .app-container { display: flex; min-height: 100vh; }
         .sidebar { width: 260px; background-color: #111827; color: white; padding: 20px 0; flex-shrink: 0; height: 100vh; overflow-y: auto; }
         .main-content { flex: 1; background-color: #374151; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; align-items: center; height: 100vh; }
@@ -48,7 +49,6 @@
         .font-horison { font-family: 'Inconsolata', monospace; font-size: 13px; font-weight: 700; }
         .font-fairfield { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
         .font-whoosh { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        .font-grab { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .font-app { font-family: 'Inter', sans-serif; }
         .font-airport { font-family: 'Space Mono', monospace; font-size: 11px; }
         .font-taksi { font-family: 'DotGothic16', monospace; font-size: 14px; }
@@ -88,6 +88,7 @@
         .line-dashed { border-top: 1px dashed #000; margin: 8px 0; width: 100%; }
         .line-dotted { border-top: 1px dotted #000; margin: 8px 0; width: 100%; }
         .line-double { border-top: 3px double #000; margin: 8px 0; width: 100%; }
+        
         .route-line { position: absolute; left: 11px; top: 24px; bottom: 24px; width: 2px; background-color: #e5e7eb; z-index: 0; }
         .route-line-app { position: absolute; left: 15px; top: 28px; bottom: 28px; width: 2px; background-color: #e5e7eb; z-index: 0; }
         .route-line-indrive { position: absolute; left: 9px; top: 8px; bottom: 24px; width: 2px; background-color: #e5e7eb; z-index: 0; }
@@ -95,7 +96,7 @@
         @media print {
             .no-print, .sidebar { display: none !important; }
             body, .app-container, .main-content { background-color: white; margin: 0; padding: 0; display: block; overflow: visible;}
-            .receipt-container, .thermal-container, .pos-container, .grab-container { box-shadow: none; margin: 0 auto; border: none; }
+            .receipt-container, .thermal-container, .pos-container, .grab-container { box-shadow: none; margin: 0 auto; border: none; border-radius: 0; }
             .editable { background-color: transparent !important; border: none !important; }
         }
     </style>
@@ -113,10 +114,10 @@
         <div class="nav-item" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
         
         <div class="nav-category">Taksi Online (App UI)</div>
-        <div class="nav-item" onclick="switchTab('tab-grab', this)">📱 Grab (Green)</div>
+        <div class="nav-item active" onclick="switchTab('tab-grab', this)">📱 Grab (Green)</div>
         <div class="nav-item" onclick="switchTab('tab-gocar', this)">📱 GoCar / Gojek</div>
         <div class="nav-item" onclick="switchTab('tab-maxim', this)">📱 Maxim (Yellow)</div>
-        <div class="nav-item active" onclick="switchTab('tab-indrive', this)">📱 inDrive (Lime)</div>
+        <div class="nav-item" onclick="switchTab('tab-indrive', this)">📱 inDrive (Lime)</div>
 
         <div class="nav-category">Transportasi Lain</div>
         <div class="nav-item" onclick="switchTab('tab-whoosh', this)">🚄 Whoosh PP (A4)</div>
@@ -146,72 +147,64 @@
     </div>
 
     <div class="main-content">
-        <div class="w-full max-w-4xl flex justify-center gap-4 mb-6 no-print bg-gray-800 p-4 rounded-lg shadow-lg z-10 sticky top-0 border border-gray-600">
-            <button onclick="exportActive('jpeg')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded shadow transition text-sm">🖼️ JPEG (High Res)</button>
-            <button onclick="exportActive('pdf')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded shadow transition text-sm">📄 PDF (Auto-Cut Size)</button>
-            <button onclick="window.print()" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded shadow transition text-sm">🖨️ Print Native</button>
+        <div class="w-full max-w-5xl flex justify-center gap-3 mb-6 no-print bg-gray-800 p-4 rounded-lg shadow-lg z-10 sticky top-0 border border-gray-600 flex-wrap">
+            <button onclick="exportActive('jpeg')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-5 rounded shadow transition text-sm">🖼️ JPEG (High Res)</button>
+            <button onclick="exportActive('pdf')" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-5 rounded shadow transition text-sm">📄 PDF (Auto-Cut Size)</button>
+            <button onclick="exportActiveA4PDF()" class="bg-violet-600 hover:bg-violet-500 text-white font-bold py-2 px-5 rounded shadow transition text-sm">📄 A4 PDF (Center-Print)</button>
+            <button onclick="window.print()" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-5 rounded shadow transition text-sm">🖨️ Print Native</button>
         </div>
 
-        <div id="tab-indrive" class="template-section w-full flex justify-center">
-            <div id="content-indrive" class="grab-container paper-app font-app ink-black" style="background-color: #f3f4f6;">
-                <div class="bg-white px-5 py-4 flex justify-between items-center shadow-sm relative z-10 border-b border-gray-100">
-                    <div class="flex items-center">
-                        <span class="text-xl mr-3 font-bold text-gray-700">←</span>
-                        <h1 class="text-lg font-bold text-gray-800">Perjalanan</h1>
+        <div id="tab-grab" class="template-section w-full flex justify-center">
+            <div id="content-grab" class="grab-container paper-app font-app ink-black">
+                <div class="bg-[#00B14F] px-6 py-5 text-white flex justify-between items-center">
+                    <div>
+                        <h1 class="text-lg font-bold">Bukti Perjalanan</h1>
+                        <p class="text-sm font-medium opacity-95"><span class="editable" contenteditable="true">08 Apr 2026, 08:30</span></p>
+                        <p class="text-[11px] opacity-80 mt-1 uppercase tracking-wider font-semibold">ID: <span class="editable" contenteditable="true">RB-A1B2C3D4E5</span></p>
                     </div>
-                    <div id="wrapper-indrive" class="no-print relative" style="display: none;">
-                        <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px]">
-                            + Logo
-                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-indrive', 'wrapper-indrive')">
-                        </label>
-                    </div>
-                    <img id="preview-indrive" src="indrive.png" alt="inDrive Logo" class="h-6 object-contain cursor-pointer" style="display: block;" title="Klik ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                    <div id="wrapper-grab" class="no-print relative" style="display: none;"><label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-grab', 'wrapper-grab')"></label></div>
+                    <img id="preview-grab" src="grab.png" alt="Grab Logo" class="h-8 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block;" title="Klik untuk ganti" onclick="this.previousElementSibling.querySelector('input').click()">
                 </div>
-                
-                <div class="bg-white px-5 py-5 mt-2 shadow-sm">
-                    <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
-                        <p class="text-sm font-bold text-gray-800"><span class="editable" contenteditable="true">13 April 2026, 17:05</span></p>
-                        <p class="text-[10px] font-bold text-[#A6FF00] bg-gray-900 px-2 py-1 rounded uppercase tracking-wider">Selesai</p>
-                    </div>
-                    
-                    <div class="relative">
-                        <div class="route-line-indrive"></div>
-                        <div class="flex items-start mb-6 relative z-10">
-                            <div class="w-5 h-5 rounded-full bg-white border-[5px] border-[#A6FF00] mt-0.5 shadow-sm"></div>
-                            <div class="ml-4 flex-1">
-                                <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Stasiun Bekasi</p>
-                                <p class="text-xs text-gray-500 mt-1 font-medium editable" contenteditable="true">Jl. H. Juanda, Bekasi</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start relative z-10">
-                            <div class="w-5 h-5 rounded-full bg-white border-[5px] border-red-500 mt-0.5 shadow-sm"></div>
-                            <div class="ml-4 flex-1">
-                                <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Fairfield by Marriott</p>
-                                <p class="text-xs text-gray-500 mt-1 font-medium editable" contenteditable="true">Bekasi Barat</p>
-                            </div>
-                        </div>
+                <div class="px-6 py-8 border-b border-gray-100 text-center bg-white">
+                    <p class="text-gray-500 text-xs font-semibold mb-1 uppercase tracking-wide">Total Pembayaran</p>
+                    <div class="text-4xl font-extrabold text-gray-900 tracking-tight">Rp<span class="editable ml-1" contenteditable="true">85.000</span></div>
+                    <div class="mt-3 text-[11px] font-bold text-gray-600 bg-gray-100 inline-block px-3 py-1.5 rounded-full uppercase tracking-wide">
+                        Metode: <span class="editable text-gray-800" contenteditable="true">OVO</span>
                     </div>
                 </div>
-
-                <div class="bg-white px-5 py-4 mt-2 flex items-center justify-between shadow-sm">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <div class="px-6 py-6 border-b border-gray-100 relative bg-white">
+                    <div class="route-line-app"></div>
+                    <div class="flex items-start mb-6 relative z-10">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center border-[3px] border-white shadow-sm mt-0.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
                         </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-bold text-gray-800 editable" contenteditable="true">Wahyu Setiawan</p>
-                            <p class="text-[11px] font-medium text-gray-500 mt-0.5 editable" contenteditable="true">Penumpang</p>
+                        <div class="ml-4 flex-1">
+                            <p class="text-xs font-semibold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">08:30</span></p>
+                            <p class="text-sm font-bold text-gray-800 editable leading-snug" contenteditable="true">Fairfield by Marriott Bekasi</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start relative z-10">
+                        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center border-[3px] border-white shadow-sm mt-0.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <p class="text-xs font-semibold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">09:15</span></p>
+                            <p class="text-sm font-bold text-gray-800 editable leading-snug" contenteditable="true">PT. Aransa</p>
+                            <p class="text-xs text-gray-500 mt-0.5 editable" contenteditable="true">Cikarang, Bekasi</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white px-5 py-5 mt-2 mb-4 border-b border-gray-200 shadow-sm">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Total Tarif</p>
-                            <p class="text-xs text-gray-500 font-medium">Pembayaran Tunai</p>
+                <div class="px-6 py-6 bg-gray-50">
+                    <p class="text-sm font-bold text-gray-800 mb-4">Rincian Biaya</p>
+                    <div class="space-y-3 text-sm text-gray-600">
+                        <div class="flex justify-between">
+                            <span class="editable" contenteditable="true">Tarif Perjalanan</span>
+                            <span class="font-semibold text-gray-800">Rp<span class="editable ml-1" contenteditable="true">80.000</span></span>
                         </div>
-                        <p class="text-3xl font-black text-gray-900 tracking-tight">Rp<span class="editable ml-1" contenteditable="true">55.000</span></p>
+                        <div class="flex justify-between">
+                            <span class="editable" contenteditable="true">Biaya Jasa Aplikasi</span>
+                            <span class="font-semibold text-gray-800">Rp<span class="editable ml-1" contenteditable="true">5.000</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -315,57 +308,66 @@
             </div>
         </div>
 
-        <div id="tab-grab" class="template-section w-full flex justify-center hidden">
-            <div id="content-grab" class="grab-container paper-app font-app ink-black">
-                <div class="bg-[#00B14F] px-6 py-5 text-white flex justify-between items-center">
-                    <div>
-                        <h1 class="text-lg font-bold">Bukti Perjalanan</h1>
-                        <p class="text-sm font-medium opacity-95"><span class="editable" contenteditable="true">08 Apr 2026, 08:30</span></p>
-                        <p class="text-[11px] opacity-80 mt-1 uppercase tracking-wider font-semibold">ID: <span class="editable" contenteditable="true">RB-A1B2C3D4E5</span></p>
+        <div id="tab-indrive" class="template-section w-full flex justify-center hidden">
+            <div id="content-indrive" class="grab-container paper-app font-app ink-black" style="background-color: #f3f4f6;">
+                <div class="bg-white px-5 py-4 flex justify-between items-center shadow-sm relative z-10 border-b border-gray-100">
+                    <div class="flex items-center">
+                        <span class="text-xl mr-3 font-bold text-gray-700">←</span>
+                        <h1 class="text-lg font-bold text-gray-800">Perjalanan</h1>
                     </div>
-                    <div id="wrapper-grab" class="no-print relative" style="display: none;"><label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-grab', 'wrapper-grab')"></label></div>
-                    <img id="preview-grab" src="grab.png" alt="Grab Logo" class="h-8 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block;" title="Klik untuk ganti" onclick="this.previousElementSibling.querySelector('input').click()">
+                    <div id="wrapper-indrive" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px]">
+                            + Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-indrive', 'wrapper-indrive')">
+                        </label>
+                    </div>
+                    <img id="preview-indrive" src="indrive.png" alt="inDrive Logo" class="h-6 object-contain cursor-pointer" style="display: block;" title="Klik ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                 </div>
-                <div class="px-6 py-8 border-b border-gray-100 text-center bg-white">
-                    <p class="text-gray-500 text-xs font-semibold mb-1 uppercase tracking-wide">Total Pembayaran</p>
-                    <div class="text-4xl font-extrabold text-gray-900 tracking-tight">Rp<span class="editable ml-1" contenteditable="true">85.000</span></div>
-                    <div class="mt-3 text-[11px] font-bold text-gray-600 bg-gray-100 inline-block px-3 py-1.5 rounded-full uppercase tracking-wide">
-                        Metode: <span class="editable text-gray-800" contenteditable="true">OVO</span>
+                
+                <div class="bg-white px-5 py-5 mt-2 shadow-sm">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+                        <p class="text-sm font-bold text-gray-800"><span class="editable" contenteditable="true">13 April 2026, 17:05</span></p>
+                        <p class="text-[10px] font-bold text-[#A6FF00] bg-gray-900 px-2 py-1 rounded uppercase tracking-wider">Selesai</p>
                     </div>
-                </div>
-                <div class="px-6 py-6 border-b border-gray-100 relative bg-white">
-                    <div class="route-line-app"></div>
-                    <div class="flex items-start mb-6 relative z-10">
-                        <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center border-[3px] border-white shadow-sm mt-0.5">
-                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                    
+                    <div class="relative">
+                        <div class="route-line-indrive"></div>
+                        <div class="flex items-start mb-6 relative z-10">
+                            <div class="w-5 h-5 rounded-full bg-white border-[5px] border-[#A6FF00] mt-0.5 shadow-sm"></div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Stasiun Bekasi</p>
+                                <p class="text-xs text-gray-500 mt-1 font-medium editable" contenteditable="true">Jl. H. Juanda, Bekasi</p>
+                            </div>
                         </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-xs font-semibold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">08:30</span></p>
-                            <p class="text-sm font-bold text-gray-800 editable leading-snug" contenteditable="true">Fairfield by Marriott Bekasi</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start relative z-10">
-                        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center border-[3px] border-white shadow-sm mt-0.5">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                        </div>
-                        <div class="ml-4 flex-1">
-                            <p class="text-xs font-semibold text-gray-400 mb-0.5"><span class="editable" contenteditable="true">09:15</span></p>
-                            <p class="text-sm font-bold text-gray-800 editable leading-snug" contenteditable="true">PT. Aransa</p>
-                            <p class="text-xs text-gray-500 mt-0.5 editable" contenteditable="true">Cikarang, Bekasi</p>
+                        <div class="flex items-start relative z-10">
+                            <div class="w-5 h-5 rounded-full bg-white border-[5px] border-red-500 mt-0.5 shadow-sm"></div>
+                            <div class="ml-4 flex-1">
+                                <p class="text-sm font-bold text-gray-800 leading-tight editable" contenteditable="true">Fairfield by Marriott</p>
+                                <p class="text-xs text-gray-500 mt-1 font-medium editable" contenteditable="true">Bekasi Barat</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="px-6 py-6 bg-gray-50">
-                    <p class="text-sm font-bold text-gray-800 mb-4">Rincian Biaya</p>
-                    <div class="space-y-3 text-sm text-gray-600">
-                        <div class="flex justify-between">
-                            <span class="editable" contenteditable="true">Tarif Perjalanan</span>
-                            <span class="font-semibold text-gray-800">Rp<span class="editable ml-1" contenteditable="true">80.000</span></span>
+
+                <div class="bg-white px-5 py-4 mt-2 flex items-center justify-between shadow-sm">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="editable" contenteditable="true">Biaya Jasa Aplikasi</span>
-                            <span class="font-semibold text-gray-800">Rp<span class="editable ml-1" contenteditable="true">5.000</span></span>
+                        <div class="ml-3">
+                            <p class="text-sm font-bold text-gray-800 editable" contenteditable="true">Wahyu Setiawan</p>
+                            <p class="text-[11px] font-medium text-gray-500 mt-0.5 editable" contenteditable="true">Penumpang</p>
                         </div>
+                    </div>
+                </div>
+
+                <div class="bg-white px-5 py-5 mt-2 mb-4 border-b border-gray-200 shadow-sm">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Total Tarif</p>
+                            <p class="text-xs text-gray-500 font-medium">Pembayaran Tunai</p>
+                        </div>
+                        <p class="text-3xl font-black text-gray-900 tracking-tight">Rp<span class="editable ml-1" contenteditable="true">55.000</span></p>
                     </div>
                 </div>
             </div>
@@ -855,7 +857,7 @@
 </div>
 
 <script>
-    let activeTabId = 'content-indrive'; 
+    let activeTabId = 'content-grab'; 
 
     function switchTab(tabId, element) {
         document.querySelectorAll('.template-section').forEach(el => el.classList.add('hidden'));
@@ -932,13 +934,42 @@
             
             const opt = { 
                 margin: 0, 
-                filename: filename + '.pdf', 
+                filename: filename + '_CUT.pdf', 
                 image: { type: 'jpeg', quality: 1.0 }, 
                 html2canvas: { scale: 3, useCORS: true, backgroundColor: null }, 
                 jsPDF: { unit: 'mm', format: pdfFormat, orientation: 'portrait' } 
             };
             html2pdf().set(opt).from(element).save().then(() => restoreAfterExport(editables));
         }
+    }
+
+    function exportActiveA4PDF() {
+        const element = document.getElementById(activeTabId);
+        const editables = element.querySelectorAll('.editable');
+        
+        editables.forEach(el => { el.style.backgroundColor = 'transparent'; el.style.borderBottom = 'none'; });
+        const filename = 'INVOICE_' + activeTabId.replace('content-', '').toUpperCase() + '_A4';
+
+        html2canvas(element, { scale: 3, useCORS: true, backgroundColor: "#ffffff" }).then(canvas => {
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            
+            const pxToMm = 0.264583;
+            const elementWidthPx = element.offsetWidth; 
+            const elementWidthMM = elementWidthPx * pxToMm;
+
+            const imgWidthMm = elementWidthMM;
+            const imgHeightMm = (imgWidthMm * canvas.height) / canvas.width; 
+
+            const xPos = (pageWidth - imgWidthMm) / 2;
+            const yPos = 20; 
+
+            pdf.addImage(imgData, 'JPEG', xPos, yPos, imgWidthMm, imgHeightMm);
+            pdf.save(filename + '.pdf');
+            
+            restoreAfterExport(editables);
+        });
     }
 
     function triggerDownload(imgData, filename) {
@@ -951,7 +982,7 @@
     function restoreAfterExport(editables) { editables.forEach(el => el.style.borderBottom = ''); }
     
     document.addEventListener("DOMContentLoaded", () => {
-        const defaultNav = document.querySelector(".nav-item[onclick*='tab-fairfield']");
+        const defaultNav = document.querySelector(".nav-item[onclick*='tab-grab']");
         if(defaultNav) defaultNav.click();
     });
 </script>
