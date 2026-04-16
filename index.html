@@ -32,13 +32,13 @@
         .paper-a4 { background-color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .paper-app { background-color: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden; }
         
-        /* Thermal Standard (Sedikit abu-abu/off-white) */
+        /* Thermal Standard */
         .paper-thermal-std { 
             background-color: #fafafa; 
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
         }
-        /* Thermal Premium Cream (Mewah) */
+        /* Thermal Premium Cream */
         .paper-thermal-cream { 
             background-color: #fffdf5; 
             background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png'); 
@@ -51,29 +51,22 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
         }
 
-        /* ================== INK EFFECTS (EFEK TINTA LUBER/WARNA) ================== */
+        /* ================== INK EFFECTS (EFEK TINTA) ================== */
         .ink-black { color: #111 !important; text-shadow: 0.2px 0.2px 0px rgba(0,0,0,0.1); }
         .ink-faded { color: #222 !important; text-shadow: 0.5px 0.5px 0.5px rgba(0,0,0,0.2); }
         .ink-blue { color: #000080 !important; text-shadow: 0.3px 0.3px 0.3px rgba(0,0,128,0.2); }
         .ink-matrix { color: #1a1a1a !important; text-shadow: 0.8px 0.8px 0px rgba(0,0,0,0.3); letter-spacing: 0.5px; }
 
-        /* ================== FONT FAMILIES PER TIPE ================== */
-        /* Hotel & A4 */
+        /* ================== FONT FAMILIES ================== */
         .font-bw { font-family: Arial, Helvetica, sans-serif; }
         .font-horison { font-family: 'Inconsolata', monospace; font-size: 13px; font-weight: 700; }
         .font-fairfield { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
         .font-whoosh { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        
-        /* App */
         .font-grab { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-
-        /* Transport Thermal */
         .font-airport { font-family: 'Space Mono', monospace; font-size: 11px; }
         .font-taksi { font-family: 'DotGothic16', monospace; font-size: 14px; }
         .font-silverbird { font-family: 'Courier Prime', monospace; font-size: 12px; font-weight: 700; }
         .font-taksibdg { font-family: 'VT323', monospace; font-size: 16px; letter-spacing: 1px; }
-
-        /* Dining */
         .font-wolfgang { font-family: 'Courier Prime', monospace; font-size: 11px; font-weight: 700; line-height: 1.2; }
         .font-plataran { font-family: 'Playfair Display', serif; font-size: 11px; }
         .font-osteriagia { font-family: 'Libre Baskerville', serif; font-size: 10px; line-height: 1.1; }
@@ -91,12 +84,11 @@
         .receipt-container { width: 210mm; min-height: 297mm; padding: 15mm 20mm; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; }
         .grab-container { width: 380px; margin: 0 auto 30px auto; position: relative; }
         
-        /* Thermal Containers (Dinamis Minimum Length) */
-        .thermal-container { width: 260px; min-height: 400px; padding: 15px 15px 60px 15px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; height: max-content; }
-        .thermal-wide { width: 300px; } /* Untuk Silverbird & Airport Taxi */
-        .pos-container { width: 320px; min-height: 500px; padding: 20px 20px 70px 20px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; height: max-content; -webkit-font-smoothing: none; display: flex; flex-direction: column;}
+        /* Thermal Containers - FIX: Min height enforced, 80px bottom padding to simulate paper roll */
+        .thermal-container { width: 260px; min-height: 350px; padding: 15px 15px 80px 15px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; }
+        .thermal-wide { width: 300px; } 
+        .pos-container { width: 320px; min-height: 450px; padding: 20px 20px 80px 20px; margin: 0 auto 30px auto; position: relative; box-sizing: border-box; display: flex; flex-direction: column; -webkit-font-smoothing: none; }
 
-        /* Spacer untuk mendorong footer ke bawah */
         .footer-spacer { margin-top: auto; padding-top: 20px; }
 
         /* Efek Edit & Utilities */
@@ -106,7 +98,6 @@
         .pos-table { width: 100%; border-collapse: collapse; margin: 10px 0;}
         .pos-table td, .pos-table th { padding: 4px 0; vertical-align: top; }
         
-        /* Variasi Garis */
         .line-solid { border-top: 1px solid #000; margin: 8px 0; width: 100%; }
         .line-dashed { border-top: 1px dashed #000; margin: 8px 0; width: 100%; }
         .line-dotted { border-top: 1px dotted #000; margin: 8px 0; width: 100%; }
@@ -130,9 +121,9 @@
         <div class="text-xs text-center text-gray-500 mb-4">Ultimate Authentic Edition</div>
         
         <div class="nav-category" style="border-top: none;">Akomodasi Hotel (A4)</div>
-        <div class="nav-item active" onclick="switchTab('tab-bw', this)">🏨 Best Western</div>
+        <div class="nav-item" onclick="switchTab('tab-bw', this)">🏨 Best Western</div>
         <div class="nav-item" onclick="switchTab('tab-horison', this)">🏨 Horison</div>
-        <div class="nav-item" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
+        <div class="nav-item active" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
         
         <div class="nav-category">Transportasi (App/Thermal/A4)</div>
         <div class="nav-item" onclick="switchTab('tab-whoosh', this)">🚄 Whoosh E-Ticket (A4)</div>
@@ -178,93 +169,34 @@
         <div id="tab-whoosh" class="template-section w-full flex justify-center hidden">
             <div id="content-whoosh" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
                 <div class="bg-[#dc2626] text-white px-10 py-6 flex justify-between items-center" style="border-bottom: 8px solid #1e3a8a;">
-                    <div>
-                        <h1 class="text-3xl font-black tracking-wider italic">Whoosh</h1>
-                        <p class="text-sm opacity-90 mt-1">Kereta Cepat Jakarta-Bandung E-Ticket</p>
-                    </div>
-                    <div id="wrapper-whoosh" class="no-print relative" style="display: none;">
-                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">
-                            + Logo
-                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-whoosh', 'wrapper-whoosh')">
-                        </label>
-                    </div>
+                    <div><h1 class="text-3xl font-black tracking-wider italic">Whoosh</h1><p class="text-sm opacity-90 mt-1">Kereta Cepat Jakarta-Bandung E-Ticket</p></div>
+                    <div id="wrapper-whoosh" class="no-print relative" style="display: none;"><label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-whoosh', 'wrapper-whoosh')"></label></div>
                     <img id="preview-whoosh" src="whoosh.png" alt="Whoosh Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                 </div>
-                
                 <div class="p-10">
                     <div class="flex justify-between items-end border-b-2 border-gray-200 pb-4 mb-6">
-                        <div>
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Booking Code / Kode Pemesanan</p>
-                            <p class="text-2xl font-bold text-gray-800"><span class="editable" contenteditable="true">X7M9LQ</span></p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Date of Issue</p>
-                            <p class="text-sm font-semibold text-gray-800"><span class="editable" contenteditable="true">10 April 2026</span></p>
-                        </div>
+                        <div><p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Booking Code / Kode Pemesanan</p><p class="text-2xl font-bold text-gray-800"><span class="editable" contenteditable="true">X7M9LQ</span></p></div>
+                        <div class="text-right"><p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">Date of Issue</p><p class="text-sm font-semibold text-gray-800"><span class="editable" contenteditable="true">10 April 2026</span></p></div>
                     </div>
-
                     <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-                        <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-lg font-bold text-[#1e3a8a]">Journey Details</h2>
-                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Confirmed</span>
-                        </div>
-                        
+                        <div class="flex items-center justify-between mb-4"><h2 class="text-lg font-bold text-[#1e3a8a]">Journey Details</h2><span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Confirmed</span></div>
                         <div class="flex justify-between items-center relative">
-                            <div class="w-2/5">
-                                <p class="text-3xl font-black text-gray-800 editable" contenteditable="true">08:45</p>
-                                <p class="text-sm font-bold text-gray-600 mt-1 editable" contenteditable="true">HALIM (HLM)</p>
-                                <p class="text-xs text-gray-500 editable" contenteditable="true">Jakarta</p>
-                            </div>
-                            
-                            <div class="w-1/5 text-center relative z-10">
-                                <div class="w-full h-0.5 bg-gray-300 absolute top-1/2 left-0 -z-10"></div>
-                                <div class="bg-white border-2 border-[#dc2626] rounded-full w-10 h-10 flex items-center justify-center mx-auto shadow-sm">
-                                    <span class="text-lg">🚄</span>
-                                </div>
-                                <p class="text-xs font-bold text-[#dc2626] mt-2 editable" contenteditable="true">G7023</p>
-                                <p class="text-[10px] text-gray-500">45 Mins</p>
-                            </div>
-
-                            <div class="w-2/5 text-right">
-                                <p class="text-3xl font-black text-gray-800 editable" contenteditable="true">09:30</p>
-                                <p class="text-sm font-bold text-gray-600 mt-1 editable" contenteditable="true">PADALARANG (PDL)</p>
-                                <p class="text-xs text-gray-500 editable" contenteditable="true">Bandung Barat</p>
-                            </div>
+                            <div class="w-2/5"><p class="text-3xl font-black text-gray-800 editable" contenteditable="true">08:45</p><p class="text-sm font-bold text-gray-600 mt-1 editable" contenteditable="true">HALIM (HLM)</p><p class="text-xs text-gray-500 editable" contenteditable="true">Jakarta</p></div>
+                            <div class="w-1/5 text-center relative z-10"><div class="w-full h-0.5 bg-gray-300 absolute top-1/2 left-0 -z-10"></div><div class="bg-white border-2 border-[#dc2626] rounded-full w-10 h-10 flex items-center justify-center mx-auto shadow-sm"><span class="text-lg">🚄</span></div><p class="text-xs font-bold text-[#dc2626] mt-2 editable" contenteditable="true">G7023</p><p class="text-[10px] text-gray-500">45 Mins</p></div>
+                            <div class="w-2/5 text-right"><p class="text-3xl font-black text-gray-800 editable" contenteditable="true">09:30</p><p class="text-sm font-bold text-gray-600 mt-1 editable" contenteditable="true">PADALARANG (PDL)</p><p class="text-xs text-gray-500 editable" contenteditable="true">Bandung Barat</p></div>
                         </div>
                     </div>
-
                     <div class="mb-8">
                         <h2 class="text-sm font-bold text-gray-500 uppercase tracking-widest border-b border-gray-200 pb-2 mb-4">Passenger & Seat Information</h2>
                         <table class="w-full text-left">
-                            <thead>
-                                <tr>
-                                    <th class="py-2 text-xs text-gray-500 uppercase">Passenger Name</th>
-                                    <th class="py-2 text-xs text-gray-500 uppercase">ID Number</th>
-                                    <th class="py-2 text-xs text-gray-500 uppercase">Class</th>
-                                    <th class="py-2 text-xs text-gray-500 uppercase text-right">Car/Seat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-100">
-                                    <td class="py-3 font-bold text-sm text-gray-800"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></td>
-                                    <td class="py-3 text-sm text-gray-600"><span class="editable" contenteditable="true">327301234567890</span></td>
-                                    <td class="py-3 text-sm font-semibold text-[#1e3a8a]"><span class="editable" contenteditable="true">Premium Economy</span></td>
-                                    <td class="py-3 text-sm font-bold text-gray-800 text-right"><span class="editable" contenteditable="true">Car 5 / 12A</span></td>
-                                </tr>
-                            </tbody>
+                            <thead><tr><th class="py-2 text-xs text-gray-500 uppercase">Passenger Name</th><th class="py-2 text-xs text-gray-500 uppercase">ID Number</th><th class="py-2 text-xs text-gray-500 uppercase">Class</th><th class="py-2 text-xs text-gray-500 uppercase text-right">Car/Seat</th></tr></thead>
+                            <tbody><tr class="border-b border-gray-100"><td class="py-3 font-bold text-sm text-gray-800"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></td><td class="py-3 text-sm text-gray-600"><span class="editable" contenteditable="true">327301234567890</span></td><td class="py-3 text-sm font-semibold text-[#1e3a8a]"><span class="editable" contenteditable="true">Premium Economy</span></td><td class="py-3 text-sm font-bold text-gray-800 text-right"><span class="editable" contenteditable="true">Car 5 / 12A</span></td></tr></tbody>
                         </table>
                     </div>
-
                     <div class="flex justify-between items-start">
                         <div class="w-1/2 pr-8">
                             <div class="border-2 border-dashed border-gray-300 p-4 text-center rounded bg-gray-50 h-32 flex flex-col justify-center items-center">
-                                <p class="font-mono text-xs leading-none tracking-widest text-black/80 font-black">
-                                    ███████ █  █ ███████<br>
-                                    █     █ █ █  █     █<br>
-                                    █ ███ █ ████ █ ███ █<br>
-                                    █     █ █  █ █     █<br>
-                                    ███████ █ █  ███████
-                                </p>
+                                <p class="font-mono text-xs leading-none tracking-widest text-black/80 font-black">███████ █  █ ███████<br>█     █ █ █  █     █<br>█ ███ █ ████ █ ███ █<br>█     █ █  █ █     █<br>███████ █ █  ███████</p>
                                 <p class="text-[9px] text-gray-400 mt-2 uppercase tracking-widest">Gate Scan Code</p>
                             </div>
                         </div>
@@ -274,14 +206,10 @@
                                 <div class="flex justify-between text-gray-600"><span>Ticket Fare</span><span>Rp <span class="editable" contenteditable="true">250,000</span></span></div>
                                 <div class="flex justify-between text-gray-600"><span>Admin Fee</span><span>Rp <span class="editable" contenteditable="true">0</span></span></div>
                             </div>
-                            <div class="border-t border-gray-200 mt-3 pt-3 flex justify-between items-center">
-                                <span class="font-bold text-gray-800">Total Paid</span>
-                                <span class="text-xl font-black text-[#dc2626]">Rp <span class="editable" contenteditable="true">250,000</span></span>
-                            </div>
+                            <div class="border-t border-gray-200 mt-3 pt-3 flex justify-between items-center"><span class="font-bold text-gray-800">Total Paid</span><span class="text-xl font-black text-[#dc2626]">Rp <span class="editable" contenteditable="true">250,000</span></span></div>
                             <p class="text-[10px] text-gray-400 text-right mt-2 uppercase">Paid via <span class="editable font-semibold" contenteditable="true">Credit Card</span></p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -290,12 +218,7 @@
             <div id="content-bw" class="receipt-container paper-a4 font-bw ink-black">
                 <div class="flex justify-between items-start mb-6 pb-4 border-b border-gray-400">
                     <div class="w-1/2">
-                        <div id="wrapper-bw" class="no-print mb-2" style="display: none;">
-                            <label class="cursor-pointer block border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 text-gray-400 font-bold py-4 px-4 text-center rounded transition text-xs">
-                                🖼️ Klik Upload Logo
-                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-bw', 'wrapper-bw')">
-                            </label>
-                        </div>
+                        <div id="wrapper-bw" class="no-print mb-2" style="display: none;"><label class="cursor-pointer block border-2 border-dashed border-gray-300 py-4 px-4 text-center rounded transition text-xs">🖼️ Klik Upload Logo<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-bw', 'wrapper-bw')"></label></div>
                         <img id="preview-bw" src="premier.png" alt="Best Western Logo" class="h-28 w-auto object-contain object-left cursor-pointer" style="display: block;" title="Klik untuk mengganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                     </div>
                     <div class="w-1/2 text-right text-[11px] leading-snug">
@@ -341,19 +264,13 @@
                         </table>
                     </div>
                 </div>
-                <div class="mb-12 footer-spacer">
-                    <div class="flex justify-between items-end">
-                        <div class="w-1/2 pr-4 text-[11px]"><p class="font-bold mb-1">Guest Signature</p><div class="border-b border-black h-12 w-4/5 mb-1"></div></div>
-                        <div class="w-1/2 text-right text-[10px] text-gray-600"><p>Cashier: <span class="editable font-bold" contenteditable="true">SYS/0115</span></p><p>Print Date: <span class="editable" contenteditable="true">09/04/2026 08:35:12</span></p></div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div id="tab-horison" class="template-section w-full flex justify-center hidden">
             <div id="content-horison" class="receipt-container paper-a4 font-horison ink-black">
                 <div class="text-center mb-6 relative">
-                    <div id="wrapper-horison" class="no-print mb-2" style="display: none;"><label class="cursor-pointer block border-2 border-dashed border-gray-300 py-4 rounded text-xs"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-horison', 'wrapper-horison')"></label></div>
+                    <div id="wrapper-horison" class="no-print mb-2" style="display: none;"><label class="cursor-pointer block border-2 border-dashed py-4 rounded text-xs"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-horison', 'wrapper-horison')"></label></div>
                     <img id="preview-horison" src="horison.png" alt="Logo" class="mx-auto h-16 object-contain mb-1 cursor-pointer" style="display: block;" onclick="this.previousElementSibling.querySelector('input').click()">
                     <div class="text-xs leading-relaxed mt-6 uppercase"><p>Jl. KH. Noer Alie, Bekasi 17148</p><p>P: (62-21) 300 28 500</p></div>
                 </div>
@@ -377,31 +294,64 @@
             </div>
         </div>
 
-        <div id="tab-fairfield" class="template-section w-full flex justify-center hidden">
-            <div id="content-fairfield" class="receipt-container paper-a4 font-fairfield ink-black text-xs md:text-sm">
-                <div class="flex justify-between items-start mb-6 relative pb-4" style="border-bottom:2px solid #222">
+        <div id="tab-fairfield" class="template-section w-full flex justify-center">
+            <div id="content-fairfield" class="receipt-container paper-a4 font-fairfield ink-black text-sm">
+                <div class="flex justify-between items-start mb-10 pb-6">
                     <div class="w-1/3">
-                        <div id="wrapper-fairfield" class="no-print mb-2 mt-2" style="display: none;"><label class="cursor-pointer block border-2 border-dashed border-gray-300 py-3 px-2 rounded text-[10px]"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-fairfield', 'wrapper-fairfield')"></label></div>
+                        <div id="wrapper-fairfield" class="no-print mb-2 mt-2" style="display: none;"><label class="cursor-pointer block border-2 border-dashed py-3 px-2 rounded text-[10px]"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-fairfield', 'wrapper-fairfield')"></label></div>
                         <img id="preview-fairfield" src="fairfield.png" alt="Logo" class="h-16 object-contain cursor-pointer" style="display: block;" onclick="this.previousElementSibling.querySelector('input').click()">
                     </div>
-                    <div class="w-2/3 text-right text-[11px] md:text-xs leading-relaxed space-y-1 text-gray-700 mt-2">
+                    <div class="w-2/3 text-right text-xs leading-relaxed space-y-1 text-gray-700 mt-2">
                         <p class="font-bold text-sm text-black uppercase tracking-wider mb-2">Fairfield by Marriott Bekasi</p>
                         <p>Jl. Jend. Sudirman No. 1, Bekasi Barat, Bekasi 17143</p>
                     </div>
                 </div>
-                <div class="text-center mb-6"><h1 class="text-xl font-bold tracking-widest uppercase">Guest Folio</h1></div>
-                <div class="flex justify-between mb-8">
-                    <div class="w-1/2 pr-4"><p class="text-gray-500 text-[10px] uppercase font-bold mb-1">Guest Details</p><p class="font-bold text-sm uppercase editable" contenteditable="true">MR. WAHYU, SETIAWAN</p></div>
-                    <div class="w-1/2 pl-4"><table class="w-full text-left"><tbody><tr><td class="py-1 w-32 font-bold text-gray-600 text-xs">ROOM NO</td><td class="py-1">: <span class="editable font-bold text-black" contenteditable="true">1205</span></td></tr><tr><td class="py-1 font-bold text-gray-600 text-xs">ARRIVAL</td><td class="py-1">: <span class="editable" contenteditable="true">09/04/26</span></td></tr><tr><td class="py-1 font-bold text-gray-600 text-xs">DEPARTURE</td><td class="py-1">: <span class="editable" contenteditable="true">14/04/26</span></td></tr></tbody></table></div>
+                
+                <div class="flex justify-between items-start mb-8">
+                    <div class="w-1/2 pr-4">
+                        <p class="text-sm"><span class="font-bold uppercase editable" contenteditable="true">MR. WAHYU, SETIAWAN</span> <span class="uppercase text-gray-500 editable" contenteditable="true">JAPAN</span></p>
+                    </div>
+                    <div class="w-1/2 pl-4">
+                        <table class="w-full text-left text-sm text-gray-600 font-bold">
+                            <tbody>
+                                <tr><td class="py-1.5 w-32 uppercase tracking-wide">RATE</td><td class="py-1.5 text-black font-bold">: <span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                                <tr><td class="py-1.5 uppercase tracking-wide">ARRIVAL</td><td class="py-1.5 font-normal text-black">: <span class="editable" contenteditable="true">09/04/26</span></td></tr>
+                                <tr><td class="py-1.5 uppercase tracking-wide">DEPARTURE</td><td class="py-1.5 font-normal text-black">: <span class="editable" contenteditable="true">14/04/26</span></td></tr>
+                                <tr><td class="py-1.5 uppercase tracking-wide">BONVOY NO</td><td class="py-1.5 font-normal text-black">: <span class="editable" contenteditable="true"></span></td></tr>
+                                <tr><td class="py-1.5 uppercase tracking-wide">FOLIO NO</td><td class="py-1.5 font-normal text-black">: <span class="editable" contenteditable="true">83749210</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
                 <div class="mb-4">
-                    <table class="w-full text-left">
-                        <thead><tr><th class="w-1/4 py-2 text-xs font-bold uppercase" style="border-top:2px solid #000; border-bottom:2px solid #000;">DATE</th><th class="w-2/4 py-2 text-xs font-bold uppercase" style="border-top:2px solid #000; border-bottom:2px solid #000;">DESCRIPTION</th><th class="w-1/4 text-right py-2 text-xs font-bold uppercase" style="border-top:2px solid #000; border-bottom:2px solid #000;">CHARGES</th></tr></thead>
-                        <tbody><tr><td class="py-2" style="border-bottom:1px solid #e5e7eb;"><span class="editable" contenteditable="true">09/04/26</span></td><td class="py-2" style="border-bottom:1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-2 text-right" style="border-bottom:1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr></tbody>
+                    <table class="w-full text-left font-sans text-sm">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4 py-3 font-bold uppercase tracking-wider" style="border-top: 2px solid #000; border-bottom: 2px solid #000;">DATE</th>
+                                <th class="w-2/4 py-3 font-bold uppercase tracking-wider" style="border-top: 2px solid #000; border-bottom: 2px solid #000;">DESCRIPTION</th>
+                                <th class="w-1/4 text-right py-3 font-bold uppercase tracking-wider" style="border-top: 2px solid #000; border-bottom: 2px solid #000;">CHARGES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">09/04/26</span></td><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-4 text-right" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                            <tr><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">10/04/26</span></td><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-4 text-right" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                            <tr><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">11/04/26</span></td><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-4 text-right" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                            <tr><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">12/04/26</span></td><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-4 text-right" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                            <tr><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">13/04/26</span></td><td class="py-4" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">Room Charge</span></td><td class="py-4 text-right" style="border-bottom: 1px solid #e5e7eb;"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr>
+                        </tbody>
                     </table>
                 </div>
-                <div class="flex justify-end mb-10 mt-4 footer-spacer">
-                    <div class="w-1/2 md:w-1/3"><table class="w-full text-right"><tr class="font-bold text-sm" style="border-top:2px solid #000;"><td class="py-2 pr-4 uppercase">Balance Due</td><td class="py-2 text-black"><span class="editable" contenteditable="true">1,190,000.00</span></td></tr></table></div>
+
+                <div class="flex justify-end mb-12">
+                    <div class="w-1/2 md:w-2/5">
+                        <table class="w-full text-right">
+                            <tr class="font-bold text-base" style="border-top: 2px solid #000; border-bottom: 2px solid #000;">
+                                <td class="py-3 pr-4 uppercase tracking-wider">BALANCE DUE</td>
+                                <td class="py-3 text-black"><span class="editable" contenteditable="true">5,950,000.00</span></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -414,8 +364,8 @@
                 </div>
                 <div class="line-dashed"></div>
                 <div class="leading-tight space-y-1 my-2 uppercase text-[11px]">
-                    <div class="flex justify-between"><span>DATE:</span><span class="editable" contenteditable="true">07/04/2026</span></div>
-                    <div class="flex justify-between"><span>TIME:</span><span class="editable" contenteditable="true">16:45 - 18:50</span></div>
+                    <div class="flex justify-between"><span>DATE:</span><span class="editable" contenteditable="true">13/04/2026</span></div>
+                    <div class="flex justify-between"><span>TIME:</span><span class="editable" contenteditable="true">09:45 - 10:50</span></div>
                     <div class="flex justify-between"><span>CAB NO:</span><span class="editable font-bold" contenteditable="true">SH-402</span></div>
                 </div>
                 <div class="line-dashed"></div>
@@ -425,17 +375,17 @@
                 </div>
                 <div class="line-dashed"></div>
                 <div class="leading-tight space-y-1 my-2 uppercase text-[11px]">
-                    <div class="flex justify-between items-end"><span>METER FARE</span><span class="editable" contenteditable="true">690,000</span></div>
-                    <div class="flex justify-between items-end"><span>AIRPORT SURCHARGE</span><span class="editable" contenteditable="true">35,000</span></div>
-                    <div class="flex justify-between items-end"><span>TOLL CHARGE</span><span class="editable" contenteditable="true">85,500</span></div>
+                    <div class="flex justify-between items-end"><span>METER FARE</span><span class="editable" contenteditable="true">210,000</span></div>
+                    <div class="flex justify-between items-end"><span>AIRPORT SURCHARGE</span><span class="editable" contenteditable="true">15,000</span></div>
+                    <div class="flex justify-between items-end"><span>TOLL CHARGE</span><span class="editable" contenteditable="true">45,500</span></div>
                 </div>
                 <div class="line-double"></div>
                 <div class="flex justify-between items-end font-bold text-[16px] my-2 uppercase">
-                    <span>TOTAL (RP)</span><span class="editable" contenteditable="true">810,500</span>
+                    <span>TOTAL (RP)</span><span class="editable" contenteditable="true">270,500</span>
                 </div>
                 <div class="text-center leading-tight mt-6 uppercase footer-spacer text-[10px]">
                     <p class="font-bold">HAVE A NICE DAY</p>
-                    <p class="mt-1">INFO & COMPLAINT: 150098</p>
+                    <p class="mt-1">INFO & COMPLAINT: 1500XXX</p>
                 </div>
             </div>
         </div>
@@ -478,28 +428,27 @@
 
         <div id="tab-taksi" class="template-section w-full flex justify-center hidden">
             <div id="content-taksi" class="thermal-container paper-thermal-std font-taksi ink-blue">
-                <div id="wrapper-taksi" class="no-print mb-2 text-center" style="display: none;"><label class="cursor-pointer block border border-dashed border-gray-400 py-2 px-1 text-[9px] rounded font-bold"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-taksi', 'wrapper-taksi')"></label></div>
+                <div id="wrapper-taksi" class="no-print mb-2 text-center" style="display: none;"><label class="cursor-pointer block border border-dashed py-2 px-1 text-[9px] rounded font-bold"><input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-taksi', 'wrapper-taksi')"></label></div>
                 <div class="text-center"><img id="preview-taksi" src="bluebird.png" alt="Logo" class="mx-auto h-12 object-contain mb-2 cursor-pointer" style="display: block;" onclick="this.previousElementSibling.querySelector('input').click()"></div>
                 <div class="text-center leading-tight mb-2">
-                    <p class="font-bold text-[18px] uppercase editable" contenteditable="true">PT. BLUE 
-            BIRD TBK</p>
-                    <p class="font-bold mt-1 uppercase">NO PINTU: <span class="editable" contenteditable="true">B 3564 XX</span></p>
+                    <p class="font-bold text-[18px] uppercase editable" contenteditable="true">PT. TAKSI BIRU TBK</p>
+                    <p class="font-bold mt-1 uppercase">NO PINTU: <span class="editable" contenteditable="true">B 1234 XX</span></p>
                 </div>
                 <div class="line-dashed"></div>
                 <div class="leading-tight space-y-1 my-2 uppercase">
-                    <div class="flex justify-between"><span>PENGEMUDI:</span><span class="editable font-bold" contenteditable="true">RANO S</span></div>
+                    <div class="flex justify-between"><span>PENGEMUDI:</span><span class="editable font-bold" contenteditable="true">WAHYU S</span></div>
                     <div class="flex justify-between"><span>MULAI:</span><span class="editable" contenteditable="true">09/04/26 14:20</span></div>
                     <div class="flex justify-between"><span>SELESAI:</span><span class="editable" contenteditable="true">09/04/26 15:05</span></div>
                 </div>
                 <div class="line-dashed"></div>
                 <div class="leading-tight space-y-1 my-2 uppercase">
                     <div class="flex justify-between items-end"><span>JARAK (KM)</span><span class="editable" contenteditable="true">15.40</span></div>
-                    <div class="flex justify-between items-end"><span>ARGO DASAR</span><span class="editable" contenteditable="true">175,500</span></div>
-                    <div class="flex justify-between items-end"><span>BIAYA TOL</span><span class="editable" contenteditable="true">30,500</span></div>
+                    <div class="flex justify-between items-end"><span>ARGO DASAR</span><span class="editable" contenteditable="true">75,500</span></div>
+                    <div class="flex justify-between items-end"><span>BIAYA TOL</span><span class="editable" contenteditable="true">10,500</span></div>
                 </div>
                 <div class="line-dashed"></div>
                 <div class="flex justify-between items-end font-bold text-[18px] my-2 uppercase">
-                    <span>TOTAL(RP)</span><span class="editable" contenteditable="true">206,000</span>
+                    <span>TOTAL(RP)</span><span class="editable" contenteditable="true">98,000</span>
                 </div>
                 <div class="line-dashed"></div>
                 <div class="text-center leading-tight mt-3 uppercase footer-spacer"><p class="font-bold">TERIMA KASIH</p></div>
@@ -1036,7 +985,8 @@
 </div>
 
 <script>
-    let activeTabId = 'content-airport'; 
+    // Tab default sesuai keluhan gambar di screenshot
+    let activeTabId = 'content-fairfield'; 
 
     function switchTab(tabId, element) {
         document.querySelectorAll('.template-section').forEach(el => el.classList.add('hidden'));
@@ -1159,9 +1109,9 @@
         editables.forEach(el => el.style.borderBottom = '');
     }
     
-    // Set Airport Taxi as default
+    // Set Fairfield as default preview
     document.addEventListener("DOMContentLoaded", () => {
-        const defaultNav = document.querySelector(".nav-item[onclick*='tab-airport']");
+        const defaultNav = document.querySelector(".nav-item[onclick*='tab-fairfield']");
         if(defaultNav) defaultNav.click();
     });
 </script>
