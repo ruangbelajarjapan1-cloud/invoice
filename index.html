@@ -1194,102 +1194,175 @@
 <!-- TAB GARUDA INDONESIA (AUTHENTIC RECEIPT) -->
         <div id="tab-garuda" class="template-section w-full flex justify-center hidden">
             <div id="content-garuda" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
-                <!-- Header Section -->
-                <div class="px-10 py-8 flex justify-between items-end border-b-2 border-[#002561]">
-                    <div class="flex items-center">
-                        <div id="wrapper-garuda" class="no-print relative mr-4" style="display: none;">
-                            <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700">+ Logo
-                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-garuda', 'wrapper-garuda')">
-                            </label>
-                        </div>
-                        <img id="preview-garuda" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-10 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 140px;" title="Klik untuk tambah logo tipografi" onclick="this.previousElementSibling.querySelector('input').click()">
-                        <div class="ml-4">
-                            <h1 class="text-xl font-black text-[#002561] uppercase tracking-widest">Garuda Indonesia</h1>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <h2 class="text-xl font-bold text-[#0092d0] uppercase tracking-wide">e-Ticket Receipt</h2>
-                        <p class="text-xs text-gray-500 mt-1 uppercase">Passenger Itinerary Receipt</p>
-                    </div>
-                </div>
-                
-                <!-- Body Section -->
-                <div class="p-10 text-sm text-gray-800">
-                    <!-- PNR & Date Grid -->
-                    <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="p-10 text-xs text-gray-800">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start mb-8">
                         <div>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold">Booking Reference (PNR)</p>
-                            <p class="font-black text-xl text-[#002561] editable" contenteditable="true">GIA88XYZ</p>
+                            <div id="wrapper-garuda" class="no-print relative mb-2" style="display: none;">
+                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
+                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-garuda', 'wrapper-garuda')">
+                                </label>
+                            </div>
+                            <img id="preview-garuda" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-10 object-contain cursor-pointer border border-dashed border-gray-300 mb-2" style="display: block; min-width: 120px;" title="Klik untuk tambah logo Garuda" onclick="this.previousElementSibling.querySelector('input').click()">
                         </div>
                         <div class="text-right">
-                            <p class="text-[10px] text-gray-500 uppercase font-bold">Date of Issue</p>
-                            <p class="font-bold text-base editable" contenteditable="true">15 Apr 2026</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Passenger Info -->
-                    <div class="mb-6 bg-gray-50 p-4 border border-gray-200">
-                        <p class="text-[11px] font-bold text-[#002561] uppercase mb-3 border-b border-gray-300 pb-1">Passenger and Ticket Information</p>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-[10px] text-gray-500 uppercase">Passenger Name</p>
-                                <p class="font-bold text-base editable" contenteditable="true">SETIAWAN / WAHYU MR</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-[10px] text-gray-500 uppercase">e-Ticket Number</p>
-                                <p class="font-bold text-base editable" contenteditable="true">126 1234567890</p>
-                            </div>
+                            <h1 class="text-lg font-bold uppercase tracking-wider text-[#002561]">Electronic Ticket Receipt</h1>
                         </div>
                     </div>
 
-                    <!-- Itinerary Table -->
-                    <p class="text-[11px] font-bold text-[#002561] uppercase mb-2 border-b border-gray-300 pb-1 mt-6">Itinerary Details</p>
-                    <table class="w-full text-left mb-8 border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 text-[11px] text-gray-600 uppercase">
-                                <th class="p-2 border border-gray-300 font-bold">Flight</th>
-                                <th class="p-2 border border-gray-300 font-bold">Date</th>
-                                <th class="p-2 border border-gray-300 font-bold">Depart / Arrive</th>
-                                <th class="p-2 border border-gray-300 font-bold">Class / Baggage</th>
-                                <th class="p-2 border border-gray-300 font-bold text-center">Status</th>
+                    <div class="grid grid-cols-2 gap-4 mb-6 border-b border-gray-400 pb-4">
+                        <div>
+                            <p class="mb-1"><span class="inline-block w-32 text-gray-500">Booking Reference:</span> <span class="font-bold text-sm editable" contenteditable="true">GIA88XYZ</span></p>
+                            <p class="mb-1"><span class="inline-block w-32 text-gray-500">Ticket Number:</span> <span class="font-bold editable" contenteditable="true">126 1234567890</span></p>
+                            <p><span class="inline-block w-32 text-gray-500">Date of Issue:</span> <span class="editable" contenteditable="true">15 Apr 2026</span></p>
+                        </div>
+                        <div>
+                            <p class="mb-1"><span class="inline-block w-32 text-gray-500">Passenger:</span> <span class="font-bold editable" contenteditable="true">SETIAWAN / WAHYU MR</span></p>
+                            <p><span class="inline-block w-32 text-gray-500">Agency:</span> <span class="editable" contenteditable="true">GARUDA INDONESIA WEB</span></p>
+                        </div>
+                    </div>
+
+                    <h2 class="font-bold mb-2">Itinerary</h2>
+                    <table class="w-full text-left mb-8 border-collapse border-t border-b border-gray-400 text-[11px]">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-2 border-b border-gray-400 w-[15%]">Flight</th>
+                                <th class="p-2 border-b border-gray-400 w-[15%]">Date</th>
+                                <th class="p-2 border-b border-gray-400 w-[15%]">Class</th>
+                                <th class="p-2 border-b border-gray-400 w-[25%]">Depart</th>
+                                <th class="p-2 border-b border-gray-400 w-[20%]">Arrive</th>
+                                <th class="p-2 border-b border-gray-400 w-[10%]">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="p-3 border border-gray-300 font-bold text-[#0092d0] editable whitespace-nowrap" contenteditable="true">GA 874</td>
-                                <td class="p-3 border border-gray-300 font-bold editable whitespace-nowrap" contenteditable="true">20 APR</td>
-                                <td class="p-3 border border-gray-300 leading-tight">
-                                    <span class="font-bold editable" contenteditable="true">CGK 23:30</span><br>
-                                    <span class="text-xs text-gray-600 editable" contenteditable="true">Jakarta Soekarno-Hatta T3</span><br><br>
-                                    <span class="font-bold editable" contenteditable="true">HND 08:50</span> <span class="text-[10px] font-bold text-red-500">+1</span><br>
-                                    <span class="text-xs text-gray-600 editable" contenteditable="true">Tokyo Haneda Int'l T3</span>
-                                </td>
-                                <td class="p-3 border border-gray-300 leading-tight">
-                                    <span class="editable font-semibold" contenteditable="true">Economy (Y)</span><br>
-                                    <span class="text-xs text-gray-600 editable" contenteditable="true">30 KG</span>
-                                </td>
-                                <td class="p-3 border border-gray-300 font-bold text-green-600 text-center editable" contenteditable="true">OK</td>
+                                <td class="p-2 border-b border-gray-200 font-bold editable" contenteditable="true">GA 874</td>
+                                <td class="p-2 border-b border-gray-200 editable" contenteditable="true">20 Apr 26</td>
+                                <td class="p-2 border-b border-gray-200 editable" contenteditable="true">Economy (Y)</td>
+                                <td class="p-2 border-b border-gray-200 editable" contenteditable="true">Jakarta (CGK) 23:30</td>
+                                <td class="p-2 border-b border-gray-200 editable" contenteditable="true">Tokyo (HND) 08:50</td>
+                                <td class="p-2 border-b border-gray-200 font-bold editable" contenteditable="true">OK</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <!-- Payment Details -->
-                    <p class="text-[11px] font-bold text-[#002561] uppercase mb-2 border-b border-gray-300 pb-1">Receipt and Payment Details</p>
-                    <div class="flex justify-end">
-                        <div class="w-2/3 border border-gray-200 p-5 bg-gray-50">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-600 text-sm">Fare</span>
-                                <span class="font-bold editable" contenteditable="true">IDR 8,500,000</span>
-                            </div>
-                            <div class="flex justify-between mb-4 border-b border-gray-300 pb-3">
-                                <span class="text-gray-600 text-sm">Taxes & Carrier-imposed Fees</span>
-                                <span class="font-bold editable" contenteditable="true">IDR 1,250,000</span>
-                            </div>
-                            <div class="flex justify-between text-lg text-[#002561] font-black">
-                                <span class="uppercase">Total Amount</span>
-                                <span class="editable" contenteditable="true">IDR 9,750,000</span>
-                            </div>
+                    <h2 class="font-bold mb-2">Receipt</h2>
+                    <div class="border border-gray-400 p-4 w-2/3">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Fare</span>
+                            <span class="font-bold editable" contenteditable="true">IDR 8,500,000</span>
                         </div>
+                        <div class="flex justify-between mb-4 border-b border-gray-300 pb-2">
+                            <span class="text-gray-600">Taxes, Fees & Charges</span>
+                            <span class="font-bold editable" contenteditable="true">IDR 1,250,000</span>
+                        </div>
+                        <div class="flex justify-between text-sm font-bold">
+                            <span>Total</span>
+                            <span class="editable" contenteditable="true">IDR 9,750,000</span>
+                        </div>
+                        <div class="mt-4 text-[10px] text-gray-500">
+                            <p>Form of Payment: <span class="font-bold text-gray-800 editable" contenteditable="true">CREDIT CARD</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB ANA (AUTHENTIC PDF DATA) -->
+        <div id="tab-ana" class="template-section w-full flex justify-center hidden">
+            <div id="content-ana" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-10 text-xs">
+                    <!-- Header with Logo -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="flex items-center">
+                            <div id="wrapper-ana" class="no-print relative mr-4" style="display: none;">
+                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
+                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-ana', 'wrapper-ana')">
+                                </label>
+                            </div>
+                            <img id="preview-ana" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-8 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 120px;" title="Klik untuk tambah logo ANA" onclick="this.previousElementSibling.querySelector('input').click()">
+                        </div>
+                    </div>
+
+                    <!-- RECEIPT Section -->
+                    <h2 class="font-bold text-lg mb-4 text-center tracking-widest border-b-2 border-gray-800 pb-2">RECEIPT</h2>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-2 mb-8 border-b border-gray-300 pb-6">
+                        <div class="flex"><span class="w-40 text-gray-600">ISSUED DATE</span><span class="font-bold editable" contenteditable="true">2026/02/25</span></div>
+                        <div class="flex"><span class="w-40 text-gray-600">RESERVATION CODE</span><span class="font-bold editable" contenteditable="true">FBRGFC</span></div>
+                        <div class="flex"><span class="w-40 text-gray-600">RECEIVED FROM</span><span class="font-bold editable" contenteditable="true">WAHYU SETIAWAN</span></div>
+                        <div class="flex"><span class="w-40 text-gray-600">RECEIVED PAYMENT ON</span><span class="font-bold editable" contenteditable="true">2026/02/24</span></div>
+                        <div class="flex"><span class="w-40 text-gray-600">THE SUM OF</span><span class="font-bold text-base editable" contenteditable="true">JPY 160,310-</span></div>
+                        <div class="flex"><span class="w-40 text-gray-600">FORM OF PAYMENT</span><span class="editable" contenteditable="true">/Credit Card</span></div>
+                        <div class="flex col-span-2"><span class="w-40 text-gray-600">IN PAYMENT OF</span><span class="editable" contenteditable="true">/For Air Ticket 2052428766791</span></div>
+                        <div class="flex col-span-2"><span class="w-40 text-gray-600">REMARKS</span><span class="text-[10px] text-gray-500 editable" contenteditable="true">ANA received the amount indicated above. Total amount subject to 10% Japanese consumption tax (tax inc.) JPY2950</span></div>
+                    </div>
+
+                    <!-- DETAILED STATEMENT Section -->
+                    <h2 class="font-bold text-sm mb-4 border-b border-gray-800 pb-1">DETAILED STATEMENT</h2>
+                    <div class="mb-4">
+                        <div class="flex mb-1"><span class="w-40 text-gray-600">PASSENGER NAME</span><span class="font-bold editable" contenteditable="true">SETIAWAN/WAHYU MR</span></div>
+                    </div>
+
+                    <h3 class="font-bold text-xs mb-2 text-gray-700 bg-gray-100 p-1">ITINERARY DETAIL</h3>
+                    <table class="w-full text-left mb-6 border-collapse border border-gray-400">
+                        <thead class="bg-gray-100 text-[10px]">
+                            <tr>
+                                <th class="p-2 border border-gray-400 font-normal w-1/4">DEPARTURE DATE</th>
+                                <th class="p-2 border border-gray-400 font-normal w-1/4">FLIGHT NUMBER</th>
+                                <th class="p-2 border border-gray-400 font-normal w-1/4">DEPARTURE</th>
+                                <th class="p-2 border border-gray-400 font-normal w-1/4">ARRIVAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">2026/04/07</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">NH855</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">TOKYO (HANEDA)</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JAKARTA</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">2026/04/14</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">NH872</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JAKARTA</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">TOKYO (HANEDA)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="font-bold text-xs mb-2 text-gray-700 bg-gray-100 p-1">FARE/TAXES/FEES/CHARGES DETAIL</h3>
+                    <table class="w-full text-left text-[10px] mb-8 border-collapse border border-gray-400">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-2 border border-gray-400 font-normal w-2/3">ITEM</th>
+                                <th class="p-2 border border-gray-400 font-normal w-1/3">AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2 border border-gray-400">FARE</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JPY111500</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-400">AIRLINE SURCHARGE (INSURANCE/ FUEL)</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JPY42400</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-400">INTERNATIONAL PASSENGER SERVICE FACILITY CHARGE</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JPY2950</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-400">INTERNATIONAL TOURIST TAX</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JPY1000</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 border border-gray-400">PASSENGER SERVICE CHARGE</td>
+                                <td class="p-2 border border-gray-400 editable" contenteditable="true">JPY2460</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center text-[9px] text-gray-500 mt-8">
+                        <p>ALL NIPPON AIRWAYS CO., LTD.</p>
+                        <p>REGISTRATION NUMBER T1010401099027</p>
                     </div>
                 </div>
             </div>
@@ -1297,78 +1370,77 @@
 
         <!-- TAB LUFTHANSA (AUTHENTIC RECEIPT) -->
         <div id="tab-lufthansa" class="template-section w-full flex justify-center hidden">
-            <div id="content-lufthansa" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff; border-top: 8px solid #05164d;">
-                <!-- Header Section -->
-                <div class="px-10 pt-10 pb-6 flex justify-between items-start">
-                    <div>
-                        <h1 class="text-2xl font-black text-[#05164d] uppercase tracking-wide">Passenger Receipt</h1>
-                        <p class="text-sm mt-1 text-gray-600 font-semibold tracking-wide">Lufthansa German Airlines</p>
-                    </div>
-                    <div class="flex flex-col items-end">
-                        <div id="wrapper-lufthansa" class="no-print relative mb-2" style="display: none;">
-                            <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700">+ Logo
-                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-lufthansa', 'wrapper-lufthansa')">
-                            </label>
-                        </div>
-                        <!-- Slot Logo dipindah ke kanan atas sesuai standar Lufthansa -->
-                        <img id="preview-lufthansa" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-12 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 100px;" title="Klik untuk tambah logo geometris" onclick="this.previousElementSibling.querySelector('input').click()">
-                    </div>
-                </div>
-                
-                <!-- Body Section -->
-                <div class="px-10 pb-10 text-sm text-gray-800">
-                    <div class="border-t-2 border-b-2 border-[#05164d] py-4 mb-8 grid grid-cols-3 gap-4 bg-gray-50">
-                        <div class="pl-4">
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Booking Code</p>
-                            <p class="font-black text-xl text-[#05164d] editable" contenteditable="true">LH8X2C</p>
-                        </div>
+            <div id="content-lufthansa" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-10 text-xs text-gray-800">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start mb-10">
                         <div>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Ticket Number</p>
-                            <p class="font-bold text-lg editable" contenteditable="true">220 9876543210</p>
+                            <h1 class="text-2xl font-black text-[#05164d] uppercase tracking-wider">Passenger Receipt</h1>
+                            <p class="font-bold mt-1 text-gray-600">Lufthansa German Airlines</p>
                         </div>
-                        <div>
-                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Date of Issue</p>
-                            <p class="font-bold text-lg editable" contenteditable="true">15 April 2026</p>
+                        <div class="text-right">
+                            <div id="wrapper-lufthansa" class="no-print relative mb-2" style="display: none;">
+                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
+                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-lufthansa', 'wrapper-lufthansa')">
+                                </label>
+                            </div>
+                            <img id="preview-lufthansa" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-10 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 100px;" title="Klik untuk tambah logo Lufthansa" onclick="this.previousElementSibling.querySelector('input').click()">
                         </div>
                     </div>
 
-                    <div class="mb-8 pl-4">
-                        <p class="text-[10px] text-gray-500 uppercase font-bold mb-1 tracking-wider">Passenger Name</p>
-                        <p class="font-bold text-lg editable uppercase" contenteditable="true">WAHYU SETIAWAN MR</p>
+                    <!-- Info Grid -->
+                    <div class="grid grid-cols-3 gap-4 mb-8 border-t-2 border-b-2 border-[#05164d] py-4 bg-gray-50 px-4">
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase mb-1 tracking-widest">Booking Code</p>
+                            <p class="font-black text-lg text-[#05164d] editable" contenteditable="true">LH8X2C</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase mb-1 tracking-widest">Ticket Number</p>
+                            <p class="font-bold text-base editable" contenteditable="true">220 9876543210</p>
+                        </div>
+                        <div>
+                            <p class="text-[9px] text-gray-500 font-bold uppercase mb-1 tracking-widest">Date of Issue</p>
+                            <p class="font-bold text-base editable" contenteditable="true">15 April 2026</p>
+                        </div>
                     </div>
 
-                    <!-- Itinerary Table -->
-                    <p class="text-[10px] text-[#05164d] uppercase font-bold mb-2 tracking-wider">Flight Itinerary</p>
+                    <div class="mb-8 px-4">
+                        <p class="text-[9px] text-gray-500 font-bold uppercase mb-1 tracking-widest">Passenger Name</p>
+                        <p class="font-bold text-base uppercase editable" contenteditable="true">WAHYU SETIAWAN MR</p>
+                    </div>
+
+                    <!-- Flight Table -->
+                    <p class="text-[10px] font-bold text-[#05164d] uppercase mb-2 tracking-widest px-4">Flight Itinerary</p>
                     <table class="w-full text-left mb-10 border-collapse border border-gray-300">
                         <thead class="bg-[#05164d] text-white">
                             <tr>
-                                <th class="p-3 text-[11px] font-semibold border border-gray-300 uppercase tracking-wide">Date</th>
-                                <th class="p-3 text-[11px] font-semibold border border-gray-300 uppercase tracking-wide">Dep / Arr</th>
-                                <th class="p-3 text-[11px] font-semibold border border-gray-300 uppercase tracking-wide">Flight</th>
-                                <th class="p-3 text-[11px] font-semibold border border-gray-300 uppercase tracking-wide">Class</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[20%]">Date</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[40%]">Dep / Arr</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[20%]">Flight</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[20%]">Class</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="p-3 border border-gray-300 font-bold editable whitespace-nowrap" contenteditable="true">30 Apr 26</td>
-                                <td class="p-3 border border-gray-300 leading-tight">
-                                    <span class="editable font-bold text-base" contenteditable="true">Jakarta (CGK) 18:40</span><br>
-                                    <span class="editable text-gray-600 text-sm font-semibold mt-1 inline-block" contenteditable="true">Frankfurt (FRA) 06:20</span>
+                                <td class="p-3 border border-gray-300 font-bold editable" contenteditable="true">30 Apr 26</td>
+                                <td class="p-3 border border-gray-300">
+                                    <span class="font-bold text-sm editable" contenteditable="true">Jakarta (CGK) 18:40</span><br>
+                                    <span class="text-gray-600 font-semibold editable mt-1 inline-block" contenteditable="true">Frankfurt (FRA) 06:20</span>
                                 </td>
-                                <td class="p-3 border border-gray-300 font-bold text-[#05164d] text-base editable whitespace-nowrap" contenteditable="true">LH 777</td>
+                                <td class="p-3 border border-gray-300 font-bold text-[#05164d] editable" contenteditable="true">LH 777</td>
                                 <td class="p-3 border border-gray-300 font-semibold editable" contenteditable="true">Prem. Econ (E)</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <!-- Payment Table -->
-                    <p class="text-[10px] text-[#05164d] uppercase font-bold mb-2 tracking-wider">Receipt Details</p>
-                    <div class="border border-gray-300 p-5">
-                        <div class="flex justify-between mb-3 text-sm">
+                    <!-- Receipt Table -->
+                    <p class="text-[10px] font-bold text-[#05164d] uppercase mb-2 tracking-widest px-4">Receipt Details</p>
+                    <div class="border border-gray-300 p-6 bg-gray-50 mx-4">
+                        <div class="flex justify-between mb-3">
                             <span class="font-semibold text-gray-600">Fare</span>
                             <span class="editable font-bold" contenteditable="true">EUR 950.00</span>
                         </div>
-                        <div class="flex justify-between mb-5 border-b border-gray-300 pb-4 text-sm">
+                        <div class="flex justify-between mb-5 border-b border-gray-300 pb-4">
                             <span class="font-semibold text-gray-600">Taxes, Fees and Surcharges</span>
                             <span class="editable font-bold" contenteditable="true">EUR 185.50</span>
                         </div>
@@ -1379,7 +1451,6 @@
                     </div>
                 </div>
             </div>
-        </div>            </div>
         </div>
 <!-- TAB BOOKING.COM -->
         <div id="tab-bookingcom" class="template-section w-full flex justify-center hidden">
