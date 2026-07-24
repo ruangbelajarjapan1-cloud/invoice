@@ -163,6 +163,14 @@
         <div class="nav-item" onclick="switchTab('tab-tsamara', this)">🌿 Tsamara Resto</div>
         <div class="nav-item" onclick="switchTab('tab-engking', this)">🦐 Mang Engking</div>
         <div class="nav-item" onclick="switchTab('tab-seribubks', this)">🍱 Seribu Rasa (Bks)</div>
+        <div class="nav-category">Online Travel Agent (A4)</div>
+        <div class="nav-item" onclick="switchTab('tab-bookingcom', this)">🌍 Booking.com</div>
+        <div class="nav-item" onclick="switchTab('tab-tripcom', this)">🌍 Trip.com</div>
+
+        <div class="nav-category">Restoran Tambahan (POS)</div>
+        <div class="nav-item" onclick="switchTab('tab-abuba', this)">🥩 Abuba Steak (Bks)</div>
+        <div class="nav-item" onclick="switchTab('tab-kampungdaun', this)">🍃 Kampung Daun (Bdg)</div>
+        <div class="nav-item" onclick="switchTab('tab-sampireun', this)">🐟 Telaga Sampireun (Cbr)</div>
     </div>
 
     <div class="main-content">
@@ -1406,7 +1414,276 @@
                 </div>
             </div>
         </div>
-<script>
+<!-- TAB BOOKING.COM -->
+        <div id="tab-bookingcom" class="template-section w-full flex justify-center hidden">
+            <div id="content-bookingcom" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
+                <div class="bg-[#003580] text-white px-10 py-6 flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-tighter">Booking.com</h1>
+                        <p class="text-[11px] opacity-90 mt-1 uppercase tracking-widest text-[#009fe3]">Confirmation Receipt</p>
+                    </div>
+                    <div id="wrapper-booking" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-booking', 'wrapper-booking')">
+                        </label>
+                    </div>
+                    <img id="preview-booking" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Add Logo" class="h-10 bg-white px-2 py-1 rounded object-contain cursor-pointer border-2 border-dashed border-white/50" style="display: block; min-width: 80px;" title="Klik untuk tambah logo teks" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+                <div class="p-10">
+                    <div class="flex justify-between items-end border-b-2 border-gray-200 pb-4 mb-6">
+                        <div>
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Confirmation Number</p>
+                            <p class="text-3xl font-black text-gray-800"><span class="editable" contenteditable="true">3948.192.833</span></p>
+                            <p class="text-sm font-semibold text-[#009fe3] mt-1">PIN: <span class="editable" contenteditable="true">8849</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Booking Date</p>
+                            <p class="text-sm font-semibold"><span class="editable" contenteditable="true">10 April 2026</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 border border-gray-200 p-6 mb-8 rounded">
+                        <h2 class="font-bold text-xl text-[#003580] mb-2 editable" contenteditable="true">Fairfield by Marriott Jakarta Soekarno-Hatta</h2>
+                        <p class="text-sm text-gray-600 mb-4 editable" contenteditable="true">Jl. Husein Sastranegara No.8, Benda, Tangerang, 15125</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase mb-1">Check-in</p>
+                                <p class="font-bold text-lg"><span class="editable" contenteditable="true">15 April 2026</span></p>
+                                <p class="text-xs text-gray-500">From 14:00</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase mb-1">Check-out</p>
+                                <p class="font-bold text-lg"><span class="editable" contenteditable="true">17 April 2026</span></p>
+                                <p class="text-xs text-gray-500">Until 12:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <table class="w-full text-left text-sm">
+                            <thead class="border-b border-gray-300">
+                                <tr>
+                                    <th class="py-2 text-xs text-gray-500 uppercase">Room Details</th>
+                                    <th class="py-2 text-xs text-gray-500 uppercase text-right">Guest</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100">
+                                    <td class="py-4">
+                                        <p class="font-bold text-gray-800"><span class="editable" contenteditable="true">Deluxe Double Room</span></p>
+                                        <p class="text-xs text-gray-500 mt-1">Breakfast included • Free WiFi</p>
+                                    </td>
+                                    <td class="py-4 text-right font-semibold text-gray-800"><span class="editable" contenteditable="true">Wahyu Setiawan</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <div class="w-1/2 bg-[#ebf3ff] p-5 rounded border border-[#cce1ff]">
+                            <h2 class="text-xs font-bold text-[#003580] uppercase border-b border-[#cce1ff] pb-2 mb-3">Price Summary</h2>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div class="flex justify-between"><span>Room charge (2 nights)</span><span>IDR <span class="editable" contenteditable="true">1,800,000</span></span></div>
+                                <div class="flex justify-between"><span>Taxes & fees (21%)</span><span>IDR <span class="editable" contenteditable="true">378,000</span></span></div>
+                            </div>
+                            <div class="border-t border-[#cce1ff] mt-3 pt-3 flex justify-between items-center">
+                                <span class="font-bold text-[#003580]">Total Paid</span>
+                                <span class="text-2xl font-black text-[#003580]">IDR <span class="editable" contenteditable="true">2,178,000</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB TRIP.COM -->
+        <div id="tab-tripcom" class="template-section w-full flex justify-center hidden">
+            <div id="content-tripcom" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
+                <div class="bg-[#3377ff] text-white px-10 py-6 flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-tight">Trip.com</h1>
+                        <p class="text-[11px] opacity-90 mt-1 uppercase tracking-widest">Electronic Receipt</p>
+                    </div>
+                    <div id="wrapper-trip" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-trip', 'wrapper-trip')">
+                        </label>
+                    </div>
+                    <img id="preview-trip" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Add Logo" class="h-10 bg-white px-2 py-1 rounded object-contain cursor-pointer border-2 border-dashed border-white/50" style="display: block; min-width: 80px;" title="Klik untuk tambah logo teks" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+                <div class="p-10">
+                    <div class="flex justify-between items-end border-b-2 border-gray-200 pb-4 mb-6">
+                        <div>
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Booking No.</p>
+                            <p class="text-3xl font-black text-[#3377ff]"><span class="editable" contenteditable="true">119855432</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Booked On</p>
+                            <p class="text-sm font-semibold"><span class="editable" contenteditable="true">11 Apr 2026</span></p>
+                        </div>
+                    </div>
+                    
+                    <h2 class="font-bold text-gray-800 uppercase text-sm border-b-2 border-[#3377ff] pb-2 mb-4">Flight Information</h2>
+                    
+                    <div class="bg-blue-50/30 border border-blue-100 p-5 mb-8 rounded">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center">
+                                <span class="bg-[#3377ff] text-white text-xs font-bold px-2 py-1 rounded mr-2">DEPARTURE</span>
+                                <span class="font-bold text-gray-800"><span class="editable" contenteditable="true">Japan Airlines (JL 726)</span></span>
+                            </div>
+                            <span class="text-xs font-bold text-gray-500"><span class="editable" contenteditable="true">24 Apr 2026</span></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="w-1/3">
+                                <p class="text-2xl font-black text-gray-800 editable" contenteditable="true">21:25</p>
+                                <p class="font-bold text-gray-700 editable" contenteditable="true">JAKARTA (CGK)</p>
+                            </div>
+                            <div class="w-1/3 text-center">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">Direct • 7h 10m</p>
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="w-1/3 text-right">
+                                <p class="text-2xl font-black text-gray-800 editable" contenteditable="true">06:35</p>
+                                <p class="font-bold text-gray-700 editable" contenteditable="true">TOKYO (NRT)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-8 border-t border-gray-200 pt-6">
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-2">Traveler(s)</p>
+                            <p class="text-sm font-bold text-gray-800"><span class="editable" contenteditable="true">1. WAHYU SETIAWAN (Adult)</span></p>
+                            <p class="text-xs text-gray-500 mt-1">Ticket: <span class="editable" contenteditable="true">131-9988776655</span></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-2 border-b border-gray-200 pb-1">Payment Summary</p>
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Flight Fare (1 Adult)</span>
+                                <span>IDR <span class="editable" contenteditable="true">12,500,000</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600 mb-3">
+                                <span>Taxes & Fees</span>
+                                <span>IDR <span class="editable" contenteditable="true">1,150,000</span></span>
+                            </div>
+                            <div class="flex justify-between text-lg font-black text-gray-800 border-t border-gray-200 pt-2">
+                                <span>TOTAL PAID</span>
+                                <span>IDR <span class="editable" contenteditable="true">13,650,000</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB ABUBA STEAK BEKASI -->
+        <div id="tab-abuba" class="template-section w-full flex justify-center hidden">
+            <div id="content-abuba" class="pos-container paper-thermal-std font-sederhana ink-black">
+                <div class="text-center mb-3">
+                    <h1 class="text-[20px] font-bold editable tracking-widest" contenteditable="true">ABUBA STEAK</h1>
+                    <p class="editable text-[12px] mt-1" contenteditable="true">Cabang Bekasi Raya</p>
+                    <p class="editable text-[10px]" contenteditable="true">Jl. Boulevard Ahmad Yani</p>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between text-[11px] my-2 uppercase">
+                    <div><p>Table: <span class="editable font-bold" contenteditable="true">12</span></p></div>
+                    <div class="text-right"><p><span class="editable" contenteditable="true">15/04/2026</span></p></div>
+                </div>
+                <div class="line-dashed"></div>
+                <table class="pos-table text-[11px] uppercase">
+                    <thead><tr>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="w-6">Q</th>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;">ITEM</th>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="text-right">PRICE</th>
+                    </tr></thead>
+                    <tbody>
+                        <tr><td>2</td><td><span class="editable" contenteditable="true">NZ SIRLOIN 200G</span></td><td class="text-right"><span class="editable" contenteditable="true">290,000</span></td></tr>
+                        <tr><td>2</td><td><span class="editable" contenteditable="true">LEMON TEA</span></td><td class="text-right"><span class="editable" contenteditable="true">40,000</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="space-y-1 text-[11px] font-bold">
+                    <div class="flex justify-between"><span>SUBTOTAL</span><span class="editable" contenteditable="true">330,000</span></div>
+                    <div class="flex justify-between font-normal text-[10px]"><span>SC (5%)</span><span class="editable" contenteditable="true">16,500</span></div>
+                    <div class="flex justify-between font-normal text-[10px]"><span>PB1 (10%)</span><span class="editable" contenteditable="true">34,650</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between text-[15px] font-bold my-1"><span>TOTAL</span><span class="editable" contenteditable="true">381,150</span></div>
+                <div class="text-center footer-spacer text-[10px]"><p>IT'S MY STEAK!</p></div>
+            </div>
+        </div>
+
+        <!-- TAB KAMPUNG DAUN BANDUNG -->
+        <div id="tab-kampungdaun" class="template-section w-full flex justify-center hidden">
+            <div id="content-kampungdaun" class="pos-container paper-thermal-sepia font-braga ink-faded">
+                <div class="text-center mb-3">
+                    <h1 class="text-[22px] font-bold editable" contenteditable="true">KAMPUNG DAUN</h1>
+                    <p class="editable text-[12px] italic mt-1" contenteditable="true">Culture Gallery & Cafe</p>
+                    <p class="editable text-[10px]" contenteditable="true">Triniti, Lembang, Bandung</p>
+                </div>
+                <div class="line-dotted"></div>
+                <div class="flex justify-between text-[11px] my-2">
+                    <div><p>Saung: <span class="editable font-bold" contenteditable="true">Sangkuriang</span></p></div>
+                    <div class="text-right"><p><span class="editable" contenteditable="true">18/04/2026</span></p></div>
+                </div>
+                <div class="line-solid"></div>
+                <table class="pos-table text-[11px]">
+                    <tbody>
+                        <tr><td class="w-6">1x</td><td><span class="editable" contenteditable="true">Nasi Timbel Komplit</span></td><td class="text-right"><span class="editable" contenteditable="true">75,000</span></td></tr>
+                        <tr><td class="w-6">1x</td><td><span class="editable" contenteditable="true">Sate Maranggi</span></td><td class="text-right"><span class="editable" contenteditable="true">85,000</span></td></tr>
+                        <tr><td class="w-6">2x</td><td><span class="editable" contenteditable="true">Bandrek Spesial</span></td><td class="text-right"><span class="editable" contenteditable="true">60,000</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="line-solid"></div>
+                <div class="space-y-1 text-[11px]">
+                    <div class="flex justify-between"><span>Subtotal</span><span class="editable" contenteditable="true">220,000</span></div>
+                    <div class="flex justify-between"><span>Service (5%)</span><span class="editable" contenteditable="true">11,000</span></div>
+                    <div class="flex justify-between"><span>Tax (10%)</span><span class="editable" contenteditable="true">23,100</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between text-[16px] font-bold my-1"><span>TOTAL DUE</span><span>Rp <span class="editable" contenteditable="true">254,100</span></span></div>
+                <div class="text-center footer-spacer text-[11px] italic"><p>Hatur Nuhun</p></div>
+            </div>
+        </div>
+
+        <!-- TAB TELAGA SAMPIREUN CIBUBUR -->
+        <div id="tab-sampireun" class="template-section w-full flex justify-center hidden">
+            <div id="content-sampireun" class="pos-container paper-thermal-std font-tsamara ink-black">
+                <div class="text-center mb-4">
+                    <h1 class="text-[20px] font-bold editable" contenteditable="true">TELAGA SAMPIREUN</h1>
+                    <p class="editable text-[10px] mt-1" contenteditable="true">Cabang Cibubur</p>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between text-[11px] my-2 uppercase">
+                    <div><p>VIP Room: <span class="editable font-bold" contenteditable="true">Anggrek</span></p></div>
+                    <div class="text-right"><p><span class="editable" contenteditable="true">20/04/2026</span></p></div>
+                </div>
+                <div class="line-dashed"></div>
+                <table class="pos-table text-[11px] uppercase">
+                    <thead><tr>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="w-6">Q</th>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;">MENU</th>
+                        <th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="text-right">AMT</th>
+                    </tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td><span class="editable" contenteditable="true">GURAME TERBANG</span></td><td class="text-right"><span class="editable" contenteditable="true">135,000</span></td></tr>
+                        <tr><td>1</td><td><span class="editable" contenteditable="true">CUMI GORENG TEPUNG</span></td><td class="text-right"><span class="editable" contenteditable="true">75,000</span></td></tr>
+                        <tr><td>2</td><td><span class="editable" contenteditable="true">ES KELAPA MUDA</span></td><td class="text-right"><span class="editable" contenteditable="true">50,000</span></td></tr>
+                    </tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="space-y-1 text-[11px] text-right uppercase">
+                    <p>Subtotal: <span class="editable" contenteditable="true">260,000</span></p>
+                    <p>Service (5%): <span class="editable" contenteditable="true">13,000</span></p>
+                    <p>PB1 (10%): <span class="editable" contenteditable="true">27,300</span></p>
+                </div>
+                <div class="line-dashed" style="border-top-width: 2px;"></div>
+                <div class="flex justify-between text-[16px] font-bold my-2"><span>GRAND TOTAL</span><span class="editable" contenteditable="true">300,300</span></div>
+                <div class="text-center footer-spacer text-[10px]"><p>Terima Kasih Atas Kunjungan Anda</p></div>
+            </div>
+        </div>
+    
+    <script>
     let activeTabId = 'content-grab-email'; 
 
     function switchTab(tabId, element) {
@@ -1470,8 +1747,11 @@
                 }
             });
         } else if (format === 'pdf') {
-         const posFormats = ['taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks', 'silverbird', 'taksibdg', 'airport'];
-        const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa'];
+        // Tambahkan abuba, kampungdaun, dan sampireun ke sini
+        const posFormats = ['taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks', 'silverbird', 'taksibdg', 'airport', 'abuba', 'kampungdaun', 'sampireun'];
+        
+        // Tambahkan bookingcom dan tripcom ke sini
+        const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa', 'bookingcom', 'tripcom'];
         
         const isReceiptFormat = posFormats.some(id => activeTabId === 'content-' + id);
         const isAppFormat = appFormats.some(id => activeTabId === 'content-' + id);
