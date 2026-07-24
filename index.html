@@ -1525,105 +1525,107 @@
             </div>
         </div>
 
-        <!-- TAB ANA (AUTHENTIC PDF DATA) -->
+     <!-- TAB ANA (GDS / SYSTEM AUTHENTIC) -->
         <div id="tab-ana" class="template-section w-full flex justify-center hidden">
             <div id="content-ana" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
-                <div class="p-10 text-xs">
-                    <!-- Header with Logo -->
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex items-center">
-                            <div id="wrapper-ana" class="no-print relative mr-4" style="display: none;">
-                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
-                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-ana', 'wrapper-ana')">
-                                </label>
-                            </div>
-                            <img id="preview-ana" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-8 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 120px;" title="Klik untuk tambah logo ANA" onclick="this.previousElementSibling.querySelector('input').click()">
+                <div class="p-10 text-[10px] text-gray-800 leading-snug">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center border-b-2 border-[#002f6c] pb-3 mb-4">
+                        <div id="wrapper-ana" class="no-print relative" style="display: none;">
+                            <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
+                                <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-ana', 'wrapper-ana')">
+                            </label>
+                        </div>
+                        <img id="preview-ana" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-10 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 120px;" title="Klik untuk tambah logo ANA" onclick="this.previousElementSibling.querySelector('input').click()">
+                        <div class="text-right">
+                            <h1 class="text-[16px] font-bold uppercase text-[#002f6c] tracking-widest">E-Ticket Itinerary / Receipt</h1>
+                            <p class="font-bold">ALL NIPPON AIRWAYS CO., LTD.</p>
                         </div>
                     </div>
 
-                    <!-- RECEIPT Section -->
-                    <h2 class="font-bold text-lg mb-4 text-center tracking-widest border-b-2 border-gray-800 pb-2">RECEIPT</h2>
-                    <div class="grid grid-cols-2 gap-x-8 gap-y-2 mb-8 border-b border-gray-300 pb-6">
-                        <div class="flex"><span class="w-40 text-gray-600">ISSUED DATE</span><span class="font-bold"><span class="editable" contenteditable="true">2026/02/25</span></span></div>
-                        <div class="flex"><span class="w-40 text-gray-600">RESERVATION CODE</span><span class="font-bold"><span class="editable" contenteditable="true">FBRGFC</span></span></div>
-                        <div class="flex"><span class="w-40 text-gray-600">RECEIVED FROM</span><span class="font-bold"><span class="editable" contenteditable="true">WAHYU SETIAWAN</span></span></div>
-                        <div class="flex"><span class="w-40 text-gray-600">RECEIVED PAYMENT ON</span><span class="font-bold"><span class="editable" contenteditable="true">2026/02/24</span></span></div>
-                        <div class="flex"><span class="w-40 text-gray-600">THE SUM OF</span><span class="font-bold text-base"><span class="editable" contenteditable="true">JPY 160,310-</span></span></div>
-                        <div class="flex"><span class="w-40 text-gray-600">FORM OF PAYMENT</span><span><span class="editable" contenteditable="true">/Credit Card</span></span></div>
-                        <div class="flex col-span-2"><span class="w-40 text-gray-600">IN PAYMENT OF</span><span><span class="editable" contenteditable="true">/For Air Ticket 2052428766791</span></span></div>
-                        <div class="flex col-span-2"><span class="w-40 text-gray-600">REMARKS</span><span class="text-[10px] text-gray-500"><span class="editable" contenteditable="true">ANA received the amount indicated above. Total amount subject to 10% Japanese consumption tax (tax inc.) JPY2950</span></span></div>
+                    <!-- Booking Info -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <p><span class="inline-block w-32 font-bold text-gray-600">PASSENGER NAME</span>: <span class="font-bold text-[12px]"><span class="editable uppercase" contenteditable="true">SETIAWAN/WAHYU MR</span></span></p>
+                            <p><span class="inline-block w-32 font-bold text-gray-600">TICKET NUMBER</span>: <span class="font-bold"><span class="editable" contenteditable="true">205 2428766791</span></span></p>
+                            <p><span class="inline-block w-32 font-bold text-gray-600">ISSUED DATE</span>: <span><span class="editable" contenteditable="true">25 FEB 2026</span></span></p>
+                        </div>
+                        <div>
+                            <p><span class="inline-block w-32 font-bold text-gray-600">RESERVATION CODE</span>: <span class="font-bold bg-gray-100 px-1"><span class="editable" contenteditable="true">FBRGFC</span></span></p>
+                            <p><span class="inline-block w-32 font-bold text-gray-600">ISSUING AGENT</span>: <span><span class="editable uppercase" contenteditable="true">ANA WEB TOKYO</span></span></p>
+                        </div>
                     </div>
 
-                    <!-- DETAILED STATEMENT Section -->
-                    <h2 class="font-bold text-sm mb-4 border-b border-gray-800 pb-1">DETAILED STATEMENT</h2>
-                    <div class="mb-4">
-                        <div class="flex mb-1"><span class="w-40 text-gray-600">PASSENGER NAME</span><span class="font-bold"><span class="editable" contenteditable="true">SETIAWAN/WAHYU MR</span></span></div>
-                    </div>
-
-                    <h3 class="font-bold text-xs mb-2 text-gray-700 bg-gray-100 p-1">ITINERARY DETAIL</h3>
-                    <table class="w-full text-left mb-6 border-collapse border border-gray-400">
-                        <thead class="bg-gray-100 text-[10px]">
-                            <tr>
-                                <th class="p-2 border border-gray-400 font-normal w-1/4">DEPARTURE DATE</th>
-                                <th class="p-2 border border-gray-400 font-normal w-1/4">FLIGHT NUMBER</th>
-                                <th class="p-2 border border-gray-400 font-normal w-1/4">DEPARTURE</th>
-                                <th class="p-2 border border-gray-400 font-normal w-1/4">ARRIVAL</th>
+                    <!-- Itinerary Table -->
+                    <h2 class="text-[12px] font-bold text-gray-600 mb-1 border-b border-gray-300 pb-0.5">ITINERARY</h2>
+                    <table class="w-full text-left mb-6 border-b border-gray-400">
+                        <thead>
+                            <tr class="text-[9px] text-gray-500 uppercase">
+                                <th class="py-1 w-[18%]">Flight</th>
+                                <th class="py-1 w-[12%]">Date</th>
+                                <th class="py-1 w-[25%]">Departure</th>
+                                <th class="py-1 w-[20%]">Arrival</th>
+                                <th class="py-1 w-[8%]">Class</th>
+                                <th class="py-1 w-[8%]">Bag</th>
+                                <th class="py-1 w-[9%]">Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">2026/04/07</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">NH855</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">TOKYO (HANEDA)</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JAKARTA</span></td>
+                        <tbody class="uppercase text-[9px] align-top">
+                            <!-- Outbound -->
+                            <tr class="border-t border-dashed border-gray-300">
+                                <td class="py-2"><span class="editable font-bold text-[#002f6c]" contenteditable="true">NH 855</span><br><span class="text-[8px] text-gray-500">ALL NIPPON</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">07 APR</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">10:20</span><br><span class="editable" contenteditable="true">TOKYO (HND)</span><br><span class="text-gray-500">Terminal 3</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">16:15</span><br><span class="editable" contenteditable="true">JAKARTA (CGK)</span><br><span class="text-gray-500">Terminal 3</span></td>
+                                <td class="py-2"><span class="editable" contenteditable="true">ECON (K)</span></td>
+                                <td class="py-2"><span class="editable" contenteditable="true">2PC</span></td>
+                                <td class="py-2"><span class="editable font-bold text-green-600" contenteditable="true">CONFIRMED</span></td>
                             </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">2026/04/14</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">NH872</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JAKARTA</span></td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">TOKYO (HANEDA)</span></td>
+                            <!-- Inbound -->
+                            <tr class="border-t border-dashed border-gray-300">
+                                <td class="py-2"><span class="editable font-bold text-[#002f6c]" contenteditable="true">NH 872</span><br><span class="text-[8px] text-gray-500">ALL NIPPON</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">14 APR</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">07:15</span><br><span class="editable" contenteditable="true">JAKARTA (CGK)</span><br><span class="text-gray-500">Terminal 3</span></td>
+                                <td class="py-2"><span class="editable font-bold" contenteditable="true">16:50</span><br><span class="editable" contenteditable="true">TOKYO (HND)</span><br><span class="text-gray-500">Terminal 3</span></td>
+                                <td class="py-2"><span class="editable" contenteditable="true">ECON (K)</span></td>
+                                <td class="py-2"><span class="editable" contenteditable="true">2PC</span></td>
+                                <td class="py-2"><span class="editable font-bold text-green-600" contenteditable="true">CONFIRMED</span></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <h3 class="font-bold text-xs mb-2 text-gray-700 bg-gray-100 p-1">FARE/TAXES/FEES/CHARGES DETAIL</h3>
-                    <table class="w-full text-left text-[10px] mb-8 border-collapse border border-gray-400">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="p-2 border border-gray-400 font-normal w-2/3">ITEM</th>
-                                <th class="p-2 border border-gray-400 font-normal w-1/3">AMOUNT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-2 border border-gray-400">FARE</td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JPY111500</span></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-400">AIRLINE SURCHARGE (INSURANCE/ FUEL)</td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JPY42400</span></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-400">INTERNATIONAL PASSENGER SERVICE FACILITY CHARGE</td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JPY2950</span></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-400">INTERNATIONAL TOURIST TAX</td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JPY1000</span></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2 border border-gray-400">PASSENGER SERVICE CHARGE</td>
-                                <td class="p-2 border border-gray-400"><span class="editable" contenteditable="true">JPY2460</span></td>
-                            </tr>
-                        </tbody>
+                    <!-- Receipt Details -->
+                    <h2 class="text-[12px] font-bold text-gray-600 mb-1 border-b border-gray-300 pb-0.5">PAYMENT DETAILS</h2>
+                    <table class="w-full text-left mb-6 text-[10px] uppercase">
+                        <tr>
+                            <td class="py-1 w-[30%] font-bold">Fare</td>
+                            <td class="py-1 w-[70%]">: <span class="editable" contenteditable="true">JPY 111500</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-1 font-bold">Surcharges (YQ/YR)</td>
+                            <td class="py-1">: <span class="editable" contenteditable="true">JPY 42400</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-1 font-bold">Taxes & Fees</td>
+                            <td class="py-1">: <span class="editable" contenteditable="true">JPY 2950 SW / JPY 1000 TK / JPY 2460 D5</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-1 font-bold border-t border-gray-300 mt-1 pt-1">Total Ticket Amount</td>
+                            <td class="py-1 border-t border-gray-300 mt-1 pt-1">: <span class="editable font-bold text-[12px]" contenteditable="true">JPY 160310</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-1 font-bold">Form of Payment</td>
+                            <td class="py-1">: <span class="editable" contenteditable="true">CC / CREDIT CARD</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-1 font-bold">Endorsements</td>
+                            <td class="py-1">: <span class="editable text-gray-600" contenteditable="true">NON-END/NON-RER/VALID ON NH ONLY</span></td>
+                        </tr>
                     </table>
-                    <div class="text-center text-[9px] text-gray-500 mt-8">
-                        <p>ALL NIPPON AIRWAYS CO., LTD.</p>
-                        <p>REGISTRATION NUMBER T1010401099027</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                    <div class="border-t border-gray-400 pt-3 text-[8px] text-gray-500 text-justify leading-tight">
+                        <p class="mb-1">ANA received the amount indicated above. Total amount subject to 10% Japanese consumption tax (tax inc.) JPY 2950.</p>
+                        <p>NOTICE: Carriage and other services provided by the carrier are subject to conditions of carriage, which are hereby incorporated byNormally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
 
         <!-- TAB LUFTHANSA (AUTHENTIC RECEIPT) -->
         <div id="tab-lufthansa" class="template-section w-full flex justify-center hidden">
