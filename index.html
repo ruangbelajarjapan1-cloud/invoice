@@ -141,7 +141,10 @@
         <div class="nav-item" onclick="switchTab('tab-silverbird', this)">💎 Silverbird</div>
         <div class="nav-item" onclick="switchTab('tab-taksi', this)">🚕 Taksi Blue JKT</div>
         <div class="nav-item" onclick="switchTab('tab-taksibdg', this)">🚕 Taksi Bandung</div>
-        
+        <div class="nav-category">Airlines E-Ticket (A4)</div>
+        <div class="nav-item" onclick="switchTab('tab-garuda', this)">🛫 Garuda Indonesia</div>
+        <div class="nav-item" onclick="switchTab('tab-ana', this)">🛫 ANA (All Nippon)</div>
+        <div class="nav-item" onclick="switchTab('tab-lufthansa', this)">🛫 Lufthansa</div>
         <div class="nav-category">VIP Dining (Jkt POS)</div>
         <div class="nav-item" onclick="switchTab('tab-wolfgang', this)">🥩 Wolfgang's</div>
         <div class="nav-item" onclick="switchTab('tab-plataran', this)">🍽️ Plataran Menteng</div>
@@ -1175,7 +1178,234 @@
 
     </div>
 </div>
+<!-- TAB GARUDA INDONESIA -->
+        <div id="tab-garuda" class="template-section w-full flex justify-center hidden">
+            <div id="content-garuda" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
+                <div class="bg-[#00527c] text-white px-10 py-6 flex justify-between items-center" style="border-bottom: 6px solid #0092d0;">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-wider uppercase">Garuda Indonesia</h1>
+                        <p class="text-sm opacity-90 mt-1 tracking-wide">Passenger Itinerary Receipt</p>
+                    </div>
+                    <div id="wrapper-garuda" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-garuda', 'wrapper-garuda')">
+                        </label>
+                    </div>
+                    <!-- Saat di klik, akan muncul pop-up pilih gambar logo murni teks -->
+                    <img id="preview-garuda" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Click to Add Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer border-2 border-dashed border-white/50" style="display: block; min-width: 80px;" title="Klik untuk tambah logo tipografi" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+                <div class="p-10">
+                    <div class="flex justify-between items-end border-b-2 border-[#00527c] pb-4 mb-6">
+                        <div>
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Booking Reference (PNR)</p>
+                            <p class="text-3xl font-black text-[#00527c]"><span class="editable" contenteditable="true">GIA88XYZ</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-500 text-xs font-bold mb-1 uppercase">Date of Issue</p>
+                            <p class="text-sm font-semibold"><span class="editable" contenteditable="true">15 April 2026</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="text-xs text-gray-500 font-bold uppercase mb-1">Passenger Details</p>
+                        <p class="font-bold text-lg"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></p>
+                        <p class="text-sm text-gray-600">E-Ticket Number: <span class="editable font-bold" contenteditable="true">126-1234567890</span></p>
+                    </div>
 
+                    <div class="bg-blue-50/50 border border-blue-100 rounded-lg p-6 mb-8">
+                        <div class="flex justify-between mb-6 border-b border-blue-200 pb-3">
+                            <h2 class="font-bold text-[#00527c] uppercase text-sm flex items-center">
+                                ✈️ <span class="editable ml-2" contenteditable="true">Flight GA 874 • Economy (Y)</span>
+                            </h2>
+                            <span class="text-green-600 font-bold text-xs uppercase bg-green-100 px-2 py-1 rounded">Confirmed</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="w-2/5">
+                                <p class="text-gray-500 text-xs font-bold mb-1"><span class="editable" contenteditable="true">20 April 2026</span></p>
+                                <p class="text-3xl font-black text-gray-800 editable" contenteditable="true">23:30</p>
+                                <p class="font-bold text-[#00527c] editable mt-1" contenteditable="true">JAKARTA (CGK)</p>
+                                <p class="text-xs text-gray-500 editable" contenteditable="true">Soekarno-Hatta Int'l - Terminal 3</p>
+                            </div>
+                            <div class="w-1/5 text-center flex flex-col items-center">
+                                <span class="text-xs font-bold text-gray-400 mb-1">Duration</span>
+                                <span class="text-xs font-bold text-gray-600 editable" contenteditable="true">7h 20m</span>
+                                <div class="w-full border-t-2 border-dashed border-gray-300 my-2 relative">
+                                    <div class="absolute w-2 h-2 rounded-full bg-[#0092d0] right-0 -top-1.5"></div>
+                                </div>
+                                <span class="text-[10px] text-gray-400">Non-Stop</span>
+                            </div>
+                            <div class="w-2/5 text-right">
+                                <p class="text-gray-500 text-xs font-bold mb-1"><span class="editable" contenteditable="true">21 April 2026</span></p>
+                                <p class="text-3xl font-black text-gray-800 editable" contenteditable="true">08:50</p>
+                                <p class="font-bold text-[#00527c] editable mt-1" contenteditable="true">TOKYO (HND)</p>
+                                <p class="text-xs text-gray-500 editable" contenteditable="true">Haneda Airport - Terminal 3</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <div class="w-1/2 p-4">
+                            <h2 class="text-xs font-bold text-[#00527c] uppercase border-b-2 border-gray-200 pb-2 mb-3">Payment Details</h2>
+                            <div class="space-y-2 text-sm text-gray-600">
+                                <div class="flex justify-between"><span>Fare</span><span>IDR <span class="editable" contenteditable="true">8,500,000</span></span></div>
+                                <div class="flex justify-between"><span>Taxes & Carrier Imposed Fees</span><span>IDR <span class="editable" contenteditable="true">1,250,000</span></span></div>
+                            </div>
+                            <div class="border-t mt-3 pt-3 flex justify-between items-center">
+                                <span class="font-bold text-gray-800">Total Amount</span>
+                                <span class="text-xl font-black text-[#00527c]">IDR <span class="editable" contenteditable="true">9,750,000</span></span>
+                            </div>
+                            <p class="text-[10px] text-gray-400 text-right mt-2 uppercase">Paid via Credit Card (Visa)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB ANA (ALL NIPPON AIRWAYS) -->
+        <div id="tab-ana" class="template-section w-full flex justify-center hidden">
+            <div id="content-ana" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
+                <div class="bg-[#002f6c] text-white px-10 py-6 flex justify-between items-center" style="border-bottom: 4px solid #00a0e9;">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-widest uppercase">ANA</h1>
+                        <p class="text-[11px] opacity-90 mt-1 tracking-widest uppercase">Inspiration of JAPAN</p>
+                    </div>
+                    <div id="wrapper-ana" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-ana', 'wrapper-ana')">
+                        </label>
+                    </div>
+                    <img id="preview-ana" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Click to Add Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer border-2 border-dashed border-white/50" style="display: block; min-width: 80px;" title="Klik untuk tambah logo teks" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+                <div class="p-10">
+                    <div class="grid grid-cols-2 gap-4 mb-8 text-sm">
+                        <div>
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Passenger Name</p>
+                            <p class="font-bold text-lg"><span class="editable" contenteditable="true">SETIAWAN / WAHYU MR</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Reservation Number</p>
+                            <p class="text-2xl font-black text-[#002f6c]"><span class="editable" contenteditable="true">AN99XD</span></p>
+                        </div>
+                    </div>
+                    
+                    <table class="w-full text-left text-sm mb-8 border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 border-b-2 border-[#002f6c]">
+                                <th class="py-2 px-3 text-xs text-gray-600 uppercase">Flight</th>
+                                <th class="py-2 px-3 text-xs text-gray-600 uppercase">Date</th>
+                                <th class="py-2 px-3 text-xs text-gray-600 uppercase">Departs</th>
+                                <th class="py-2 px-3 text-xs text-gray-600 uppercase">Arrives</th>
+                                <th class="py-2 px-3 text-xs text-gray-600 uppercase">Class</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-4 px-3 font-bold text-[#00a0e9]"><span class="editable" contenteditable="true">NH 855</span></td>
+                                <td class="py-4 px-3 font-semibold text-gray-800"><span class="editable" contenteditable="true">25 APR</span></td>
+                                <td class="py-4 px-3">
+                                    <p class="font-bold text-lg leading-none editable" contenteditable="true">10:20</p>
+                                    <p class="text-xs text-gray-500 mt-1 editable" contenteditable="true">TOKYO (HND)</p>
+                                </td>
+                                <td class="py-4 px-3">
+                                    <p class="font-bold text-lg leading-none editable" contenteditable="true">16:15</p>
+                                    <p class="text-xs text-gray-500 mt-1 editable" contenteditable="true">JAKARTA (CGK)</p>
+                                </td>
+                                <td class="py-4 px-3 text-gray-600 font-semibold"><span class="editable" contenteditable="true">Economy (K)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="flex justify-between items-start">
+                        <div class="w-1/2 pr-8">
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-2">Important Notices</p>
+                            <ul class="text-[10px] text-gray-500 list-disc pl-4 space-y-1">
+                                <li>Please check-in at least 120 minutes before departure.</li>
+                                <li>Baggage allowance: <span class="editable font-bold" contenteditable="true">2 PC (Max 23kg/PC)</span></li>
+                            </ul>
+                        </div>
+                        <div class="w-1/2 bg-[#f8f9fa] p-5 rounded border border-gray-200">
+                            <div class="space-y-2 text-sm text-gray-600 mb-3 border-b border-gray-200 pb-3">
+                                <div class="flex justify-between"><span>Air Fare</span><span>JPY <span class="editable" contenteditable="true">85,000</span></span></div>
+                                <div class="flex justify-between"><span>Taxes & Fees</span><span>JPY <span class="editable" contenteditable="true">12,450</span></span></div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-[#002f6c] uppercase">Total</span>
+                                <span class="text-xl font-black text-gray-900">JPY <span class="editable" contenteditable="true">97,450</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB LUFTHANSA -->
+        <div id="tab-lufthansa" class="template-section w-full flex justify-center hidden">
+            <div id="content-lufthansa" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
+                <div class="bg-[#05164d] text-[#f9c000] px-10 py-8 flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-black tracking-wider uppercase">Lufthansa</h1>
+                        <p class="text-[11px] opacity-90 mt-1 text-white uppercase tracking-widest">Passenger Receipt</p>
+                    </div>
+                    <div id="wrapper-lufthansa" class="no-print relative" style="display: none;">
+                        <label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs">+ Logo
+                            <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-lufthansa', 'wrapper-lufthansa')">
+                        </label>
+                    </div>
+                    <img id="preview-lufthansa" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Click to Add Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer border-2 border-dashed border-white/50" style="display: block; min-width: 80px;" title="Klik untuk tambah logo geometris" onclick="this.previousElementSibling.querySelector('input').click()">
+                </div>
+                <div class="p-10">
+                    <div class="border-l-4 border-[#f9c000] pl-4 mb-8">
+                        <p class="text-xs text-gray-500 font-bold uppercase mb-1">Booking Code</p>
+                        <p class="text-3xl font-black text-[#05164d]"><span class="editable" contenteditable="true">LH8X2C</span></p>
+                        <p class="text-sm font-semibold text-gray-600 mt-2">Passenger: <span class="editable text-gray-900" contenteditable="true">WAHYU SETIAWAN MR</span></p>
+                        <p class="text-xs text-gray-500">Ticket Number: <span class="editable" contenteditable="true">220-9876543210</span></p>
+                    </div>
+
+                    <h2 class="font-bold text-[#05164d] uppercase text-sm border-b-2 border-[#05164d] pb-2 mb-4">Your Flight Itinerary</h2>
+                    
+                    <div class="bg-gray-50 border border-gray-200 p-5 mb-8">
+                        <div class="flex justify-between items-center">
+                            <div class="w-1/4">
+                                <p class="text-sm font-bold text-[#f9c000] bg-[#05164d] inline-block px-2 py-1 mb-2"><span class="editable" contenteditable="true">LH 777</span></p>
+                                <p class="text-xs text-gray-500 font-bold uppercase"><span class="editable" contenteditable="true">30 APR 2026</span></p>
+                            </div>
+                            <div class="w-1/3">
+                                <p class="text-2xl font-black text-gray-800 editable" contenteditable="true">18:40</p>
+                                <p class="font-bold text-gray-700 editable" contenteditable="true">JAKARTA (CGK)</p>
+                            </div>
+                            <div class="w-1/12 text-center text-gray-400">➔</div>
+                            <div class="w-1/3 text-right">
+                                <p class="text-2xl font-black text-gray-800 editable" contenteditable="true">06:20</p>
+                                <p class="font-bold text-gray-700 editable" contenteditable="true">FRANKFURT (FRA)</p>
+                                <p class="text-[10px] text-red-500 font-bold">+1 Day</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-8 border-t border-gray-200 pt-6">
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-2">Booking Class</p>
+                            <p class="text-sm font-bold text-gray-800"><span class="editable" contenteditable="true">Premium Economy (E)</span></p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-2 border-b border-gray-200 pb-1">Payment Breakdown</p>
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Ticket Fare</span>
+                                <span>EUR <span class="editable" contenteditable="true">950.00</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600 mb-3">
+                                <span>Taxes / Fees</span>
+                                <span>EUR <span class="editable" contenteditable="true">185.50</span></span>
+                            </div>
+                            <div class="flex justify-between text-lg font-black text-[#05164d] border-t border-gray-200 pt-2">
+                                <span>TOTAL</span>
+                                <span>EUR <span class="editable" contenteditable="true">1135.50</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <script>
     let activeTabId = 'content-grab-email'; 
 
@@ -1240,26 +1470,32 @@
                 }
             });
         } else if (format === 'pdf') {
-            const posFormats = ['taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks', 'silverbird', 'taksibdg', 'airport'];
-            const isReceiptFormat = posFormats.some(id => activeTabId === 'content-' + id);
+         const posFormats = ['taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks', 'silverbird', 'taksibdg', 'airport'];
+        const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa'];
+        
+        const isReceiptFormat = posFormats.some(id => activeTabId === 'content-' + id);
+        const isAppFormat = appFormats.some(id => activeTabId === 'content-' + id);
+        const isA4Format = a4Formats.some(id => activeTabId === 'content-' + id);
+        
+        let pdfFormat = 'a4';
+        
+        if (isReceiptFormat || isAppFormat) {
+            const pxToMM = 0.264583;
+            const elementWidthMM = element.offsetWidth * pxToMM;
+            const elementHeightMM = element.offsetHeight * pxToMM;
             
-            let pdfFormat = 'a4';
-            
-            if (isReceiptFormat || isAppFormat) {
-                const pxToMM = 0.264583;
-                const elementWidthMM = element.offsetWidth * pxToMM;
-                const elementHeightMM = element.offsetHeight * pxToMM;
-                
-                let targetWidthMM = 80;
-                if (isAppFormat) targetWidthMM = 75; 
-                else if (activeTabId.includes('taksi') || activeTabId.includes('taksibdg')) targetWidthMM = 70; 
-                else if (activeTabId.includes('silverbird') || activeTabId.includes('airport')) targetWidthMM = 85; 
+            let targetWidthMM = 80;
+            if (isAppFormat) targetWidthMM = 75; 
+            else if (activeTabId.includes('taksi') || activeTabId.includes('taksibdg')) targetWidthMM = 70; 
+            else if (activeTabId.includes('silverbird') || activeTabId.includes('airport')) targetWidthMM = 85; 
 
-                const ratio = targetWidthMM / elementWidthMM;
-                const dynamicHeightMM = (elementHeightMM * ratio);
+            const ratio = targetWidthMM / elementWidthMM;
+            const dynamicHeightMM = (elementHeightMM * ratio);
 
-                pdfFormat = [targetWidthMM, dynamicHeightMM];
-            }
+            pdfFormat = [targetWidthMM, dynamicHeightMM];
+        } else if (isA4Format) {
+            pdfFormat = 'a4';
+        }
             
             const opt = { 
                 margin: 0, 
