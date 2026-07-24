@@ -1224,7 +1224,7 @@
                     </div>
 
                     <h2 class="font-bold mb-2">Itinerary</h2>
-                    <table class="w-full text-left mb-8 border-collapse border-t border-b border-gray-400 text-[11px]">
+                <table class="w-full text-left mb-8 border-collapse border-t border-b border-gray-400 text-[11px]">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="p-2 border-b border-gray-400 w-[15%]">Flight</th>
@@ -1236,13 +1236,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Outbound (Berangkat) -->
                             <tr>
                                 <td class="p-2 border-b border-gray-200 font-bold"><span class="editable" contenteditable="true">GA 874</span></td>
                                 <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">20 Apr 26</span></td>
                                 <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Economy (Y)</span></td>
                                 <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Jakarta (CGK) 23:30</span></td>
                                 <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Tokyo (HND) 08:50</span></td>
-                                <td class="p-2 border-b border-gray-200 font-bold"><span class="editable" contenteditable="true">OK</span></td>
+                                <td class="p-2 border-b border-gray-200 font-bold text-green-600"><span class="editable" contenteditable="true">OK</span></td>
+                            </tr>
+                            <!-- Inbound (Pulang) -->
+                            <tr>
+                                <td class="p-2 border-b border-gray-200 font-bold"><span class="editable" contenteditable="true">GA 875</span></td>
+                                <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">25 Apr 26</span></td>
+                                <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Economy (Y)</span></td>
+                                <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Tokyo (HND) 11:45</span></td>
+                                <td class="p-2 border-b border-gray-200"><span class="editable" contenteditable="true">Jakarta (CGK) 17:30</span></td>
+                                <td class="p-2 border-b border-gray-200 font-bold text-green-600"><span class="editable" contenteditable="true">OK</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1412,7 +1422,7 @@
 
                     <!-- Flight Table -->
                     <p class="text-[10px] font-bold text-[#05164d] uppercase mb-2 tracking-widest px-4">Flight Itinerary</p>
-                    <table class="w-full text-left mb-10 border-collapse border border-gray-300">
+                <table class="w-full text-left mb-10 border-collapse border border-gray-300">
                         <thead class="bg-[#05164d] text-white">
                             <tr>
                                 <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[20%]">Date</th>
@@ -1422,6 +1432,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Outbound (Berangkat) -->
                             <tr>
                                 <td class="p-3 border border-gray-300 font-bold"><span class="editable" contenteditable="true">30 Apr 26</span></td>
                                 <td class="p-3 border border-gray-300">
@@ -1429,6 +1440,16 @@
                                     <span class="text-gray-600 font-semibold mt-1 inline-block"><span class="editable" contenteditable="true">Frankfurt (FRA) 06:20</span></span>
                                 </td>
                                 <td class="p-3 border border-gray-300 font-bold text-[#05164d]"><span class="editable" contenteditable="true">LH 777</span></td>
+                                <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">Prem. Econ (E)</span></td>
+                            </tr>
+                            <!-- Inbound (Pulang) -->
+                            <tr>
+                                <td class="p-3 border border-gray-300 font-bold"><span class="editable" contenteditable="true">07 May 26</span></td>
+                                <td class="p-3 border border-gray-300">
+                                    <span class="font-bold text-sm"><span class="editable" contenteditable="true">Frankfurt (FRA) 14:10</span></span><br>
+                                    <span class="text-gray-600 font-semibold mt-1 inline-block"><span class="editable" contenteditable="true">Jakarta (CGK) 09:20</span> <span class="text-[9px] text-red-600">+1</span></span>
+                                </td>
+                                <td class="p-3 border border-gray-300 font-bold text-[#05164d]"><span class="editable" contenteditable="true">LH 776</span></td>
                                 <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">Prem. Econ (E)</span></td>
                             </tr>
                         </tbody>
@@ -1498,7 +1519,7 @@
 
                     <!-- Flight Itinerary Table -->
                     <h2 class="text-[11px] font-bold text-gray-800 uppercase tracking-widest mb-3 border-b-2 border-[#e31837] inline-block pb-1">Flight Details</h2>
-                    <table class="w-full text-left mb-10 border-collapse border border-gray-300">
+                  <table class="w-full text-left mb-10 border-collapse border border-gray-300">
                         <thead class="bg-gray-100 text-gray-600">
                             <tr>
                                 <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[15%]">Flight</th>
@@ -1509,12 +1530,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Outbound (Berangkat) -->
                             <tr>
                                 <td class="p-3 border border-gray-300 font-bold text-[#e31837]"><span class="editable" contenteditable="true">TK 57</span></td>
                                 <td class="p-3 border border-gray-300 font-bold"><span class="editable" contenteditable="true">28 Apr 26</span></td>
                                 <td class="p-3 border border-gray-300 leading-relaxed">
                                     <span class="font-bold text-sm"><span class="editable" contenteditable="true">Jakarta (CGK) 21:05</span></span><br>
                                     <span class="text-gray-500 text-xs mt-1 inline-block"><span class="editable" contenteditable="true">Istanbul (IST) 05:00 +1</span></span>
+                                </td>
+                                <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">Economy (V)</span></td>
+                                <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">30 KG</span></td>
+                            </tr>
+                            <!-- Inbound (Pulang) -->
+                            <tr>
+                                <td class="p-3 border border-gray-300 font-bold text-[#e31837]"><span class="editable" contenteditable="true">TK 56</span></td>
+                                <td class="p-3 border border-gray-300 font-bold"><span class="editable" contenteditable="true">05 May 26</span></td>
+                                <td class="p-3 border border-gray-300 leading-relaxed">
+                                    <span class="font-bold text-sm"><span class="editable" contenteditable="true">Istanbul (IST) 02:30</span></span><br>
+                                    <span class="text-gray-500 text-xs mt-1 inline-block"><span class="editable" contenteditable="true">Jakarta (CGK) 18:10</span></span>
                                 </td>
                                 <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">Economy (V)</span></td>
                                 <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">30 KG</span></td>
