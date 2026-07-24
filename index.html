@@ -147,10 +147,11 @@
         <div class="nav-item" onclick="switchTab('tab-silverbird', this)">💎 Silverbird</div>
         <div class="nav-item" onclick="switchTab('tab-taksi', this)">🚕 Taksi Blue JKT</div>
         <div class="nav-item" onclick="switchTab('tab-taksibdg', this)">🚕 Taksi Bandung</div>
-        <div class="nav-category">Airlines E-Ticket (A4)</div>
+       <div class="nav-category">Airlines E-Ticket (A4)</div>
         <div class="nav-item" onclick="switchTab('tab-garuda', this)">🛫 Garuda Indonesia</div>
         <div class="nav-item" onclick="switchTab('tab-ana', this)">🛫 ANA (All Nippon)</div>
         <div class="nav-item" onclick="switchTab('tab-lufthansa', this)">🛫 Lufthansa</div>
+        <div class="nav-item" onclick="switchTab('tab-turkish', this)">🛫 Turkish Airlines</div>
         <div class="nav-category">VIP Dining (Jkt POS)</div>
         <div class="nav-item" onclick="switchTab('tab-wolfgang', this)">🥩 Wolfgang's</div>
         <div class="nav-item" onclick="switchTab('tab-plataran', this)">🍽️ Plataran Menteng</div>
@@ -1452,6 +1453,107 @@
                 </div>
             </div>
         </div>
+      <!-- TAB TURKISH AIRLINES (AUTHENTIC RECEIPT) -->
+        <div id="tab-turkish" class="template-section w-full flex justify-center hidden">
+            <div id="content-turkish" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff; border-top: 10px solid #e31837;">
+                <div class="p-10 text-sm text-gray-800">
+                    <!-- Header Section -->
+                    <div class="flex justify-between items-start mb-8 border-b border-gray-300 pb-6">
+                        <div class="flex items-center">
+                            <div id="wrapper-turkish" class="no-print relative mr-4" style="display: none;">
+                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-[10px] text-gray-700">+ Logo
+                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-turkish', 'wrapper-turkish')">
+                                </label>
+                            </div>
+                            <!-- Menggunakan border abu-abu halus untuk slot logo -->
+                            <img id="preview-turkish" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Logo" class="h-12 object-contain cursor-pointer border border-dashed border-gray-300" style="display: block; min-width: 150px;" title="Klik untuk tambah logo Turkish Airlines" onclick="this.previousElementSibling.querySelector('input').click()">
+                        </div>
+                        <div class="text-right">
+                            <h1 class="text-2xl font-black text-[#e31837] tracking-wider uppercase">e-Ticket Receipt</h1>
+                            <p class="text-gray-500 text-xs mt-1 font-bold tracking-wide">Türk Hava Yolları / Turkish Airlines</p>
+                        </div>
+                    </div>
+
+                    <!-- Passenger & Booking Info (Grid 2 Kolom) -->
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Passenger Name</p>
+                            <p class="font-bold text-lg uppercase"><span class="editable" contenteditable="true">WAHYU SETIAWAN MR</span></p>
+                            
+                            <div class="mt-4">
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Ticket Number</p>
+                                <p class="font-bold text-base"><span class="editable" contenteditable="true">235 2109876543</span></p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 border border-gray-200">
+                            <p class="text-[10px] text-[#e31837] uppercase font-bold tracking-widest mb-1">Reservation Code (PNR)</p>
+                            <p class="font-black text-2xl text-gray-900"><span class="editable" contenteditable="true">TK92PL</span></p>
+                            
+                            <div class="mt-3">
+                                <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Issue Date</p>
+                                <p class="font-bold text-sm"><span class="editable" contenteditable="true">16 April 2026</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flight Itinerary Table -->
+                    <h2 class="text-[11px] font-bold text-gray-800 uppercase tracking-widest mb-3 border-b-2 border-[#e31837] inline-block pb-1">Flight Details</h2>
+                    <table class="w-full text-left mb-10 border-collapse border border-gray-300">
+                        <thead class="bg-gray-100 text-gray-600">
+                            <tr>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[15%]">Flight</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[15%]">Date</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[40%]">Departure / Arrival</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[15%]">Class</th>
+                                <th class="p-3 text-[10px] font-bold uppercase tracking-wider border border-gray-300 w-[15%]">Baggage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-3 border border-gray-300 font-bold text-[#e31837]"><span class="editable" contenteditable="true">TK 57</span></td>
+                                <td class="p-3 border border-gray-300 font-bold"><span class="editable" contenteditable="true">28 Apr 26</span></td>
+                                <td class="p-3 border border-gray-300 leading-relaxed">
+                                    <span class="font-bold text-sm"><span class="editable" contenteditable="true">Jakarta (CGK) 21:05</span></span><br>
+                                    <span class="text-gray-500 text-xs mt-1 inline-block"><span class="editable" contenteditable="true">Istanbul (IST) 05:00 +1</span></span>
+                                </td>
+                                <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">Economy (V)</span></td>
+                                <td class="p-3 border border-gray-300 font-semibold"><span class="editable" contenteditable="true">30 KG</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Fare & Payment Details -->
+                    <div class="flex justify-between items-start mt-8">
+                        <div class="w-1/2 pr-10">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-2">Important Information</p>
+                            <p class="text-[10px] text-gray-500 leading-relaxed text-justify">
+                                Please check-in at least 120 minutes prior to departure. Boarding gates close 20 minutes before the scheduled departure time. This electronic ticket is subject to the conditions of carriage of Turkish Airlines.
+                            </p>
+                        </div>
+                        <div class="w-1/2">
+                            <h2 class="text-[11px] font-bold text-gray-800 uppercase tracking-widest mb-3 border-b-2 border-[#e31837] inline-block pb-1">Payment Details</h2>
+                            <div class="border border-gray-300 p-5 bg-gray-50">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-semibold text-gray-600 text-xs uppercase tracking-wide">Base Fare</span>
+                                    <span class="font-bold"><span class="editable" contenteditable="true">IDR 9,250,000</span></span>
+                                </div>
+                                <div class="flex justify-between mb-4 border-b border-gray-300 pb-3">
+                                    <span class="font-semibold text-gray-600 text-xs uppercase tracking-wide">Taxes & Surcharges</span>
+                                    <span class="font-bold"><span class="editable" contenteditable="true">IDR 1,450,000</span></span>
+                                </div>
+                                <div class="flex justify-between font-black text-xl text-gray-900">
+                                    <span class="uppercase text-sm mt-1">Total Amount</span>
+                                    <span><span class="editable" contenteditable="true">IDR 10,700,000</span></span>
+                                </div>
+                                <div class="mt-4 text-[10px] text-gray-500 text-right uppercase">
+                                    Paid via <span class="font-bold text-gray-800"><span class="editable" contenteditable="true">CREDIT CARD (VISA)</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
 <!-- TAB BOOKING.COM -->
         <div id="tab-bookingcom" class="template-section w-full flex justify-center hidden">
             <div id="content-bookingcom" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
@@ -2044,7 +2146,8 @@
         const posFormats = ['taksi', 'plataran', 'sederhana', 'osteriagia', 'pagisore', 'union', 'braga', 'bandarbks', 'wolfgang', 'seribujkt', 'doubleu', 'tsamara', 'engking', 'seribubks', 'silverbird', 'taksibdg', 'airport', 'abuba', 'kampungdaun', 'sampireun', 'solaria', 'kopikenangan'];
         
         // Tambahkan traveloka dan tiketcom ke daftar a4Formats
-        const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa', 'bookingcom', 'tripcom', 'traveloka', 'tiketcom'];
+    
+        const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa', 'turkish', 'bookingcom', 'tripcom', 'traveloka', 'tiketcom'];
         
         const isReceiptFormat = posFormats.some(id => activeTabId === 'content-' + id);
         const isAppFormat = appFormats.some(id => activeTabId === 'content-' + id);
