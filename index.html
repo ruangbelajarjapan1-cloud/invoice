@@ -136,7 +136,9 @@
         <div class="nav-item" onclick="switchTab('tab-bw', this)">🏨 Best Western</div>
         <div class="nav-item" onclick="switchTab('tab-horison', this)">🏨 Horison</div>
         <div class="nav-item" onclick="switchTab('tab-fairfield', this)">🏨 Fairfield</div>
-        
+        <div class="nav-category" style="color: #60a5fa;">Hotel Bandara (A4)</div>
+        <div class="nav-item" onclick="switchTab('tab-fairfield-cgk', this)">🏨 Fairfield CGK</div>
+        <div class="nav-item" onclick="switchTab('tab-accor-bandara', this)">🏨 Accor Bandara CGK</div>
         <div class="nav-category">Taksi Online (App UI)</div>
         <div class="nav-item" onclick="switchTab('tab-grab', this)">📱 Grab (Green)</div>
         <div class="nav-item" onclick="switchTab('tab-gocar', this)">📱 GoCar / Gojek</div>
@@ -2103,6 +2105,228 @@
                 <div class="text-center footer-spacer text-[10px]"><p>Terima Kasih Atas Kunjungan Anda</p></div>
             </div>
         </div>
+<!-- TAB FAIRFIELD CGK -->
+        <div id="tab-fairfield-cgk" class="template-section w-full flex justify-center hidden">
+            <div id="content-fairfield-cgk" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-12 text-sm text-gray-800">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start mb-8 border-b-2 border-gray-800 pb-6">
+                        <div>
+                            <h1 class="text-3xl font-serif text-gray-800">Fairfield</h1>
+                            <p class="text-xs tracking-widest text-gray-600 uppercase mt-1">BY MARRIOTT</p>
+                            <p class="text-xs text-gray-500 mt-3 font-bold uppercase">Jakarta Soekarno-Hatta Airport</p>
+                            <p class="text-xs text-gray-500">Jl. Husein Sastranegara No.8, Benda, Tangerang 15125</p>
+                            <p class="text-xs text-gray-500">Phone: +62 21 39734888</p>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-wider">Guest Folio</h2>
+                            <div class="mt-4 text-left inline-block bg-gray-50 p-3 border border-gray-200">
+                                <p><span class="font-bold text-gray-600 inline-block w-16">Room</span>: <span class="font-bold text-lg editable" contenteditable="true">512</span></p>
+                                <p><span class="font-bold text-gray-600 inline-block w-16">Folio No</span>: <span class="editable" contenteditable="true">994821</span></p>
+                                <p><span class="font-bold text-gray-600 inline-block w-16">Cashier</span>: <span class="editable" contenteditable="true">Rizky (88)</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guest Info -->
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <p class="text-xs text-gray-500 font-bold uppercase mb-1">Guest Name</p>
+                            <p class="font-bold text-lg uppercase"><span class="editable" contenteditable="true">WAHYU SETIAWAN MR</span></p>
+                            <p class="text-xs text-gray-600 mt-1 editable" contenteditable="true">Yokohama, Japan</p>
+                        </div>
+                        <div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Arrival</p>
+                                    <p class="font-bold"><span class="editable" contenteditable="true">15-04-26</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Departure</p>
+                                    <p class="font-bold"><span class="editable" contenteditable="true">16-04-26</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Guests</p>
+                                    <p class="font-bold"><span class="editable" contenteditable="true">1</span></p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 font-bold uppercase mb-1">Marriott Bonvoy</p>
+                                    <p class="font-bold"><span class="editable" contenteditable="true">884930021</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Folio Table -->
+                    <table class="w-full text-left mb-8 border-collapse">
+                        <thead class="border-b-2 border-gray-300">
+                            <tr>
+                                <th class="py-2 text-xs font-bold uppercase tracking-wider text-gray-600 w-1/6">Date</th>
+                                <th class="py-2 text-xs font-bold uppercase tracking-wider text-gray-600 w-1/2">Description</th>
+                                <th class="py-2 text-xs font-bold uppercase tracking-wider text-gray-600 text-right w-1/6">Charges (IDR)</th>
+                                <th class="py-2 text-xs font-bold uppercase tracking-wider text-gray-600 text-right w-1/6">Credits (IDR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 text-xs"><span class="editable" contenteditable="true">15-04-26</span></td>
+                                <td class="py-3 text-xs font-semibold"><span class="editable" contenteditable="true">Room Charge - Deluxe King</span></td>
+                                <td class="py-3 text-xs text-right"><span class="editable" contenteditable="true">1,050,000</span></td>
+                                <td class="py-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 text-xs"><span class="editable" contenteditable="true">15-04-26</span></td>
+                                <td class="py-3 text-xs font-semibold"><span class="editable" contenteditable="true">Service Charge (10%)</span></td>
+                                <td class="py-3 text-xs text-right"><span class="editable" contenteditable="true">105,000</span></td>
+                                <td class="py-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 text-xs"><span class="editable" contenteditable="true">15-04-26</span></td>
+                                <td class="py-3 text-xs font-semibold"><span class="editable" contenteditable="true">Government Tax (11%)</span></td>
+                                <td class="py-3 text-xs text-right"><span class="editable" contenteditable="true">127,050</span></td>
+                                <td class="py-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 text-xs"><span class="editable" contenteditable="true">16-04-26</span></td>
+                                <td class="py-3 text-xs font-bold"><span class="editable" contenteditable="true">Visa / MasterCard</span></td>
+                                <td class="py-3 text-xs text-right"></td>
+                                <td class="py-3 text-xs text-right"><span class="editable" contenteditable="true">1,282,050</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Totals -->
+                    <div class="flex justify-end">
+                        <div class="w-1/2">
+                            <div class="flex justify-between border-t-2 border-gray-800 pt-2 mb-2 font-bold text-sm">
+                                <span>Total Charges</span>
+                                <span><span class="editable" contenteditable="true">1,282,050</span></span>
+                            </div>
+                            <div class="flex justify-between mb-4 font-bold text-sm">
+                                <span>Total Credits</span>
+                                <span><span class="editable" contenteditable="true">1,282,050</span></span>
+                            </div>
+                            <div class="flex justify-between border-t-2 border-gray-800 pt-3 text-xl font-black">
+                                <span class="uppercase">Balance</span>
+                                <span>IDR <span class="editable" contenteditable="true">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-16 text-[10px] text-gray-500 text-center border-t border-gray-200 pt-4">
+                        <p>I agree that my liability for this bill is not waived and agree to be held personally liable in the event that the indicated person, company or association fails to pay for any part or the full amount of these charges.</p>
+                        <p class="font-bold mt-2">Thank you for staying at Fairfield by Marriott Jakarta Soekarno-Hatta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB ACCOR BANDARA -->
+        <div id="tab-accor-bandara" class="template-section w-full flex justify-center hidden">
+            <div id="content-accor-bandara" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-12 text-sm text-gray-800">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start mb-8 border-b border-gray-300 pb-6">
+                        <div>
+                            <h1 class="text-2xl font-serif text-[#9b7653] font-bold">Bandara International Hotel</h1>
+                            <p class="text-[10px] tracking-widest text-gray-500 uppercase mt-1">Managed by Accor</p>
+                            <p class="text-xs text-gray-600 mt-4">Kawasan Bandara Soekarno-Hatta</p>
+                            <p class="text-xs text-gray-600">Tangerang, Banten 19110 - Indonesia</p>
+                            <p class="text-xs text-gray-600">Tel: +62 21 559 7777</p>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-3xl font-bold text-gray-800 uppercase tracking-widest text-[#003d5b]">Invoice</h2>
+                            <p class="text-sm font-bold text-gray-600 mt-2">Invoice No: <span class="editable" contenteditable="true">ACC-883921</span></p>
+                            <p class="text-xs text-gray-500 mt-1">Date: <span class="editable" contenteditable="true">18 April 2026</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Guest Details -->
+                    <div class="flex justify-between mb-8 bg-gray-50 p-5 border border-gray-200">
+                        <div class="w-1/2">
+                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Bill To</p>
+                            <p class="font-bold text-base uppercase"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></p>
+                            <p class="text-xs text-gray-600 mt-1 editable" contenteditable="true">PT. Tokyo Seimitsu Hatsujo</p>
+                        </div>
+                        <div class="w-1/2">
+                            <table class="text-xs w-full">
+                                <tr><td class="text-gray-500 py-1 font-bold w-24">Room No.</td><td class="font-bold">: <span class="editable" contenteditable="true">305</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Arrival</td><td class="font-bold">: <span class="editable" contenteditable="true">17/04/2026</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Departure</td><td class="font-bold">: <span class="editable" contenteditable="true">18/04/2026</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Accor Live Limitless</td><td class="font-bold">: <span class="editable" contenteditable="true">3088 1199 4432 0019</span></td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Details Table -->
+                    <table class="w-full text-left mb-8 border-collapse">
+                        <thead class="bg-[#003d5b] text-white">
+                            <tr>
+                                <th class="py-2 px-3 text-xs font-bold uppercase tracking-wider w-[15%]">Date</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase tracking-wider w-[50%]">Description</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase tracking-wider text-right w-[15%]">Charge</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase tracking-wider text-right w-[20%]">Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">17/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Room Rate - Superior Lake View</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">1,250,000</span></td>
+                                <td class="py-3 px-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">17/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">Service Charge (10%)</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">125,000</span></td>
+                                <td class="py-3 px-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">17/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">Government Tax (11%)</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">151,250</span></td>
+                                <td class="py-3 px-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">17/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">In-Room Dining (Dinner)</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">245,000</span></td>
+                                <td class="py-3 px-3 text-xs text-right"></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">18/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Credit Card - Visa</span></td>
+                                <td class="py-3 px-3 text-xs text-right"></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">1,771,250</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Summary -->
+                    <div class="flex justify-end">
+                        <div class="w-1/2 border-t-2 border-[#003d5b] pt-3">
+                            <div class="flex justify-between mb-2 font-bold text-sm text-gray-700">
+                                <span>Total Charges (IDR)</span>
+                                <span><span class="editable" contenteditable="true">1,771,250</span></span>
+                            </div>
+                            <div class="flex justify-between mb-4 font-bold text-sm text-gray-700">
+                                <span>Total Payments (IDR)</span>
+                                <span><span class="editable" contenteditable="true">1,771,250</span></span>
+                            </div>
+                            <div class="flex justify-between bg-gray-100 p-3 text-lg font-black text-[#003d5b]">
+                                <span>AMOUNT DUE</span>
+                                <span>IDR <span class="editable" contenteditable="true">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-[9px] text-gray-400 text-center border-t border-gray-200 pt-4 uppercase tracking-wider">
+                        <p>Thank you for choosing Bandara International Hotel Managed by Accor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        
     <!-- TAB TRAVELOKA -->
         <div id="tab-traveloka" class="template-section w-full flex justify-center hidden">
             <div id="content-traveloka" class="receipt-container paper-a4 font-app ink-black" style="padding: 0;">
@@ -2428,7 +2652,7 @@
         
         // Tambahkan traveloka dan tiketcom ke daftar a4Formats
     
-       const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa', 'turkish', 'bookingcom', 'tripcom', 'traveloka', 'tiketcom', 'tiketcom-flight'];
+      const a4Formats = ['whoosh', 'grab-email', 'gocar-email', 'maxim-email', 'indrive-email', 'greensm-email', 'garuda', 'ana', 'lufthansa', 'turkish', 'bookingcom', 'tripcom', 'traveloka', 'tiketcom', 'tiketcom-flight', 'fairfield-cgk', 'accor-bandara'];
         
         const isReceiptFormat = posFormats.some(id => activeTabId === 'content-' + id);
         const isAppFormat = appFormats.some(id => activeTabId === 'content-' + id);
