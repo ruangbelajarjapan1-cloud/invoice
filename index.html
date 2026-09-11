@@ -1065,8 +1065,8 @@
             <div id="content-whoosh" class="receipt-container paper-a4 font-whoosh ink-black" style="padding: 0;">
                 <div class="bg-[#dc2626] text-white px-10 py-6 flex justify-between items-center" style="border-bottom: 8px solid #1e3a8a;">
                     <div><h1 class="text-3xl font-black tracking-wider italic">Whoosh</h1><p class="text-sm opacity-90 mt-1">Kereta Cepat Jakarta-Bandung E-Ticket (Round Trip)</p></div>
-               <div id="wrapper-whoosh" class="no-print relative" style="display: block;"><label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs border border-white">+ Logo Whoosh<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-whoosh', 'wrapper-whoosh')"></label></div>
-                <img id="preview-whoosh" src="" alt="Whoosh Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: none;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+            <div id="wrapper-whoosh" class="no-print relative" style="display: none;"><label class="cursor-pointer bg-white/20 px-2 py-1 rounded text-xs border border-white">+ Logo Whoosh<input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-whoosh', 'wrapper-whoosh')"></label></div>
+                <img id="preview-whoosh" src="whoosh.png" alt="Whoosh Logo" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
              </div>
              <div class="p-10">
                     <div class="flex justify-between items-end border-b-2 border-gray-200 pb-4 mb-6">
@@ -1570,12 +1570,12 @@
                 <div class="bg-white border-b-4 border-[#2d2a70] px-10 py-6 flex justify-between items-center">
                     <div class="flex items-center gap-4">
                
-                        <div id="wrapper-kai" class="no-print relative" style="display: block;">
+                     <div id="wrapper-kai" class="no-print relative" style="display: none;">
                             <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo KAI
                                 <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-kai', 'wrapper-kai')">
                             </label>
                         </div>
-                        <img id="preview-kai" src="" alt="Logo KAI" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: none; min-width: 100px;" title="Klik untuk tambah logo KAI" onclick="this.previousElementSibling.querySelector('input').click()">
+                        <img id="preview-kai" src="kai.png" alt="Logo KAI" class="h-12 bg-white px-2 py-1 rounded object-contain cursor-pointer" style="display: block; min-width: 100px;" title="Klik untuk tambah logo KAI" onclick="this.previousElementSibling.querySelector('input').click()">
                     </div>
                     <div class="text-right">
                         <h1 class="text-2xl font-black text-[#2d2a70] tracking-wider uppercase">Boarding Pass</h1>
@@ -2108,12 +2108,12 @@
                 <div class="p-12 text-sm text-gray-800">
                     <div class="flex justify-between items-end mb-8 border-b-2 border-[#b58b45] pb-6">
                    <div class="flex items-center gap-4">
-                            <div id="wrapper-tentrem" class="no-print relative" style="display: block;">
+                           <div id="wrapper-tentrem" class="no-print relative" style="display: none;">
                                 <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Tentrem
                                     <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-tentrem', 'wrapper-tentrem')">
                                 </label>
                             </div>
-                            <img id="preview-tentrem" src="" alt="Logo Tentrem" class="h-16 object-contain cursor-pointer" style="display: none; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                            <img id="preview-tentrem" src="tentrem.png" alt="Logo Tentrem" class="h-16 object-contain cursor-pointer" style="display: block; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                             <div>
                                 <h1 class="text-3xl font-serif text-[#b58b45] font-bold tracking-wide">HOTEL TENTREM</h1>
                                 <p class="text-xs tracking-widest text-gray-600 uppercase mt-1">SEMARANG</p>
@@ -2229,12 +2229,12 @@
                 <div class="p-12 text-sm text-gray-800">
                     <div class="flex justify-between items-start mb-8 border-b-2 border-black pb-6">
                     <div class="flex items-center gap-4">
-                            <div id="wrapper-artotel" class="no-print relative" style="display: block;">
+                         <div id="wrapper-artotel" class="no-print relative" style="display: none;">
                                 <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Artotel
                                     <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-artotel', 'wrapper-artotel')">
                                 </label>
                             </div>
-                            <img id="preview-artotel" src="" alt="Logo Artotel" class="h-16 object-contain cursor-pointer" style="display: none; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                            <img id="preview-artotel" src="artotel.png" alt="Logo Artotel" class="h-16 object-contain cursor-pointer" style="display: block; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                             <div>
                                 <h1 class="text-3xl font-black tracking-tighter uppercase text-black">ARTOTEL</h1>
                                 <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold mt-0.5">Living World Grand Wisata Bekasi</p>
@@ -2497,45 +2497,244 @@
                 </div>
             </div>
         </div>
-<!-- TAMBAHAN TAB YANG KOSONG AGAR SIDEBAR BISA DIKLIK -->
+<!-- ====== MULAI DARI SINI: TEMPLATE YANG SEBELUMNYA KOSONG ====== -->
+        
+        <!-- Booking.com -->
+        <div id="tab-bookingcom" class="template-section w-full flex justify-center hidden">
+            <div id="content-bookingcom" class="receipt-container paper-a4 font-app ink-black" style="padding: 0;">
+                <div class="bg-[#003580] text-white px-10 py-6 flex justify-between items-center">
+                    <div><h1 class="text-3xl font-bold tracking-tight">Booking.com</h1><p class="text-[11px] opacity-90 mt-1 uppercase tracking-widest text-[#009fe3]">Confirmation Receipt</p></div>
+                </div>
+                <div class="p-10">
+                    <div class="flex justify-between items-end border-b-2 border-gray-200 pb-4 mb-6">
+                        <div><p class="text-gray-500 text-xs font-bold mb-1 uppercase">Confirmation Number</p><p class="text-3xl font-black text-gray-800"><span class="editable" contenteditable="true">2918.441.992</span></p></div>
+                        <div class="text-right"><p class="text-gray-500 text-xs font-bold mb-1 uppercase">PIN</p><p class="text-xl font-bold text-gray-800"><span class="editable" contenteditable="true">8812</span></p></div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 p-6 mb-8 rounded">
+                        <h2 class="font-bold text-xl text-[#003580] mb-2 editable" contenteditable="true">The Trans Luxury Hotel Bandung</h2>
+                        <p class="text-sm text-gray-600 mb-4 editable" contenteditable="true">Jl. Gatot Subroto No.289, Bandung</p>
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
+                            <div><p class="text-xs text-gray-500 font-bold uppercase mb-1">Check-in</p><p class="font-bold text-lg"><span class="editable" contenteditable="true">17 April 2026</span></p></div>
+                            <div><p class="text-xs text-gray-500 font-bold uppercase mb-1">Check-out</p><p class="font-bold text-lg"><span class="editable" contenteditable="true">19 April 2026</span></p></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <div class="w-1/2 bg-[#fdfdfd] p-5 rounded border border-gray-300">
+                            <h2 class="text-xs font-bold text-gray-800 uppercase border-b border-gray-200 pb-2 mb-3">Price Summary</h2>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div class="flex justify-between"><span>Premier Room (2 nights)</span><span>Rp <span class="editable" contenteditable="true">4,500,000</span></span></div>
+                                <div class="flex justify-between"><span>Property Tax & Fees</span><span>Rp <span class="editable" contenteditable="true">945,000</span></span></div>
+                            </div>
+                            <div class="border-t border-gray-300 mt-3 pt-3 flex justify-between items-center">
+                                <span class="font-bold text-gray-800">Total Price</span>
+                                <span class="text-2xl font-black text-[#003580]">Rp <span class="editable" contenteditable="true">5,445,000</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accor Bandara CGK -->
+        <div id="tab-accor-bandara" class="template-section w-full flex justify-center hidden">
+            <div id="content-accor-bandara" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-12 text-sm text-gray-800">
+                    <div class="flex justify-between items-start mb-8 border-b-2 border-[#003A5D] pb-6">
+                        <div>
+                            <h1 class="text-3xl font-black text-[#003A5D] uppercase tracking-widest">ACCOR HOTELS</h1>
+                            <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold mt-1">Jakarta Airport Hotel</p>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-widest">GUEST INVOICE</h2>
+                            <p class="text-xs text-gray-500 mt-2">Folio: <span class="editable font-bold text-gray-800" contenteditable="true">AC-10293</span></p>
+                            <p class="text-xs text-gray-500 mt-1">Date: <span class="editable" contenteditable="true">16 April 2026</span></p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 mb-8 bg-gray-50 p-5 border border-gray-200">
+                        <div>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Guest Name</p>
+                            <p class="font-bold text-base uppercase"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></p>
+                        </div>
+                        <div>
+                            <table class="text-xs w-full">
+                                <tr><td class="text-gray-500 py-1 w-24 font-bold">Room No.</td><td class="font-bold">: <span class="editable" contenteditable="true">310</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Arrival</td><td class="font-bold">: <span class="editable" contenteditable="true">15/04/2026</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Departure</td><td class="font-bold">: <span class="editable" contenteditable="true">16/04/2026</span></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="w-full text-left mb-8 border-collapse">
+                        <thead class="bg-[#003A5D] text-white">
+                            <tr>
+                                <th class="py-2 px-3 text-xs font-bold uppercase w-[20%]">Date</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase w-[50%]">Description</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase text-right w-[30%]">Amount (IDR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">15/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Room Charge - Transit Standard</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">1,250,000</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flex justify-end">
+                        <div class="w-1/2 border-t-2 border-[#003A5D] pt-3">
+                            <div class="flex justify-between bg-gray-100 p-3 text-lg font-black text-[#003A5D]">
+                                <span>TOTAL DUE</span>
+                                <span>IDR <span class="editable" contenteditable="true">1,250,000</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skyline Best View -->
+        <div id="tab-skyline" class="template-section w-full flex justify-center hidden">
+            <div id="content-skyline" class="pos-container paper-thermal-std font-sederhana ink-black">
+                <div class="text-center mb-3">
+                    <h2 class="font-bold text-[20px] uppercase editable">Skyline Best View</h2>
+                    <p class="editable mt-1 text-[11px]">Dago Pakar, Bandung</p>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between my-2 text-[11px]"><div><p>Bill: <span class="editable font-bold">SK-2210</span></p></div><div class="text-right"><p>Date: <span class="editable">16/04/2026</span></p></div></div>
+                <div class="line-solid"></div>
+                <table class="pos-table text-[11px]">
+                    <tbody><tr><td class="text-center w-6">2</td><td><span class="editable">Ribeye Steak 200gr</span></td><td class="text-right"><span class="editable">350,000</span></td></tr></tbody>
+                </table>
+                <div class="line-solid"></div>
+                <div class="space-y-1 my-2 text-[11px]">
+                    <div class="flex justify-between"><span>Subtotal</span><span class="editable">350,000</span></div>
+                    <div class="flex justify-between"><span>Service (5%)</span><span class="editable">17,500</span></div>
+                    <div class="flex justify-between"><span>PB1 (10%)</span><span class="editable">36,750</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between font-bold text-[16px] my-2"><span>TOTAL</span><span>Rp <span class="editable">404,250</span></span></div>
+                <div class="text-center footer-spacer"><p class="italic text-[10px]">Thank you for dining with a view!</p></div>
+            </div>
+        </div>
+
+        <!-- Abuba Steak -->
+        <div id="tab-abuba" class="template-section w-full flex justify-center hidden">
+            <div id="content-abuba" class="pos-container paper-thermal-std font-doubleu ink-black">
+                <div class="text-center mb-5"><h1 class="text-[22px] font-bold tracking-widest editable" contenteditable="true">ABUBA STEAK</h1><p class="editable text-[10px]" contenteditable="true">Cabang Bekasi</p></div>
+                <div class="flex justify-between text-[10px] my-2"><p>Bill: <span class="editable" contenteditable="true">AB-441</span></p><p><span class="editable" contenteditable="true">14-APR-2026</span></p></div>
+                <div class="line-dashed"></div>
+                <table class="pos-table text-[10px]">
+                    <thead><tr><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="w-6">Q</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;">MENU</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="text-right">PRICE</th></tr></thead>
+                    <tbody><tr><td>2</td><td><span class="editable" contenteditable="true">NZ Sirloin Steak</span></td><td class="text-right"><span class="editable" contenteditable="true">240,000</span></td></tr></tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="space-y-1 text-[11px] font-bold">
+                    <div class="flex justify-between"><span>SUBTOTAL</span><span class="editable" contenteditable="true">240,000</span></div>
+                    <div class="flex justify-between font-normal text-[10px]"><span>PB1 10%</span><span class="editable" contenteditable="true">24,000</span></div>
+                </div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between text-[14px] font-bold my-1"><span>TOTAL</span><span class="editable" contenteditable="true">264,000</span></div>
+            </div>
+        </div>
+
+        <!-- Dusun Bambu -->
+        <div id="tab-dusunbambu" class="template-section w-full flex justify-center hidden">
+            <div id="content-dusunbambu" class="pos-container paper-thermal-std font-sederhana ink-faded">
+                <div class="text-center mb-4"><h1 class="text-[20px] font-bold editable" contenteditable="true">DUSUN BAMBU</h1><p class="editable text-[10px]" contenteditable="true">Lembang, Bandung</p></div>
+                <div class="line-dashed"></div>
+                <div class="text-[12px] uppercase my-2"><p>Tanggal: <span class="editable" contenteditable="true">16/04/2026</span></p></div>
+                <table class="pos-table text-[12px]">
+                    <tbody><tr><td class="w-6">1</td><td><span class="editable" contenteditable="true">Paket Nasi Liwet (4p)</span></td><td class="text-right"><span class="editable" contenteditable="true">380,000</span></td></tr></tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="text-[12px] text-right space-y-1"><p>Subtotal : <span class="editable" contenteditable="true">380,000</span></p><p>Pajak 10% : <span class="editable" contenteditable="true">38,000</span></p></div>
+                <div class="line-double"></div>
+                <div class="flex justify-between font-bold text-[18px] my-1"><span>TOTAL</span><span class="editable" contenteditable="true">418,000</span></div>
+                <div class="text-center footer-spacer"><p>Hatur Nuhun</p></div>
+            </div>
+        </div>
+
+        <!-- Boemi Mitoha -->
+        <div id="tab-boemi" class="template-section w-full flex justify-center hidden">
+            <div id="content-boemi" class="pos-container paper-thermal-sepia font-pagisore ink-black">
+                <div class="text-center leading-snug mb-3"><p class="font-bold text-[18px] uppercase editable" contenteditable="true">BOEMI MITOHA</p><p class="text-[11px] editable" contenteditable="true">Jl. Ciliwung, Bandung</p></div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between uppercase my-2"><div><p>Kasir: <span class="editable">Sunda</span></p></div><div class="text-right"><p><span class="editable">16/04/2026</span></p></div></div>
+                <table class="pos-table">
+                    <thead><tr><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="w-6">Q</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;">MENU</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="text-right">HARGA</th></tr></thead>
+                    <tbody><tr><td class="text-center">1</td><td><span class="editable">Paket Botram (4 Pax)</span></td><td class="text-right"><span class="editable">250,000</span></td></tr></tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="space-y-1 my-2">
+                    <div class="flex justify-between font-bold"><span>SUBTOTAL</span><span class="editable">250,000</span></div>
+                    <div class="flex justify-between"><span>PB1 (10%)</span><span class="editable">25,000</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between font-bold text-[16px] my-2"><span>TOTAL</span><span>Rp <span class="editable">275,000</span></span></div>
+                <div class="text-center footer-spacer"><p class="font-bold text-[10px]">Raos Pisan!</p></div>
+            </div>
+        </div>
+
+        <!-- Kampung Daun -->
+        <div id="tab-kampungdaun" class="template-section w-full flex justify-center hidden">
+            <div id="content-kampungdaun" class="pos-container paper-thermal-std font-tsamara ink-faded">
+                <div class="text-center mb-4 leading-tight"><h1 class="text-[20px] font-bold editable" contenteditable="true">KAMPUNG DAUN</h1><p class="editable text-[10px]" contenteditable="true">Culture Gallery & Cafe</p></div>
+                <div class="line-solid"></div>
+                <div class="text-[11px] space-y-1 my-2"><div class="flex justify-between"><span>DATE: <span class="editable" contenteditable="true">16/04/26</span></span></div></div>
+                <div class="line-solid"></div>
+                <table class="pos-table text-[11px] uppercase">
+                    <thead><tr><th style="border-top:1px solid #000; border-bottom:1px solid #000;" class="w-8">QTY</th><th style="border-top:1px solid #000; border-bottom:1px solid #000;">MENU</th><th style="border-top:1px solid #000; border-bottom:1px solid #000;" class="text-right">AMT</th></tr></thead>
+                    <tbody><tr><td>1</td><td><span class="editable" contenteditable="true">Nasi Timbel Komplit</span></td><td class="text-right"><span class="editable" contenteditable="true">85,000</span></td></tr></tbody>
+                </table>
+                <div class="line-solid"></div>
+                <div class="space-y-1 text-[11px] text-right"><p>SUBTOTAL: <span class="editable" contenteditable="true">85,000</span></p><p>PB1 10%: <span class="editable" contenteditable="true">8,500</span></p></div>
+                <div class="line-solid" style="border-top: 2px solid #000;"></div>
+                <div class="flex justify-between font-bold text-[15px] my-2"><span>DUE:</span><span>Rp <span class="editable" contenteditable="true">93,500</span></span></div>
+            </div>
+        </div>
+
+        <!-- Telaga Sampireun -->
+        <div id="tab-sampireun" class="template-section w-full flex justify-center hidden">
+            <div id="content-sampireun" class="pos-container paper-thermal-std font-bandar ink-black">
+                <div class="text-center mb-4 uppercase"><h1 class="text-[20px] font-bold editable" contenteditable="true">TELAGA SAMPIREUN</h1><p class="editable mt-1 text-[10px]" contenteditable="true">Cikarang Barat</p></div>
+                <div class="line-dashed"></div>
+                <div class="flex justify-between my-2 text-[10px] uppercase"><div><p>Table: <span class="editable font-bold" contenteditable="true">Saung 4</span></p></div><div class="text-right"><p><span class="editable" contenteditable="true">16/04/2026</span></p></div></div>
+                <div class="line-dashed"></div>
+                <table class="pos-table uppercase text-[10px]">
+                    <thead><tr><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="w-8">QTY</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;">DESC</th><th style="border-top:1px dashed #000; border-bottom:1px dashed #000;" class="text-right">TOTAL</th></tr></thead>
+                    <tbody><tr><td>1</td><td><span class="editable" contenteditable="true">Gurame Terbang</span></td><td class="text-right"><span class="editable" contenteditable="true">115,000</span></td></tr></tbody>
+                </table>
+                <div class="line-dashed"></div>
+                <div class="space-y-1 text-right text-[10px]">
+                    <div class="flex justify-between"><span>SUBTOTAL</span><span class="editable" contenteditable="true">115,000</span></div>
+                    <div class="flex justify-between"><span>PB1 (10%)</span><span class="editable" contenteditable="true">11,500</span></div>
+                    <div class="flex justify-between"><span>SERVICE (5%)</span><span class="editable" contenteditable="true">5,750</span></div>
+                </div>
+                <div class="line-double"></div>
+                <div class="flex justify-between font-bold text-[16px] my-2 uppercase"><span>TOTAL</span><span>RP <span class="editable" contenteditable="true">132,250</span></span></div>
+            </div>
+        </div>
+
+        <!-- Sisa Template Flight -->
         <div id="tab-tiketcom-flight" class="template-section w-full flex justify-center hidden">
-            <div id="content-tiketcom-flight" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Tiket.com Flight</h1></div></div>
+            <div id="content-tiketcom-flight" class="receipt-container paper-a4 font-app ink-black" style="padding: 0;">
+                <div class="bg-[#0064d2] text-[#fedd00] px-10 py-6 flex justify-between items-center">
+                    <div><h1 class="text-3xl font-black tracking-tight">tiket<span class="text-white">.com</span></h1><p class="text-[11px] opacity-90 mt-1 uppercase text-white">Flight E-Receipt</p></div>
+                </div>
+                <div class="p-10"><h2 class="text-2xl font-bold mb-4">Flight Itinerary</h2><p class="text-gray-500">Silakan edit detail rute di sini.</p></div>
+            </div>
         </div>
         <div id="tab-tripcom-flight" class="template-section w-full flex justify-center hidden">
-            <div id="content-tripcom-flight" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Trip.com Flight</h1></div></div>
+            <div id="content-tripcom-flight" class="receipt-container paper-a4 font-app ink-black" style="padding: 0;">
+                <div class="bg-[#3377ff] text-white px-10 py-6"><h1 class="text-3xl font-bold">Trip.com</h1><p class="text-[11px] opacity-90 mt-1 uppercase text-[#a6c8ff]">Flight E-Receipt</p></div>
+                <div class="p-10"><h2 class="text-2xl font-bold mb-4">Flight Itinerary</h2><p class="text-gray-500">Silakan edit detail penerbangan di sini.</p></div>
+            </div>
         </div>
         <div id="tab-fairfield-cgk" class="template-section w-full flex justify-center hidden">
-            <div id="content-fairfield-cgk" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Fairfield CGK</h1></div></div>
-        </div>
-        <div id="tab-accor-bandara" class="template-section w-full flex justify-center hidden">
-            <div id="content-accor-bandara" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Accor Bandara</h1></div></div>
+            <div id="content-fairfield-cgk" class="receipt-container paper-a4 font-email ink-black" style="padding: 0;"><div class="p-10"><h2 class="text-2xl font-bold">Fairfield CGK Airport</h2><p class="mt-2 text-gray-500">Desain mirip dengan Fairfield standard, sesuaikan Header.</p></div></div>
         </div>
         <div id="tab-fairfield-bekasi" class="template-section w-full flex justify-center hidden">
-            <div id="content-fairfield-bekasi" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Fairfield Bekasi (Authentic)</h1></div></div>
+            <div id="content-fairfield-bekasi" class="receipt-container paper-a4 font-email ink-black" style="padding: 0;"><div class="p-10"><h2 class="text-2xl font-bold">Fairfield Bekasi (Authentic Design)</h2><p class="mt-2 text-gray-500">Gunakan format ini untuk membuat versi asli PDF.</p></div></div>
         </div>
-        <div id="tab-bookingcom" class="template-section w-full flex justify-center hidden">
-            <div id="content-bookingcom" class="receipt-container paper-a4 font-app ink-black"><div class="p-10 text-center"><h1 class="text-2xl font-bold">Template Booking.com</h1></div></div>
-        </div>
-        <div id="tab-abuba" class="template-section w-full flex justify-center hidden">
-            <div id="content-abuba" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Abuba Steak</h1></div></div>
-        </div>
-        <div id="tab-kampungdaun" class="template-section w-full flex justify-center hidden">
-            <div id="content-kampungdaun" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Kampung Daun</h1></div></div>
-        </div>
-        <div id="tab-sampireun" class="template-section w-full flex justify-center hidden">
-            <div id="content-sampireun" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Telaga Sampireun</h1></div></div>
-        </div>
-        <div id="tab-boemi" class="template-section w-full flex justify-center hidden">
-            <div id="content-boemi" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Boemi Mitoha</h1></div></div>
-        </div>
-        <div id="tab-skyline" class="template-section w-full flex justify-center hidden">
-            <div id="content-skyline" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Skyline Best View</h1></div></div>
-        </div>
-        <div id="tab-dusunbambu" class="template-section w-full flex justify-center hidden">
-            <div id="content-dusunbambu" class="pos-container paper-thermal-std font-sederhana ink-black"><div class="p-5 text-center"><h1 class="text-xl font-bold">Template Dusun Bambu</h1></div></div>
-        </div>
-    </div>
-</div>
 
 <script>
     let activeTabId = 'content-grab-email'; 
