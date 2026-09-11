@@ -2539,15 +2539,15 @@
         <div id="tab-accor-bandara" class="template-section w-full flex justify-center hidden">
             <div id="content-accor-bandara" class="receipt-container paper-a4 font-email ink-black" style="padding: 0; background-color: #ffffff;">
                 <div class="p-12 text-sm text-gray-800">
-                    <div class="flex justify-between items-start mb-8 border-b-2 border-[#003A5D] pb-6">
+                  
                        <div class="flex justify-between items-start mb-8 border-b-2 border-[#003A5D] pb-6">
                         <div class="flex items-center gap-4">
-                            <div id="wrapper-accor" class="no-print relative" style="display: block;">
-                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Accor
-                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-accor', 'wrapper-accor')">
-                                </label>
-                            </div>
-                            <img id="preview-accor" src="" alt="Logo Accor" class="h-12 object-contain cursor-pointer" style="display: none; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                        <div id="wrapper-accor" class="no-print relative" style="display: none;">
+                             <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Accor
+                                 <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-accor', 'wrapper-accor')">
+                             </label>
+                         </div>
+                         <img id="preview-accor" src="accor.png" alt="Logo Accor" class="h-12 object-contain cursor-pointer" style="display: block; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                             <div>
                                 <h1 class="text-3xl font-black text-[#003A5D] uppercase tracking-widest">ACCOR HOTELS</h1>
                                 <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold mt-1">Jakarta Airport Hotel</p>
