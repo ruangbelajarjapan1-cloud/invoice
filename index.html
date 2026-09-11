@@ -140,7 +140,7 @@
         <div class="nav-item" onclick="switchTab('tab-fairfield-cgk', this)">🏨 Fairfield CGK</div>
         <div class="nav-item" onclick="switchTab('tab-accor-bandara', this)">🏨 Accor Bandara CGK</div>
         <div class="nav-item" onclick="switchTab('tab-fairfield-bekasi', this)">🏨 Fairfield (Authentic)</div>
-        
+        <div class="nav-item" onclick="switchTab('tab-novotel', this)">🏨 Novotel Gajah Mada</div>
         <div class="nav-category">Hotel Semarang (A4)</div>
         <div class="nav-item" onclick="switchTab('tab-tentrem-smg', this)">🏨 Tentrem Semarang</div>
         <div class="nav-item" onclick="switchTab('tab-artotel-gw', this)">🏨 ARTOTEL Grand Wisata</div>
@@ -2866,6 +2866,108 @@
                     <div class="flex justify-end"><div class="w-1/2 border-t-2 border-gray-800 pt-3"><div class="flex justify-between bg-gray-100 p-3 text-lg font-black text-gray-800"><span>TOTAL DUE</span><span>IDR <span class="editable" contenteditable="true">950,000</span></span></div></div></div>
                 </div>
             </div>
+            <!-- TAB NOVOTEL JAKARTA GAJAH MADA -->
+        <div id="tab-novotel" class="template-section w-full flex justify-center hidden">
+            <div id="content-novotel" class="receipt-container paper-a4 font-app ink-black" style="padding: 0; background-color: #ffffff;">
+                <div class="p-12 text-sm text-gray-800">
+                    <div class="flex justify-between items-start mb-8 border-b-2 border-[#1E4C7A] pb-6">
+                        <div class="flex items-center gap-4">
+                            <div id="wrapper-novotel" class="no-print relative" style="display: block;">
+                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Novotel
+                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-novotel', 'wrapper-novotel')">
+                                </label>
+                            </div>
+                            <img id="preview-novotel" src="novotel.png" alt="Logo Novotel" class="h-12 object-contain cursor-pointer" style="display: block; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
+                            <div>
+                                <h1 class="text-3xl font-black text-[#1E4C7A] uppercase tracking-widest">NOVOTEL</h1>
+                                <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold mt-1">JAKARTA GAJAH MADA</p>
+                                <div class="mt-2 text-[10px] text-gray-600 space-y-0.5">
+                                    <p>Jl. Gajah Mada No. 181, 11120 Jakarta Barat, Indonesia</p>
+                                    <p>Tel: +62 21 29367777 | accorhotels.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-widest">GUEST INVOICE</h2>
+                            <p class="text-xs text-gray-500 mt-2">Folio: <span class="editable font-bold text-gray-800" contenteditable="true">NV-883921</span></p>
+                            <p class="text-xs text-gray-500 mt-1">Date: <span class="editable" contenteditable="true">15 April 2026</span></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-8 mb-8 bg-gray-50 p-5 border border-gray-200">
+                        <div>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Guest Name / Company</p>
+                            <p class="font-bold text-base uppercase"><span class="editable" contenteditable="true">MR. WAHYU SETIAWAN</span></p>
+                            <p class="text-xs text-gray-500 mt-1 editable" contenteditable="true">Jakarta, Indonesia</p>
+                        </div>
+                        <div>
+                            <table class="text-xs w-full">
+                                <tr><td class="text-gray-500 py-1 w-24 font-bold">Room No.</td><td class="font-bold">: <span class="editable" contenteditable="true">1204</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Arrival</td><td class="font-bold">: <span class="editable" contenteditable="true">13/04/2026</span></td></tr>
+                                <tr><td class="text-gray-500 py-1 font-bold">Departure</td><td class="font-bold">: <span class="editable" contenteditable="true">15/04/2026</span></td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <table class="w-full text-left mb-8 border-collapse">
+                        <thead class="bg-[#1E4C7A] text-white">
+                            <tr>
+                                <th class="py-2 px-3 text-xs font-bold uppercase w-[15%]">Date</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase w-[40%]">Description</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase w-[15%] text-center">Ref</th>
+                                <th class="py-2 px-3 text-xs font-bold uppercase text-right w-[30%]">Amount (IDR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">13/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Room Charge - Superior</span></td>
+                                <td class="py-3 px-3 text-xs text-center"><span class="editable" contenteditable="true">RM1204</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">850,000</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">14/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Room Charge - Superior</span></td>
+                                <td class="py-3 px-3 text-xs text-center"><span class="editable" contenteditable="true">RM1204</span></td>
+                                <td class="py-3 px-3 text-xs text-right"><span class="editable" contenteditable="true">850,000</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">15/04/2026</span></td>
+                                <td class="py-3 px-3 text-xs font-bold text-[#1E4C7A]"><span class="editable" contenteditable="true">Visa Card Payment</span></td>
+                                <td class="py-3 px-3 text-xs text-center"><span class="editable" contenteditable="true">VS992</span></td>
+                                <td class="py-3 px-3 text-xs text-right font-bold"><span class="editable" contenteditable="true">- 2,057,000</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="flex justify-end">
+                        <div class="w-1/2">
+                            <div class="flex justify-between text-xs text-gray-600 mb-1 px-3">
+                                <span>Subtotal</span>
+                                <span><span class="editable" contenteditable="true">1,700,000</span></span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-600 mb-1 px-3">
+                                <span>Service Charge (10%)</span>
+                                <span><span class="editable" contenteditable="true">170,000</span></span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-600 mb-3 border-b border-gray-200 pb-2 px-3">
+                                <span>Tax (11%)</span>
+                                <span><span class="editable" contenteditable="true">187,000</span></span>
+                            </div>
+                            <div class="flex justify-between bg-gray-100 p-3 text-lg font-black text-[#1E4C7A] border-t-2 border-[#1E4C7A]">
+                                <span>BALANCE DUE</span>
+                                <span>IDR <span class="editable" contenteditable="true">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 text-[9px] text-gray-500 text-center uppercase tracking-widest border-t border-gray-200 pt-6">
+                        <p>Thank you for staying at Novotel Jakarta Gajah Mada</p>
+                        <p class="font-bold mt-1 text-[#1E4C7A]">Feel Welcome</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
 
 <script>
