@@ -2877,29 +2877,35 @@
         <div id="tab-novotel" class="template-section w-full flex justify-center hidden">
             <div id="content-novotel" class="receipt-container paper-a4 font-app ink-black" style="padding: 0; background-color: #ffffff;">
                 <div class="p-12 text-sm text-gray-800">
-                    <div class="flex justify-between items-start mb-8 border-b-2 border-[#1E4C7A] pb-6">
-                        <div class="flex items-center gap-4">
-                            <div id="wrapper-novotel" class="no-print relative" style="display: block;">
-                                <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Novotel
-                                    <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-novotel', 'wrapper-novotel')">
-                                </label>
+                 <div class="flex justify-between items-start mb-8 border-b-2 border-gray-800 pb-6">
+                        <!-- Bagian Kiri: Logo & Alamat Hotel -->
+                        <div class="flex items-start gap-5">
+                            <div>
+                                <div id="wrapper-novotel" class="no-print relative mb-1" style="display: block;">
+                                    <label class="cursor-pointer bg-gray-200 px-2 py-1 rounded text-xs text-gray-700 border border-gray-400">+ Logo Novotel
+                                        <input type="file" class="hidden" accept="image/*" onchange="previewLogo(event, 'preview-novotel', 'wrapper-novotel')">
+                                    </label>
+                                </div>
+                                <img id="preview-novotel" src="" alt="Logo Novotel" class="h-16 object-contain cursor-pointer" style="display: none; min-width: 100px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
                             </div>
-                         <img id="preview-novotel" src="" alt="Logo Novotel" class="h-12 object-contain cursor-pointer" style="display: none; min-width: 80px;" title="Klik untuk ganti logo" onclick="this.previousElementSibling.querySelector('input').click()">
-                                <h1 class="text-3xl font-black text-[#1E4C7A] uppercase tracking-widest">NOVOTEL</h1>
-                                <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold mt-1">JAKARTA GAJAH MADA</p>
-                                <div class="mt-2 text-[10px] text-gray-600 space-y-0.5">
+                            <div class="pt-1">
+                                <!-- Teks Raksasa NOVOTEL dihapus agar tidak bentrok dengan gambar logo -->
+                                <p class="text-[12px] font-bold text-[#1E4C7A] uppercase tracking-widest">Novotel Jakarta Gajah Mada</p>
+                                <div class="mt-1 text-[10px] text-gray-600 space-y-0.5 leading-relaxed">
                                     <p>Jl. Gajah Mada No. 181, 11120 Jakarta Barat, Indonesia</p>
-                                    <p>Tel: +62 21 29367777 | accorhotels.com</p>
+                                    <p>Tel: +62 21 29367777 | Fax: +62 21 29366666</p>
+                                    <p>NPWP: 02.123.456.7-054.000</p>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Bagian Kanan: Judul Invoice & Nomor -->
                         <div class="text-right">
-                            <h2 class="text-2xl font-bold text-gray-800 uppercase tracking-widest">GUEST INVOICE</h2>
+                            <h2 class="text-2xl font-bold text-[#1E4C7A] uppercase tracking-widest">GUEST INVOICE</h2>
                             <p class="text-xs text-gray-500 mt-2">Folio: <span class="editable font-bold text-gray-800" contenteditable="true">NV-883921</span></p>
                             <p class="text-xs text-gray-500 mt-1">Date: <span class="editable" contenteditable="true">15 April 2026</span></p>
                         </div>
                     </div>
-
                     <div class="grid grid-cols-2 gap-8 mb-8 bg-gray-50 p-5 border border-gray-200">
                         <div>
                             <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Guest Name / Company</p>
