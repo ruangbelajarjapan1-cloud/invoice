@@ -450,7 +450,7 @@
                             </table>
                         </div>
                     </div>
-                    <table class="w-full text-left mb-8 border-collapse">
+                   <table class="w-full text-left mb-8 border-collapse">
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th class="py-2 px-3 text-xs font-bold uppercase w-[20%]">Date</th>
@@ -458,7 +458,12 @@
                                 <th class="py-2 px-3 text-xs font-bold uppercase text-right w-[30%]">Amount (IDR)</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="fairfield-tbody">
+                            <tr class="no-print border-b border-gray-100 bg-gray-100">
+                                <td colspan="3" class="py-1 text-center">
+                                    <button onclick="addFairfieldRow()" class="text-[10px] font-bold text-black px-2 py-1 rounded hover:bg-gray-200 transition">+ Tambah Baris Transaksi</button>
+                                </td>
+                            </tr>
                             <tr class="border-b border-gray-200">
                                 <td class="py-3 px-3 text-xs"><span class="editable" contenteditable="true">14/04/2026</span></td>
                                 <td class="py-3 px-3 text-xs font-bold"><span class="editable" contenteditable="true">Room Charge - Standard</span></td>
@@ -2968,7 +2973,7 @@
                 </div>
             </div>
         </div>
-        </div>
+ 
 
 <script>
     let activeTabId = 'content-grab-email'; 
